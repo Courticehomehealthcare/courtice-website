@@ -1,0 +1,109 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\AuthController;
+
+Route::get('/', [HomeController::class, 'index4'])->name('index4');
+// Route::get('/index2', [HomeController::class, 'index2'])->name('index2');
+// Route::get('/index3', [HomeController::class, 'index3'])->name('index3');
+// Route::get('/index4', [HomeController::class, 'index4'])->name('index4');
+// Route::get('/index5', [HomeController::class, 'index5'])->name('index5');
+// Route::get('/index-dark', [HomeController::class, 'index_dark'])->name('index-dark');
+// Route::get('/index-one-page', [HomeController::class, 'index_one_page'])->name('index-one-page');
+// Route::get('/index2-one-page', [HomeController::class, 'index2_one_page'])->name('index2-one-page');
+// Route::get('/index3-one-page', [HomeController::class, 'index3_one_page'])->name('index3-one-page');
+// Route::get('/index4-one-page', [HomeController::class, 'index4_one_page'])->name('index4-one-page');
+// Route::get('/index5-one-page', [HomeController::class, 'index5_one_page'])->name('index5-one-page');
+
+// Pages 
+Route::get('about', [PagesController::class, 'about'])->name('about');
+Route::get('doctor', [PagesController::class, 'doctor'])->name('doctor');
+Route::get('doctor-carousel', [PagesController::class, 'doctor_carousel'])->name('doctor-carousel');
+Route::get('doctor-details', [PagesController::class, 'doctor_details'])->name('doctor-details');
+Route::get('project', [PagesController::class, 'project'])->name('project');
+Route::get('project-carousel', [PagesController::class, 'project_carousel'])->name('project-carousel');
+Route::get('project-details', [PagesController::class, 'project_details'])->name('project-details');
+Route::get('testimonials', [PagesController::class, 'testimonials'])->name('testimonials');
+Route::get('testimonial-carousel', [PagesController::class, 'testimonial_carousel'])->name('testimonial-carousel');
+Route::get('pricing', [PagesController::class, 'pricing'])->name('pricing');
+Route::get('appoinment', [PagesController::class, 'appoinment'])->name('appoinment');
+Route::get('faq', [PagesController::class, 'faq'])->name('faq');
+Route::get('services', [PagesController::class, 'services'])->name('services');
+Route::get('services/{slug}', [PagesController::class, 'service_details'])->name('services.details');
+Route::get('service-carousel', [PagesController::class, 'service_carousel'])->name('service-carousel');
+Route::redirect('vitality-health-solutions', '/services/vitality-health-solutions', 301);
+Route::redirect('wellSpring-wellness-center', '/services/wellSpring-wellness-center', 301);
+Route::redirect('harmony-family-health-medical', '/services/harmony-family-health-medical', 301);
+Route::redirect('evergreen-medical-center', '/services/evergreen-medical-center', 301);
+Route::redirect('pure-life-health-services', '/services/pure-life-health-services', 301);
+Route::get('/products', [PagesController::class, 'collections'])->name('collections');
+Route::get('/products/{slug}', [PagesController::class, 'products'])->name('products');
+Route::get('/product-details/{slug}', [PagesController::class, 'product_details'])->name('product-details');
+Route::get('cart', [PagesController::class, 'cart'])->name('cart');
+Route::get('checkout', [PagesController::class, 'checkout'])->name('checkout');
+Route::get('wishlist', [PagesController::class, 'wishlist'])->name('wishlist');
+Route::get('sign-up', [PagesController::class, 'sign_up'])->name('sign-up');
+Route::get('login', [PagesController::class, 'login'])->name('login');
+
+use App\Http\Controllers\Admin\SubscriberController;
+
+Route::post('login', [AuthController::class, 'login'])
+    ->name('login.submit');
+
+Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe');
+
+
+Route::get('blog', [PagesController::class, 'blog'])->name('blog');
+Route::get('blog-carousel', [PagesController::class, 'blog_carousel'])->name('blog-carousel');
+Route::get('blog-list', [PagesController::class, 'blog_list'])->name('blog-list');
+Route::get('blog-list-2', [PagesController::class, 'blog_list_2'])->name('blog-list-2');
+Route::get('blog/{slug}', [PagesController::class, 'blog_details'])->name('blog.details');
+Route::get('contact', [PagesController::class, 'contact'])->name('contact');
+Route::post('contact-submit', [PagesController::class, 'submitContact'])->name('contact.submit');
+
+
+
+
+
+// Temporary route to link storage (run this once in browser: yourdomain.com/link-storage)
+Route::get('/link-storage', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        return "Storage link created successfully!";
+    } catch (\Exception $e) {
+        return "Error: " . $e->getMessage();
+    }
+});
+
+// Temporary test route for email delivery verification (Remove after testing)
+Route::get('/test-contact-email', function () {
+    $data = [
+        'first_name' => 'saikrishna',
+        'last_name' => 'Test',
+        'email' => 'nallapaneni.saikrishna@gmail.com',
+        'phone' => '1234567890',
+        'subject' => 'Test Contact Submission',
+        'message' => 'This is a test message to verify the dual-email system and SMTP configuration.',
+    ];
+
+    try {
+        // Internal notification
+        $mail = \Illuminate\Support\Facades\Mail::to('support@courticehomehealthcare.com');
+        if (env('MAIL_CC_ADDRESS')) {
+            $mail->cc(env('MAIL_CC_ADDRESS'));
+        }
+        $mail->send(new \App\Mail\ContactFormSubmitted($data));
+
+        // Thank you email to user
+        \Illuminate\Support\Facades\Mail::to($data['email'])
+            ->send(new \App\Mail\ContactThankYou($data));
+
+        return "Test emails sent successfully to support and {$data['email']}!";
+    } catch (\Exception $e) {
+        return "Failed to send test emails: " . $e->getMessage();
+    }
+});
+
+Route::fallback([PagesController::class, 'not_found']);
