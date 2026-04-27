@@ -22,19 +22,35 @@
             height: 280px;
         }
 
-        .banner-two__img img {
-            height: 600px;
-            /* Fixed height for banner images */
+        .banner-two__img {
+            position: relative;
+            height: 650px;
             width: 100%;
-            object-fit: cover;
-            /* Responsive and filling */
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-two__img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* All images will fill the fixed box perfectly */
+            object-position: center;
         }
 
         /* Banner Carousel Dots & Arrows */
+        .banner-two__carousel.owl-carousel {
+            padding-bottom: 50px; /* Space for dots below */
+        }
+
         .banner-two__carousel.owl-carousel .owl-nav {
             position: absolute;
             top: 50%;
-            width: 100%;
+            width: calc(100% + 40px);
+            left: -20px;
             display: flex;
             justify-content: space-between;
             transform: translateY(-50%);
@@ -44,21 +60,19 @@
 
         .banner-two__carousel.owl-carousel .owl-nav button.owl-prev,
         .banner-two__carousel.owl-carousel .owl-nav button.owl-next {
-            width: 50px;
-            height: 50px;
+            width: 44px;
+            height: 44px;
             background-color: #ffffff !important;
             color: #00bdd6 !important;
-            /* Theme blue */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             pointer-events: all;
-            margin: 0 30px;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .banner-two__carousel.owl-carousel .owl-nav button.owl-prev:hover,
@@ -71,7 +85,7 @@
 
         .banner-two__carousel.owl-carousel .owl-dots {
             position: absolute;
-            bottom: 30px;
+            bottom: 0px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -80,9 +94,9 @@
         }
 
         .banner-two__carousel.owl-carousel .owl-dots .owl-dot span {
-            width: 12px;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.5) !important;
+            width: 10px;
+            height: 10px;
+            background-color: #d1d9e6 !important;
             border-radius: 50%;
             transition: all 0.3s ease;
             display: block;
@@ -90,8 +104,9 @@
         }
 
         .banner-two__carousel.owl-carousel .owl-dots .owl-dot.active span {
-            background-color: #ffffff !important;
-            transform: scale(1.3);
+            background-color: #00bdd6 !important;
+            width: 25px;
+            border-radius: 5px;
         }
 
         .form-submit-spinner {
@@ -127,10 +142,23 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease-in-out;
+            /* filter: grayscale(100%); */
+            /* opacity: 0.6; */
         }
         .brand-two__img:hover img {
-            transform: scale(1.1);
+            transform: scale(1.1) translateY(-5px);
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        .brand-two__single {
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .brand-two__single:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         /* intl-tel-input custom styles */
@@ -168,6 +196,30 @@
         .contact-two__input-box .iti input[type="tel"]:focus {
             border-color: var(--careon-base);
         }
+
+        /* FAQ Contact Info Fix */
+        .faq-three__contact-info {
+            max-width: 350px !important;
+            width: auto !important;
+        }
+
+        .faq-three__contact-info-number p {
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+        }
+
+        .faq-three__contact-info-number p a {
+            word-break: break-all;
+        }
+
+        @media (max-width: 480px) {
+            .faq-three__contact-info {
+                max-width: 280px !important;
+            }
+            .faq-three__contact-info-number p {
+                font-size: 14px !important;
+            }
+        }
     </style>
     <x-strickyHeaderThree />
 
@@ -180,49 +232,7 @@
             <div class="row">
                 <div class="col-xl-6">
                     <div class="banner-two__left sec-title-animation animation-style2">
-                        <div class="banner-two__review-box">
-                            <ul class="list-unstyled banner-two__review-img-box">
-                                <li>
-                                    <div class="banner-two__review-img">
-                                        <img src="{{ asset("/assets/images/resources/banner-two-review-img-1.jpg") }}"
-                                            alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="banner-two__review-img">
-                                        <img src="{{ asset("/assets/images/resources/banner-two-review-img-2.jpg") }}"
-                                            alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="banner-two__review-img">
-                                        <img src="{{ asset("/assets/images/resources/banner-two-review-img-3.jpg") }}"
-                                            alt="">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="banner-two__review-count-box">
-                                        <div class="banner-two__review-count">
-                                            <h3 class="odometer" data-count="3">00</h3>
-                                            <span>k+</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="banner-two__review-content-box">
-                                <h4 class="banner-two__review-content-title">Customer Reviews</h4>
-                                <div class="banner-two__review-rating-box">
-                                    <p>5.0</p>
-                                    <div class="banner-two__review-start">
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                         <h2 class="banner-two__title title-animation">Better Home Care <span>Starts With the Right
                                 Products</span> </h2>
                         <p class="banner-two__text">Find mobility aids, incontinence supplies, home safety equipment,
@@ -232,192 +242,6 @@
                             <a href="{{ url("appoinment") }}" class="thm-btn">Shop our Products<span
                                     class="icon-arrow-right"></span> </a>
                         </div>
-                        <!-- Enhanced Counter Box -->
-                        <style>
-                            .hc-counter-box {
-                                margin-top: 36px;
-                            }
-
-                            .hc-counter-list {
-                                display: flex;
-                                flex-wrap: wrap;
-                                gap: 0;
-                                padding: 0;
-                                margin: 0;
-                                list-style: none;
-                                background: linear-gradient(135deg, rgba(0, 189, 214, 0.08) 0%, rgba(0, 120, 160, 0.12) 100%);
-                                border-radius: 18px;
-                                border: 1px solid rgba(0, 189, 214, 0.18);
-                                backdrop-filter: blur(6px);
-                                overflow: hidden;
-                            }
-
-                            .hc-counter-list>li {
-                                flex: 1 1 50%;
-                                position: relative;
-                            }
-
-                            /* vertical dividers */
-                            .hc-counter-list>li:nth-child(odd)::after {
-                                content: '';
-                                position: absolute;
-                                right: 0;
-                                top: 16%;
-                                height: 68%;
-                                width: 1px;
-                                background: rgba(0, 189, 214, 0.25);
-                            }
-
-                            /* horizontal dividers */
-                            .hc-counter-list>li:nth-child(1),
-                            .hc-counter-list>li:nth-child(2) {
-                                border-bottom: 1px solid rgba(0, 189, 214, 0.2);
-                            }
-
-                            .hc-counter-item {
-                                display: flex;
-                                align-items: flex-start;
-                                gap: 14px;
-                                padding: 20px 18px 18px;
-                                transition: background 0.3s ease, transform 0.3s ease;
-                                cursor: default;
-                            }
-
-                            .hc-counter-item:hover {
-                                background: rgba(0, 189, 214, 0.09);
-                            }
-
-                            .hc-counter-icon-wrap {
-                                flex-shrink: 0;
-                                width: 46px;
-                                height: 46px;
-                                border-radius: 12px;
-                                background:linear-gradient(135deg, #00bdd680, #fff);
-                                /* background: linear-gradient(135deg, #00bdd6, #0078a0); */
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                box-shadow: 0 4px 14px rgba(0, 189, 214, 0.35);
-                                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                            }
-
-                            .hc-counter-item:hover .hc-counter-icon-wrap {
-                                transform: translateY(-3px) scale(1.08);
-                                box-shadow: 0 8px 20px rgba(0, 189, 214, 0.45);
-                            }
-
-                            .hc-counter-icon-wrap i,
-                            .hc-counter-icon-wrap img {
-                                color: #fff;
-                                font-size: 18px;
-                                max-width: 24px;
-                                max-height: 24px;
-                                object-fit: contain;
-                            }
-
-                            .hc-counter-body {
-                                display: flex;
-                                flex-direction: column;
-                                min-width: 0;
-                            }
-
-                            .hc-counter-num {
-                                display: flex;
-                                align-items: baseline;
-                                gap: 2px;
-                                line-height: 1;
-                            }
-
-                            .hc-counter-num h3.odometer {
-                                font-size: 26px;
-                                font-weight: 800;
-                                color: #0d1e3b;
-                                line-height: 1;
-                            }
-
-                            .hc-counter-num .hc-suffix {
-                                font-size: 18px;
-                                font-weight: 700;
-                                color: #00bdd6;
-                                line-height: 1;
-                            }
-
-                            .hc-counter-label {
-                                margin-top: 5px;
-                                font-size: 12px;
-                                font-weight: 500;
-                                color: #5a6a7e;
-                                line-height: 1.3;
-                            }
-                        </style>
-
-                        <div class="hc-counter-box">
-                            <ul class="hc-counter-list">
-                                <!-- Card 1: ADP Authorized Vendor -->
-                                <li>
-                                    <div class="hc-counter-item">
-                                        <div class="hc-counter-icon-wrap">
-                                            <img src="{{ asset('assets/images/ontario-logo--desktop.png') }}"
-                                                alt="ADP Authorized">
-                                        </div>
-                                        <div class="hc-counter-body">
-                                            <!-- <div class="hc-counter-num">
-                                                                    <h3 class="odometer" data-count="120">00</h3>
-                                                                    <span class="hc-suffix">+</span>
-                                                                </div> -->
-                                            <p class="hc-counter-label">Assistive Devices Program
- Authorized Vendor</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Card 2: Direct Billing Green Shield -->
-                                <li>
-                                    <div class="hc-counter-item">
-                                        <div class="hc-counter-icon-wrap">
-                                            <img src="{{ asset('assets/images/greenshield.png') }}" alt="Direct Billing">
-                                        </div>
-                                        <div class="hc-counter-body">
-                                            <!-- <div class="hc-counter-num">
-                                                                <h3 class="odometer" data-count="450">00</h3>
-                                                                <span class="hc-suffix">+</span>
-                                                            </div> -->
-                                            <p class="hc-counter-label">Direct Billing: Green Shield Canada</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Card 3: WSIB & Veterans -->
-                                <li>
-                                    <div class="hc-counter-item">
-                                        <div class="hc-counter-icon-wrap">
-                                            <img src="{{ asset('assets/images/wsib_favicon.png') }}"
-                                                alt="WSIB & Veterans">
-                                        </div>
-                                        <div class="hc-counter-body">
-                                            <!-- <div class="hc-counter-num">
-                                                            <h3 class="odometer" data-count="3">00</h3>
-                                                            <span class="hc-suffix">k+</span>
-                                                        </div> -->
-                                            <p class="hc-counter-label">WSIB &amp; Veterans Affairs Support</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- Card 4: Local Store Same-Day -->
-                                <li>
-                                    <div class="hc-counter-item">
-                                        <div class="hc-counter-icon-wrap">
-                                            <img src="{{ asset('assets/images/canada.png') }}" alt="Local Store">
-                                        </div>
-                                        <div class="hc-counter-body">
-                                            <!-- <div class="hc-counter-num">
-                                                        <h3 class="odometer" data-count="3">00</h3>
-                                                        <span class="hc-suffix">k+</span>
-                                                    </div> -->
-                                            <p class="hc-counter-label">Local Store — Same-Day Availability</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -426,30 +250,281 @@
                         <div class="banner-two__carousel owl-theme owl-carousel">
                             @forelse($carousels as $carousel)
                                 <div class="item">
-                                    <div class="banner-two__img">
-                                        <img src="{{ asset($carousel->image_url) }}" alt="{{ $carousel->title }}">
+                                    <div class="banner-two__img" style="background-image: url('{{ asset($carousel->image_url) }}');">
+                                        <img src="{{ asset($carousel->image_url) }}" alt="{{ $carousel->title }}" width="650" height="650">
                                     </div>
                                 </div>
                             @empty
                                 <div class="item">
-                                    <div class="banner-two__img">
-                                        <img src="{{ asset("/assets/images/home.png") }}" alt="">
+                                    <div class="banner-two__img" style="background-image: url('{{ asset("/assets/images/home.png") }}');">
+                                        <img src="{{ asset("/assets/images/home.png") }}" alt="" width="650" height="650">
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <div class="banner-two__img">
-                                        <img src="{{ asset("/assets/images/resources/main-slider-img-1.jpg") }}" alt="">
+                                    <div class="banner-two__img" style="background-image: url('{{ asset("/assets/images/resources/main-slider-img-1.jpg") }}');">
+                                        <img src="{{ asset("/assets/images/resources/main-slider-img-1.jpg") }}" alt="" width="650" height="650">
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <div class="banner-two__img">
-                                        <img src="{{ asset("/assets/images/resources/main-slider-img-2.jpg") }}" alt="">
+                                    <div class="banner-two__img" style="background-image: url('{{ asset("/assets/images/resources/main-slider-img-2.jpg") }}');">
+                                        <img src="{{ asset("/assets/images/resources/main-slider-img-2.jpg") }}" alt="" width="650" height="650">
                                     </div>
                                 </div>
                             @endforelse
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Enhanced Counter Box (Full Width) -->
+            <style>
+                .hc-counter-box {
+                    margin-top: 50px;
+                    width: 100%;
+                }
+
+                .hc-counter-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0;
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    background: linear-gradient(135deg, rgba(0, 189, 214, 0.08) 0%, rgba(0, 120, 160, 0.12) 100%);
+                    border-radius: 20px;
+                    border: 1px solid rgba(0, 189, 214, 0.18);
+                    backdrop-filter: blur(8px);
+                    overflow: hidden;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+                }
+
+                .hc-counter-list>li {
+                    flex: 1 1 25%;
+                    position: relative;
+                    border-right: 1px solid rgba(0, 189, 214, 0.15);
+                }
+
+                .hc-counter-list>li:last-child {
+                    border-right: none;
+                }
+
+                .hc-counter-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 30px 25px;
+                    transition: all 0.3s ease;
+                    cursor: default;
+                    height: 100%;
+                }
+
+                .hc-counter-item:hover {
+                    background: rgba(0, 189, 214, 0.06);
+                }
+
+                .hc-counter-icon-wrap {
+                    flex-shrink: 0;
+                    width: 54px;
+                    height: 54px;
+                    border-radius: 14px;
+                    background: linear-gradient(135deg, #00bdd680, #fff);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 4px 14px rgba(0, 189, 214, 0.25);
+                    transition: all 0.3s ease;
+                }
+
+                .hc-counter-item:hover .hc-counter-icon-wrap {
+                    transform: translateY(-3px) scale(1.05);
+                    box-shadow: 0 8px 20px rgba(0, 189, 214, 0.35);
+                }
+
+                .hc-counter-icon-wrap img {
+                    max-width: 28px;
+                    max-height: 28px;
+                    object-fit: contain;
+                }
+
+                .hc-counter-body {
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 0;
+                }
+
+                .hc-counter-label {
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #0d1e3b;
+                    line-height: 1.3;
+                }
+
+                /* Responsive Adjustments */
+                @media (max-width: 1199px) {
+                    .hc-counter-list>li {
+                        flex: 1 1 50%;
+                    }
+                    .hc-counter-list>li:nth-child(2n) {
+                        border-right: none;
+                    }
+                    .hc-counter-list>li:nth-child(1), 
+                    .hc-counter-list>li:nth-child(2) {
+                        border-bottom: 1px solid rgba(0, 189, 214, 0.15);
+                    }
+                }
+
+                @media (max-width: 767px) {
+                    .hc-counter-list>li {
+                        flex: 1 1 100%;
+                        border-right: none;
+                        border-bottom: 1px solid rgba(0, 189, 214, 0.15);
+                    }
+                    .hc-counter-list>li:last-child {
+                        border-bottom: none;
+                    }
+                    .hc-counter-item {
+                        padding: 20px;
+                    }
+                }
+
+                /* About Carousel Navigation Styling */
+                .about-four__carousel.owl-carousel .owl-nav {
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    transform: translateY(-50%);
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 20px;
+                    pointer-events: none;
+                    z-index: 10;
+                }
+
+                .about-four__carousel.owl-carousel .owl-nav button {
+                    width: 48px;
+                    height: 48px;
+                    background-color: #fff !important;
+                    color: #00bdd6 !important;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 16px;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                    pointer-events: all;
+                    transition: all 0.3s ease;
+                    opacity: 0.9;
+                }
+
+                .about-four__carousel.owl-carousel .owl-nav button:hover {
+                    background-color: #00bdd6 !important;
+                    color: #fff !important;
+                    transform: scale(1.1);
+                    opacity: 1;
+                }
+
+                .about-four__carousel.owl-carousel .owl-dots {
+                    position: absolute;
+                    bottom: 15px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 10px;
+                    z-index: 10;
+                }
+
+                .about-four__carousel.owl-carousel .owl-dots .owl-dot span {
+                    width: 12px;
+                    height: 12px;
+                    background: rgba(255, 255, 255, 0.5) !important;
+                    border-radius: 50%;
+                    display: block;
+                    margin: 0 !important;
+                    transition: all 0.3s ease;
+                    border: 1px solid rgba(255,255,255,0.3);
+                }
+
+                .about-four__carousel.owl-carousel .owl-dots .owl-dot.active span {
+                    background: #fff !important;
+                    transform: scale(1.2);
+                    border-color: #fff;
+                }
+
+                /* Keep Featured dots consistent */
+                .featured-products__carousel.owl-carousel .owl-dots,
+                .featured-services__carousel.owl-carousel .owl-dots {
+                    display: flex;
+                    justify-content: center;
+                    gap: 8px;
+                    margin-top: 30px;
+                }
+
+                .featured-products__carousel.owl-carousel .owl-dots .owl-dot span,
+                .featured-services__carousel.owl-carousel .owl-dots .owl-dot span {
+                    width: 10px;
+                    height: 10px;
+                    background: #d1d9e6;
+                    border-radius: 50%;
+                    display: block;
+                    transition: all 0.3s ease;
+                }
+
+                .featured-products__carousel.owl-carousel .owl-dots .owl-dot.active span,
+                .featured-services__carousel.owl-carousel .owl-dots .owl-dot.active span {
+                    background: #00bdd6;
+                    width: 25px;
+                    border-radius: 5px;
+                }
+            </style>
+
+            <div class="hc-counter-box">
+                <ul class="hc-counter-list">
+                    <!-- Card 1: ADP Authorized Vendor -->
+                    <li>
+                        <div class="hc-counter-item">
+                            <div class="hc-counter-icon-wrap">
+                                <img src="{{ asset('assets/images/ontario-logo--desktop.png') }}" alt="ADP Authorized">
+                            </div>
+                            <div class="hc-counter-body">
+                                <p class="hc-counter-label">Assistive Devices Program Authorized Vendor</p>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Card 2: Direct Billing Green Shield -->
+                    <li>
+                        <div class="hc-counter-item">
+                            <div class="hc-counter-icon-wrap">
+                                <img src="{{ asset('assets/images/greenshield.png') }}" alt="Direct Billing">
+                            </div>
+                            <div class="hc-counter-body">
+                                <p class="hc-counter-label">Direct Billing: Green Shield Canada</p>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Card 3: WSIB & Veterans -->
+                    <li>
+                        <div class="hc-counter-item">
+                            <div class="hc-counter-icon-wrap">
+                                <img src="{{ asset('assets/images/wsib_favicon.png') }}" alt="WSIB & Veterans">
+                            </div>
+                            <div class="hc-counter-body">
+                                <p class="hc-counter-label">WSIB &amp; Veterans Affairs Support</p>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Card 4: Local Store Same-Day -->
+                    <li>
+                        <div class="hc-counter-item">
+                            <div class="hc-counter-icon-wrap">
+                                <img src="{{ asset('assets/images/canada.png') }}" alt="Local Store">
+                            </div>
+                            <div class="hc-counter-body">
+                                <p class="hc-counter-label">Local Store — Same-Day Availability</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -496,7 +571,7 @@
 
                 </h3>
             </div>
-            <div class="row">
+            <div class="featured-products__carousel owl-theme owl-carousel">
                 @forelse ($featuredProducts as $index => $service)
                     @php
                         $animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight'];
@@ -511,7 +586,7 @@
                             ? asset('uploads/services/' . $service->serviceimage)
                             : asset('/assets/images/own/wheelchair.jpg');
                     @endphp
-                    <div class="col-xl-4 col-lg-4 wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
+                    <div class="wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
                         <div class="blog-five__single">
                             <div class="blog-five__img">
                                 <img class="image_c" src="{{ $serviceImage }}" alt="{{ $service->ServicesTitle }}">
@@ -533,8 +608,8 @@
                         </div>
                     </div>
                 @empty
-                    <div class="col-12">
-                        <p class="text-center">No featured products found.</p>
+                    <div class="text-center">
+                        <p>No featured products found.</p>
                     </div>
                 @endforelse
             </div>
@@ -735,14 +810,36 @@
                 <div class="col-xl-6">
                     <div class="about-four__left wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
                         <div class="about-four__img-box">
-                            <div class="about-four__img" style="padding-top:100px">
-                                <img src="{{ asset("/assets/images/main.png") }}" alt="">
+                            <div class="about-four__carousel owl-theme owl-carousel">
+                                @forelse($aboutCarousels as $carousel)
+                                    <div class="item">
+                                        <div class="about-four__img" style="padding-top:100px">
+                                            <img src="{{ asset($carousel->image_url) }}" alt="{{ $carousel->title }}">
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="item">
+                                        <div class="about-four__img" style="padding-top:100px">
+                                            <img src="{{ asset("/assets/images/main.png") }}" alt="Courtice Home Health Care Storefront">
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="about-four__img" style="padding-top:100px">
+                                            <img src="{{ asset("/assets/images/aboutus_1.png") }}" alt="Our Services">
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="about-four__img" style="padding-top:100px">
+                                            <img src="{{ asset("/assets/images/aboutus_2.png") }}" alt="Our Team">
+                                        </div>
+                                    </div>
+                                @endforelse
                             </div>
-                            <div class="about-four__shape-1"></div>
+                            <!-- <div class="about-four__shape-1"></div>
                             <div class="about-four__shape-2"></div>
                             <div class="about-four__shape-3 float-bob-x"></div>
                             <div class="about-four__shape-4 float-bob-y"></div>
-                            <div class="about-four__shape-5 float-bob-x"></div>
+                            <div class="about-four__shape-5 float-bob-x"></div> -->
                             <!-- <div class="about-four__success-ratio">
                                                                                                     <div class="about-four__success-ratio-percent">
                                                                                                         <h3 class="odometer" data-count="98">00</h3>
@@ -880,7 +977,7 @@
                 <h3 class="section-title__title title-animation"> Our Services
                 </h3>
             </div>
-            <div class="row">
+            <div class="featured-services__carousel owl-theme owl-carousel">
                 @foreach ($featuredServices as $index => $service)
                     @php
                         $animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight'];
@@ -892,7 +989,7 @@
                             : \Illuminate\Support\Str::slug($service->ServicesTitle);
                     @endphp
                     <!--Team Four Single Start -->
-                    <div class="col-xl-3 col-lg-3 wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
+                    <div class="wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
                         <div class="team-four__single">
                             <div class="team-four__img-box">
                                 <div class="team-four__img">
@@ -1044,8 +1141,7 @@
                                             <p class="faq-three__contact-info-icon-text">Email</p>
                                         </div>
                                         <div class="faq-three__contact-info-number">
-                                            <p><a href="{{ url(" mailto:info@courticehomehealthcare.com")
-                                                    }}">info@courticehomehealthcare.com</a></p>
+                                            <p><a href="mailto:info@courticehomehealthcare.com">info@courticehomehealthcare.com</a></p>
                                         </div>
                                     </li>
                                 </ul>
@@ -1063,8 +1159,8 @@
     <section class="brand-two">
            <h3 class="section-title__title title-animation" style="text-align: center;">Our Suppliers
                 </h3>
-        <div class="container">
-            <div class="brand-two__inner">
+        <div class="container-fluid">
+            <div class="brand-two__inner wow fadeInUp" data-wow-delay="100ms">
                 <div class="brand-two__carousel owl-theme owl-carousel">
                     @forelse($clientImages as $img)
                         <div class="item">
@@ -1270,8 +1366,8 @@
         <div class="container">
             <div class="section-title text-center sec-title-animation animation-style1">
                 <!-- <h6 class="section-title__tagline">Contact Us</h6> -->
-                <h3 class="section-title__title title-animation">Contact Us
-                </h3>
+               
+           
             </div>
             <!-- <p class="contact-two__text text-center">Dental care is essential for maintaining oral health and
                                                                                                                                             overall
@@ -1280,6 +1376,11 @@
                 <div class="row">
                     <div class="col-xl-7 col-lg-7">
                         <div class="contact-two__left">
+                             <h3 class="section-title__title title-animation" style="text-align: center;color:black">Contact us
+                </h3>
+                                 <p style="font-size:20px;padding-top:15px;padding-bottom:15px;text-align:center">
+                                    If you have questions; Let’s Talk Complete the form; and let’s talk about how <span style="color: #00bdd6;">CHHC</span> can help.
+                                </p>
                             <!-- <h3 class="contact-two__title">Shop our Products</h3> -->
                             @if (session('success'))
                                 <div class="alert alert-success mb-3">{{ session('success') }}</div>

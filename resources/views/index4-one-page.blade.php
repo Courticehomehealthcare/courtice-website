@@ -2,13 +2,13 @@
 @section('title', 'Home Four || Careon || Careon Laravel Template')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                        <link rel="stylesheet" href="' . asset('assets/css/twentytwenty.css') . '"/>
-                        <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                        <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                        <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                        <link rel="stylesheet" href="' . asset('assets/css/module-css/video.css') . '"/>
-                        <link rel="stylesheet" href="' . asset('assets/css/module-css/before-and-after.css') . '"/>
-                        <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>';
+                                <link rel="stylesheet" href="' . asset('assets/css/twentytwenty.css') . '"/>
+                                <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                <link rel="stylesheet" href="' . asset('assets/css/module-css/video.css') . '"/>
+                                <link rel="stylesheet" href="' . asset('assets/css/module-css/before-and-after.css') . '"/>
+                                <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>';
 
 @endphp
 @section('content')
@@ -142,7 +142,7 @@
             </div>
             <div class="row">
                 <!--Services Four Single Start -->
-                <div class="col-xl-4 col-lg-4 wow fadeInLeft" data-wow-delay="100ms">
+                <div class="col-xl-6 col-lg-6 wow fadeInLeft" data-wow-delay="100ms">
                     <div class="services-four__single">
                         <div class="services-four__icon">
                             <span class="icon-teeth"></span>
@@ -160,7 +160,7 @@
                 </div>
                 <!--Services Four Single End -->
                 <!--Services Four Single Start -->
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay="200ms">
                     <div class="services-four__single">
                         <div class="services-four__icon">
                             <span class="icon-teeth-4"></span>
@@ -572,7 +572,8 @@
                                             <p class="faq-three__contact-info-icon-text">Email</p>
                                         </div>
                                         <div class="faq-three__contact-info-number">
-                                            <p><a href="{{ url(" mailto:info@courticehomehealthcare.com") }}">info@courticehomehealthcare.com</a></p>
+                                            <p><a href="{{ url(" mailto:info@courticehomehealthcare.com")
+                                                    }}">info@courticehomehealthcare.com</a></p>
                                         </div>
                                     </li>
                                 </ul>

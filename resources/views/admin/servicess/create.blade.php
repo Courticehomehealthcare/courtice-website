@@ -54,9 +54,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="pagecategory">Page Category <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control @error('pagecategory') is-invalid @enderror"
-                            id="pagecategory" name="pagecategory" value="{{ old('pagecategory', 'services') }}"
-                            required>
+                        <select class="form-control @error('pagecategory') is-invalid @enderror" id="pagecategory" name="pagecategory" required>
+                            <option value="services" {{ old('pagecategory', 'services') == 'services' ? 'selected' : '' }}>Services</option>
+                        </select>
                         @error('pagecategory')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror

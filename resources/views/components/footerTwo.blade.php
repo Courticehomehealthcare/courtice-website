@@ -12,10 +12,18 @@
                             <h2 class="site-footer-two__newsletter-title">Ready To Get Started<br> With Service</h2>
                         </div>
                         <div class="site-footer-two__social">
-                            <a href="{{ url("contact") }}"><span class="icon-facebook"></span></a>
-                            <a href="{{ url("contact") }}"><span class="icon-twitter"></span></a>
-                            <a href="{{ url("contact") }}"><span class="icon-instagram"></span></a>
-                            <a href="{{ url("contact") }}"><span class="icon-pinterest"></span></a>
+                            @if(optional($siteSettings)->facebook_link)
+                                <a href="{{ $siteSettings->facebook_link }}"><span class="icon-facebook"></span></a>
+                            @endif
+                            @if(optional($siteSettings)->twitter_link)
+                                <a href="{{ $siteSettings->twitter_link }}"><span class="icon-twitter"></span></a>
+                            @endif
+                            @if(optional($siteSettings)->instagram_link)
+                                <a href="{{ $siteSettings->instagram_link }}"><span class="icon-instagram"></span></a>
+                            @endif
+                            @if(optional($siteSettings)->linkedin_link)
+                                <a href="{{ $siteSettings->linkedin_link }}"><span class="fab fa-linkedin-in"></span></a>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -2,12 +2,12 @@
 @section('title', 'Services || Careon || Careon Laravel Template')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>
-                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/css/intlTelInput.css"/>';
+                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>
+                                                                                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/css/intlTelInput.css"/>';
 
 @endphp
 @php
@@ -17,35 +17,36 @@
 @section('content')
     <style>
         .page-header__bg::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, #bee1e614 0%, rgba(190, 225, 230, 0) 100%);
-}
-.thm-breadcrumb li {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #bee1e614 0%, rgba(190, 225, 230, 0) 100%);
+        }
 
-    color: white !important;
-}
+        .thm-breadcrumb li {
+
+            color: white !important;
+        }
 
 
-.banner-two {
-    
-    padding: 0px !important;
-  
-}
+        .banner-two {
 
-.thm-breadcrumb li a {
-        color: white !important;
+            padding: 0px !important;
 
-}
+        }
 
-.page-header__inner h3 {
-    color: white !important;
-  
-}
+        .thm-breadcrumb li a {
+            color: white !important;
+
+        }
+
+        .page-header__inner h3 {
+            color: white !important;
+
+        }
 
         .image_c {
             height: 280px;
@@ -109,9 +110,10 @@
             gap: 12px;
             z-index: 10;
         }
+
         .icon-arrow-left:before {
-    content: "\e929" !important;
-}
+            content: "\e929" !important;
+        }
 
         .banner-two__carousel.owl-carousel .owl-dots .owl-dot span {
             width: 12px;
@@ -126,6 +128,62 @@
         .banner-two__carousel.owl-carousel .owl-dots .owl-dot.active span {
             background-color: #ffffff !important;
             transform: scale(1.3);
+        }
+
+        .icon-arrow-left:before {
+            content: "\e929" !important;
+        }
+
+        /* Make Service Cards Same Height */
+        .blog-five .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .blog-five .row>[class*='col-'] {
+            display: flex;
+            margin-bottom: 30px;
+            /* Ensure spacing between rows */
+        }
+
+        .blog-five__single {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            margin-bottom: 0 !important;
+            /* Override any bottom margin that might break height */
+            background-color: #fff;
+            /* Ensure background color if needed */
+        }
+
+        .blog-five__img {
+            flex-shrink: 0;
+        }
+
+        .blog-five__content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding-bottom: 30px;
+            /* Ensure some padding at bottom */
+        }
+
+        .blog-five__text {
+            flex-grow: 1;
+        }
+
+        .blog-five__read-more,
+        .blog-one__read-more {
+            margin-top: auto;
+        }
+
+        .page-header__inner {
+            text-align: left;
+        }
+
+        .thm-breadcrumb {
+            justify-content: flex-start !important;
         }
     </style>
 
@@ -145,8 +203,10 @@
                 </div>
             @endforelse
         </div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #bee1e614 0%, rgba(190, 225, 230, 0) 100%); pointer-events: none; z-index: 1;"></div>
-        <div class="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+        <div
+            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #bee1e614 0%, rgba(190, 225, 230, 0) 100%); pointer-events: none; z-index: 1;">
+        </div>
+        <div class="container" style="position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);">
             <div class="page-header__inner" style="padding: 0;">
                 <h3>Services</h3>
                 <div class="thm-breadcrumb__inner">
@@ -177,7 +237,7 @@
                             ? $service->servicesUrl
                             : \Illuminate\Support\Str::slug($service->ServicesTitle);
                     @endphp
-                    <div class="col-xl-4 col-lg-4 wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
+                    <div class="col-xl-6 col-lg-6 wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
                         <div class="blog-five__single">
                             <div class="blog-five__img">
                                 <img class="image_c"
@@ -206,6 +266,26 @@
                         <p class="text-center">No services found.</p>
                     </div>
                 @endforelse
+
+                <!-- Static Service: Braces & Supports Fittings -->
+                <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay="400ms">
+                    <div class="blog-five__single">
+                        <div class="blog-five__img">
+                            <img class="image_c" src="{{ asset("/assets/images/resources/fittings-service.png") }}"
+                                alt="Braces & Supports Fittings">
+                        </div>
+                        <div class="blog-five__content">
+                            <h3 class="blog-five__title">Braces & Supports Fittings</h3>
+                            <p class="blog-five__text">Expert measurement and adjustment of orthopedic supports to ensure
+                                maximum comfort and effectiveness.</p>
+                            <div class="blog-one__read-more">
+                                <a href="{{ url("contact") }}" class="thm-btn">Book Fitting <span
+                                        class="icon-plus"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -228,7 +308,8 @@
                     <div class="faq-one__left">
                         <div class="accrodion-grp faq-one-accrodion" data-grp-name="services-faq-1">
                             @forelse ($leftFaqs as $index => $faq)
-                                <div class="accrodion {{ $loop->first ? '' : '' }} wow fadeInLeft" data-wow-delay="{{ 100 * ($index + 1) }}ms">
+                                <div class="accrodion {{ $loop->first ? '' : '' }} wow fadeInLeft"
+                                    data-wow-delay="{{ 100 * ($index + 1) }}ms">
                                     <div class="accrodion-title">
                                         <div class="faq-one-accrodion__count"></div>
                                         <h4>{{ $faq->question }}</h4>
@@ -282,13 +363,15 @@
                     <div class="col-xl-5">
                         <div class="contact-one__left">
                             <div class="contact-one__img">
-                                <img src="{{ asset("/assets/images/resources/contact-one-img-1.jpg") }}" alt="">
+                                <img src="{{ asset("/assets/images/resources/contact-products.png") }}" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-7">
                         <div class="contact-one__right">
-                            <h3 class="contact-one__title">Request a Service Consultation</h3>
+                            <h6 class="section-title__tagline"><span class="icon-broken-bone"></span>If you have questions;</h6>
+                            <h5 class="contact-one__tite" style="text-align: start;padding-top:10px;padding-bottom:15px">
+                                Let’s Talk Complete the form; and let’s talk about how <span style="color: #00bdd6;">CHHC</span> can help.</h5>
                             @if (session('success'))
                                 <div class="alert alert-success mb-3">{{ session('success') }}</div>
                             @endif

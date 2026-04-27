@@ -293,9 +293,9 @@
       margin: 30,
       nav: false,
       dots: false,
-      smartSpeed: 500,
+      smartSpeed: 1000,
       autoplay: true,
-      autoplayTimeout: 7000,
+      autoplayTimeout: 3000,
       navText: [
         '<span class="icon-left-arrow"></span>',
         '<span class="icon-right-arrow"></span>',
@@ -346,6 +346,92 @@
         },
         1200: {
           items: 1,
+        },
+      },
+    });
+  }
+
+  //About Four Carousel
+  if ($(".about-four__carousel").length) {
+    $(".about-four__carousel").owlCarousel({
+      loop: true,
+      margin: 0,
+      nav: true,
+      dots: true,
+      smartSpeed: 500,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      navText: [
+        '<span class="icon-arrow-left"></span>',
+        '<span class="icon-arrow-right"></span>',
+      ],
+      responsive: {
+        0: {
+          items: 1,
+        },
+        768: {
+          items: 1,
+        },
+        992: {
+          items: 1,
+        },
+        1200: {
+          items: 1,
+        },
+      },
+    });
+  }
+
+
+  //Featured Products Carousel
+  if ($(".featured-products__carousel").length) {
+    $(".featured-products__carousel").owlCarousel({
+      loop: true,
+      margin: 30,
+      nav: false,
+      dots: true,
+      smartSpeed: 500,
+      autoplay: true,
+      autoplayTimeout: 4000,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        768: {
+          items: 2,
+        },
+        992: {
+          items: 3,
+        },
+        1200: {
+          items: 3,
+        },
+      },
+    });
+  }
+
+  //Featured Services Carousel
+  if ($(".featured-services__carousel").length) {
+    $(".featured-services__carousel").owlCarousel({
+      loop: true,
+      margin: 30,
+      nav: false,
+      dots: true,
+      smartSpeed: 500,
+      autoplay: true,
+      autoplayTimeout: 4500,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        768: {
+          items: 2,
+        },
+        992: {
+          items: 2,
+        },
+        1200: {
+          items: 2,
         },
       },
     });
@@ -930,7 +1016,10 @@
         $(this)
           .find(".accrodion-title")
           .on("click", function () {
-            if ($(this).parent().hasClass("active") === false) {
+            if ($(this).parent().hasClass("active")) {
+              $(this).parent().removeClass("active");
+              $(this).parent().find(".accrodion-content").slideUp();
+            } else {
               $(".accrodion-grp." + accrodionName)
                 .find(".accrodion")
                 .removeClass("active");

@@ -22,7 +22,7 @@
                     <a href="{{ $siteSettings->instagram_link }}"><span class="icon-instagram"></span></a>
                 @endif
                 @if(optional($siteSettings)->linkedin_link)
-                    <a href="{{ $siteSettings->linkedin_link }}"><span class="icon-linkedin"></span></a>
+                    <a href="{{ $siteSettings->linkedin_link }}"><span class="fab fa-linkedin-in"></span></a>
                 @endif
             </div>
         </div>
@@ -54,8 +54,7 @@
                                     <div class="footer-widget-three__contact-content">
                                         <span>Phone</span>
                                         <p class="footer-widget-three__contact-text">
-                                            <a
-                                                href="tel:{{ optional($siteSettings)->phone_number ?? '' }}">{{ optional($siteSettings)->phone_number ?? 'N/A' }}</a>
+                                            <a href="tel:+19057210004">+1 (905)-721-0004</a>
                                         </p>
                                     </div>
                                 </li>
@@ -65,9 +64,9 @@
                                     </div>
                                     <div class="footer-widget-three__contact-content">
                                         <span>Location</span>
-                                        <p class="footer-widget-three__contact-text">
-                                            {{ optional($siteSettings)->address ?? 'N/A' }}
-                                        </p>
+                                        <span class="footer-widget-three__contact-text" style="color:white;">
+                                            {!! optional($siteSettings)->address ?? 'N/A' !!}
+                                        </span>
                                     </div>
                                 </li>
                             </ul>
@@ -119,9 +118,9 @@
                     <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
                         <div class="footer-widget-three__newsletter-box">
                             <h4 class="footer-widget-three__title">Stay Connected</h4>
-                            <p class="footer-widget-three__newsletter-text">
-                                {{ optional($siteSettings)->description ?? 'Dental care is essential for maintaining oral health and overall well-being' }}
-                            </p>
+                            <span class="footer-widget-three__newsletter-text" style="color:white;">
+                                {!! optional($siteSettings)->description ?? 'Dental care is essential for maintaining oral health and overall well-being' !!}
+                            </span>
                             <form id="newsletterForm" class="footer-widget-three__newsletter">
                                 @csrf
                                 <input type="email" placeholder="Email address" name="email" required>

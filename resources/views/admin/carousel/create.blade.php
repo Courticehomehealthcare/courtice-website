@@ -2,6 +2,22 @@
 
 @section('title', 'Add Carousel')
 
+@section('css')
+<style>
+    .preview-container {
+        margin-top: 15px;
+        display: none;
+    }
+    #preview-image {
+        max-width: 300px;
+        height: auto;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+</style>
+@stop
+
 @section('content_header')
 <h1>Add Carousel</h1>
 @stop
@@ -53,7 +69,7 @@
             </div>
 
             <div class="form-group">
-                <label>Slide Image *</label>
+                <label>Slide Image * <span class="text-danger">(Required Size: 650 x 650 px)</span></label>
                 <input type="file" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" required>
                 @error('image')
                     <span class="invalid-feedback" role="alert">
@@ -66,6 +82,7 @@
                 <label>Select Page *</label>
                 <select name="page" class="form-control" required>
                     <option value="home">Homepage</option>
+                    <option value="aboutus">About Us</option>
                     <option value="services">Services Page</option>
                 </select>
             </div>
@@ -81,4 +98,24 @@
 
 </form>
 
+@stop
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        const fileInput = $('input[name="image"]');
+        
+        // Simple preview of the selected file
+        fileInput.on('change', function(e) {
+            const files = e.target.files;
+            if (files && files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    // You could add a simple non-cropping preview here if desired
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        });
+    });
+</script>
 @stop

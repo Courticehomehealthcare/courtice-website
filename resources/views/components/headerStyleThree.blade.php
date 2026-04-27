@@ -46,6 +46,9 @@
                             @if(optional($siteSettings)->instagram_link)
                                 <a href="{{ $siteSettings->instagram_link }}"><i class="icon-instagram"></i></a>
                             @endif
+                            @if(optional($siteSettings)->linkedin_link)
+                                <a href="{{ $siteSettings->linkedin_link }}"><i class="fab fa-linkedin-in"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -71,7 +74,7 @@
                                 </div>
                                 <div class="main-menu-three__call-number">
                                     <p>Hotline</p>
-                                    <h5><a href="{{ url("tel:+19057210004") }}">+1 905-721-0004</a></h5>
+                                    <h5><a href="{{ url("tel:+19057210004") }}">+1 (905)-721-0004</a></h5>
                                 </div>
                             </div>
                         </div>

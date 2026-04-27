@@ -28,24 +28,38 @@ class CarouselController extends Controller
             'data' => $request->except('image')
         ]);
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'button_text' => 'required|string',
-            'button_link' => 'required|url',
-            'image' => 'required|file',
-            'page' => 'required|string|in:home,services',
-        ]);
+        try {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'button_text' => 'required|string',
+                'button_link' => 'required|url',
+                'image' => 'required|image|dimensions:width=650,height=650',
+                'page' => 'required|string|in:home,services,aboutus',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput($request->except('cropped_image'));
+        }
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('uploads'), $imageName);
+        if ($request->filled('cropped_image')) {
+            $imageData = $request->input('cropped_image');
+            $imageData = preg_replace('#^data:image/\w+;base64,#i', '', $imageData);
+            $imageData = base64_decode($imageData);
+            $imageName = time() . '.jpg';
+            file_put_contents(public_path('uploads/' . $imageName), $imageData);
+            $imagePath = 'uploads/' . $imageName;
+        } else {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads'), $imageName);
+            $imagePath = 'uploads/' . $imageName;
+        }
 
         Carousel::create([
             'title' => $request->title,
             'description' => $request->description,
             'button_text' => $request->button_text,
             'button_link' => $request->button_link,
-            'image_url' => 'uploads/' . $imageName,
+            'image_url' => $imagePath,
             'page' => $request->page,
         ]);
 
@@ -67,14 +81,18 @@ class CarouselController extends Controller
             'data' => $request->except('image')
         ]);
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'button_text' => 'required|string',
-            'button_link' => 'required|url',
-            'image' => 'nullable|file',
-            'page' => 'required|string|in:home,services',
-        ]);
+        try {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'button_text' => 'required|string',
+                'button_link' => 'required|url',
+                'image' => 'nullable|image|dimensions:width=650,height=650',
+                'page' => 'required|string|in:home,services,aboutus',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->validator)->withInput($request->except('cropped_image'));
+        }
 
         $data = [
             'title' => $request->title,
@@ -84,7 +102,18 @@ class CarouselController extends Controller
             'page' => $request->page,
         ];
 
-        if ($request->hasFile('image')) {
+        if ($request->filled('cropped_image')) {
+            if ($carousel->image_url && file_exists(public_path($carousel->image_url))) {
+                unlink(public_path($carousel->image_url));
+            }
+
+            $imageData = $request->input('cropped_image');
+            $imageData = preg_replace('#^data:image/\w+;base64,#i', '', $imageData);
+            $imageData = base64_decode($imageData);
+            $imageName = time() . '.jpg';
+            file_put_contents(public_path('uploads/' . $imageName), $imageData);
+            $data['image_url'] = 'uploads/' . $imageName;
+        } elseif ($request->hasFile('image')) {
             if ($carousel->image_url && file_exists(public_path($carousel->image_url))) {
                 unlink(public_path($carousel->image_url));
             }

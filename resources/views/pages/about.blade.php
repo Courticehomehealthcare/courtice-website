@@ -2,11 +2,11 @@
 @section('title', 'About Us || Courtice Home Health Care')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                                        <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                                        <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                                        <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                                        <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                                        <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
+                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
 @endphp
 @php
     $title = 'About Us';
@@ -14,18 +14,48 @@
 @endphp
 @section('content')
 
-<style>
-    .page-header__bg::before {
- 
-    background: linear-gradient(90deg, #bee1e691 0%, rgba(190, 225, 230, 0) 100%) !important;
-}
+    <style>
+        .page-header__bg::before {
+            background: linear-gradient(90deg, #bee1e691 0%, rgba(190, 225, 230, 0) 100%) !important;
+        }
+
+        .page-header__inner {
+            text-align: left;
+        }
+
+        .thm-breadcrumb {
+            justify-content: flex-start !important;
+        }
+
+        .counter-one__count-list {
+            justify-content: center;
+        }
+
+        .counter-one__count-list li {
+            flex: 0 0 33.333%;
+            max-width: 33.333%;
+        }
+
+        @media (max-width: 991px) {
+            .counter-one__count-list li {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .counter-one__count-list li {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
     </style>
 
     <x-strickyHeaderThree />
 
     <section class="page-header">
-        <div class="page-header__bg"
-            style="background-image: url({{ asset('assets/images/banner/about_banner.png') }});"></div>
+        <div class="page-header__bg" style="background-image: url({{ asset('assets/images/banner/about_banner.png') }});">
+        </div>
         <div class="container">
             <div class="page-header__inner">
                 <h3>About Us</h3>
@@ -44,7 +74,7 @@
         /* Premium About Six Styling */
         .about-six {
             position: relative;
-            padding: 120px 0;
+            padding: 60px 0;
             background-color: #fbfdfe;
             overflow: hidden;
         }
@@ -173,7 +203,7 @@
 
         .services-custom__grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 50px;
         }
@@ -248,6 +278,12 @@
         .service-card:hover .service-card__arrow {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        @media (max-width: 1200px) {
+            .services-custom__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 767px) {
@@ -400,6 +436,7 @@
                 font-size: 36px;
             }
         }
+
     </style>
 
     <section class="about-six">
@@ -410,11 +447,7 @@
                         <div class="about-six__shape-1"></div>
                         <div class="about-six__shape-2"></div>
                         <div class="about-six__img-box-inner">
-                            <!-- <img
-                             src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=2000"
-                                alt="Courtice Home Health Care team"> -->
-                                <img src="{{ asset("/assets/images/aboutus_2.png") }}"  alt="Courtice Home Health Care team" >
-
+                            <img src="{{ asset("/assets/images/aboutus_2.png") }}" alt="Courtice Home Health Care team">
                         </div>
                     </div>
                 </div>
@@ -459,7 +492,7 @@
     </section>
 
     <section class="counter-one">
-        <div class="container-fluid">
+        <div class="container">
             <div class="counter-one__inner">
                 <ul class="counter-one__count-list list-unstyled">
                     <li>
@@ -527,10 +560,9 @@
                 </div>
                 <div class="col-xl-5">
                     <div class="why-choose-one__right wow slideInRight" data-wow-delay="100ms" data-wow-duration="2500ms">
-                        <div class="why-choose-one__img" 
-                            style="border-radius: 30px; overflow: hidden; ">
-                            <img src="{{ asset("/assets/images/aboutus_1.png") }}"   
-                                alt="Courtice Home Health Care values" style="width: 100%;height:500px; border-radius: 0;">
+                        <div class="why-choose-one__img" style="border-radius: 30px; overflow: hidden; ">
+                            <img src="{{ asset("/assets/images/aboutus_1.png") }}" alt="Courtice Home Health Care values"
+                                style="width: 100%;height:500px; border-radius: 0;">
                         </div>
                     </div>
                 </div>
@@ -614,7 +646,8 @@
                     </div>
                     <h4 class="service-card__title">Customer Service</h4>
                     <p class="service-card__text">
-Excellent customer service is what makes Courtice Home Healthcare the preferred medical supply store among our clients.</p>
+                        Excellent customer service is what makes Courtice Home Healthcare the preferred medical supply store
+                        among our clients.</p>
                     <div class="service-card__arrow"><span class="icon-arrow-right"></span></div>
                 </div>
 
@@ -625,7 +658,7 @@ Excellent customer service is what makes Courtice Home Healthcare the preferred 
                     </div>
                     <h4 class="service-card__title">Training</h4>
                     <p class="service-card__text">
-Educate client in need of mobility aids such as walker or wheelchair both powered and manual.</p>
+                        Educate client in need of mobility aids such as walker or wheelchair both powered and manual.</p>
                     <div class="service-card__arrow"><span class="icon-arrow-right"></span></div>
                 </div>
 
@@ -636,7 +669,7 @@ Educate client in need of mobility aids such as walker or wheelchair both powere
                     </div>
                     <h4 class="service-card__title">Partner</h4>
                     <p class="service-card__text">
-Registered vendor of Assistive Devices Program (ADP)</p>
+                        Registered vendor of Assistive Devices Program (ADP)</p>
                     <div class="service-card__arrow"><span class="icon-arrow-right"></span></div>
                 </div>
 
@@ -648,7 +681,20 @@ Registered vendor of Assistive Devices Program (ADP)</p>
                     <h4 class="service-card__title">Availability</h4>
                     <p class="service-card__text">
 
-If you are looking for an item that is not in stock, we will try to get it for you the next business day.</p>
+                        If you are looking for an item that is not in stock, we will try to get it for you the next business
+                        day.</p>
+                    <div class="service-card__arrow"><span class="icon-arrow-right"></span></div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card wow fadeInUp" data-wow-delay="500ms">
+                    <div class="service-card__icon">
+                        <span class="icon-quaity-care-3"></span>
+                    </div>
+                    <h4 class="service-card__title">Braces & Supports Fittings</h4>
+                    <p class="service-card__text">
+                        Expert measurement and adjustment of orthopedic supports to ensure maximum comfort and effectiveness
+                        for your recovery.</p>
                     <div class="service-card__arrow"><span class="icon-arrow-right"></span></div>
                 </div>
             </div>

@@ -2,6 +2,22 @@
 
 @section('title', 'Edit Carousel')
 
+@section('css')
+<style>
+    .preview-container {
+        margin-top: 15px;
+        display: none;
+    }
+    #preview-image {
+        max-width: 300px;
+        height: auto;
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+</style>
+@stop
+
 @section('content_header')
 <h1>Edit Carousel</h1>
 @stop
@@ -46,9 +62,7 @@
 
             <div class="form-group">
                 <label>Description *</label>
-                <textarea name="description" class="form-control" rows="4" required>
-                    {{ $carousel->description }}
-                </textarea>
+                <textarea name="description" class="form-control" rows="4" required>{{ $carousel->description }}</textarea>
             </div>
 
             <div class="form-group">
@@ -58,7 +72,7 @@
 
 
             <div class="form-group">
-                <label>Slide Image</label>
+                <label>Slide Image <span class="text-danger">(Required Size: 650 x 650 px)</span></label>
                 <input type="file" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}">
                 @error('image')
                     <span class="invalid-feedback" role="alert">
@@ -67,6 +81,8 @@
                 @enderror
 
                 <br>
+                <label>Current Image:</label>
+                <br>
                 <img src="{{ asset($carousel->image_url) }}" width="150" class="img-thumbnail">
             </div>
 
@@ -74,6 +90,7 @@
                 <label>Select Page *</label>
                 <select name="page" class="form-control" required>
                     <option value="home" {{ $carousel->page == 'home' ? 'selected' : '' }}>Homepage</option>
+                    <option value="aboutus" {{ $carousel->page == 'aboutus' ? 'selected' : '' }}>About Us</option>
                     <option value="services" {{ $carousel->page == 'services' ? 'selected' : '' }}>Services Page</option>
                 </select>
             </div>
@@ -89,4 +106,12 @@
 
 </form>
 
+@stop
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        // No special JS needed since cropping is removed
+    });
+</script>
 @stop

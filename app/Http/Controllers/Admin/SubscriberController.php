@@ -120,13 +120,19 @@ class SubscriberController extends Controller
         if ($existing) {
             return response()->json([
                 'message' => 'Email is already subscribed with us.'
-            ], 200); // Optional: 200 instead of 422
+            ], 200);
         }
 
         // Create subscriber
         Subscriber::create([
             'email' => $request->email,
         ]);
+
+        try {
+            Mail::to($request->email)->send(new \App\Mail\SubscriptionThankYou());
+        } catch (\Exception $e) {
+            Log::error("Failed to send subscription thank you email to {$request->email}: " . $e->getMessage());
+        }
 
         return response()->json(['message' => 'Subscribed successfully.'], 200);
     }

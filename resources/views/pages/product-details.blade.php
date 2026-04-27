@@ -214,13 +214,7 @@
 @endif
 <!-- End Related Products -->
        
-<x-footer/>
-<x-mobileMenu/>
-<x-searchPopup/>
-<x-scroll-to-top/>
-@endsection
-       
-<x-footer/>
+<x-footerThree/>
 <x-mobileMenu/>
 <x-searchPopup/>
 <x-scroll-to-top/>

@@ -28,6 +28,7 @@ class HomeController extends Controller
     public function index4()
     {
         $carousels = Carousel::where('page', 'home')->orWhereNull('page')->orderByDesc('id')->get();
+        $aboutCarousels = Carousel::where('page', 'aboutus')->orderByDesc('id')->get();
         $clientImages = ClientImage::orderByDesc('clientid')->get();
 
         $featuredServices = Service::where('status', 1)
@@ -43,6 +44,7 @@ class HomeController extends Controller
             ->get();
 
         $homeFaqs = Faq::where('page', 'home')
+            ->orWhereJsonContains('page', 'home')
             ->orWhereNull('page')
             ->orderByDesc('created_at')
             ->take(4)
@@ -57,7 +59,7 @@ class HomeController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return view('index4', compact('featuredServices', 'featuredProducts', 'homeFaqs', 'blogs', 'carousels', 'slidingTexts', 'clientImages'));
+        return view('index4', compact('featuredServices', 'featuredProducts', 'homeFaqs', 'blogs', 'carousels', 'aboutCarousels', 'slidingTexts', 'clientImages'));
     }
     public function index5()
     {

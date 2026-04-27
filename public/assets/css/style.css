@@ -24,7 +24,7 @@
 }
 
 :root {
-  --careon-font: "Roboto", serif;
+  --careon-font: "Outfit", sans-serif;
   --careon-gray: #4A5B80;
   --careon-gray-rgb: 74, 91, 128;
   --careon-base: #4A3276;
@@ -894,7 +894,7 @@ ul {
 
 .main-menu .main-menu__list>li>a,
 .stricky-header .main-menu__list>li>a {
-  font-size: 14px;
+  font-size: 18px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

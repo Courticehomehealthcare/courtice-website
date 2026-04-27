@@ -45,6 +45,8 @@
                         <td>
                             @if ($c->page == 'services')
                                 <span class="badge badge-info">Services Page</span>
+                            @elseif($c->page == 'aboutus')
+                                <span class="badge badge-warning">About Us</span>
                             @else
                                 <span class="badge badge-success">Homepage</span>
                             @endif

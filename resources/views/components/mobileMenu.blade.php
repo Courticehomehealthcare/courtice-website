@@ -24,10 +24,18 @@
         </ul><!-- /.mobile-nav__contact -->
         <div class="mobile-nav__top">
             <div class="mobile-nav__social">
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-facebook-square"></a>
-                <a href="#" class="fab fa-pinterest-p"></a>
-                <a href="#" class="fab fa-instagram"></a>
+                @if(optional($siteSettings)->twitter_link)
+                    <a href="{{ $siteSettings->twitter_link }}" class="fab fa-twitter"></a>
+                @endif
+                @if(optional($siteSettings)->facebook_link)
+                    <a href="{{ $siteSettings->facebook_link }}" class="fab fa-facebook-square"></a>
+                @endif
+                @if(optional($siteSettings)->instagram_link)
+                    <a href="{{ $siteSettings->instagram_link }}" class="fab fa-instagram"></a>
+                @endif
+                @if(optional($siteSettings)->linkedin_link)
+                    <a href="{{ $siteSettings->linkedin_link }}" class="fab fa-linkedin-in"></a>
+                @endif
             </div><!-- /.mobile-nav__social -->
         </div><!-- /.mobile-nav__top -->
 

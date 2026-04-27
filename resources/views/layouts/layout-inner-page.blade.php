@@ -9,6 +9,14 @@
     <div class="page-wrapper">
         
         <x-headerStyleOne/>
+        <style>
+            .page-header__inner {
+                text-align: left;
+            }
+            .thm-breadcrumb {
+                justify-content: flex-start !important;
+            }
+        </style>
         <!--Page Header Start-->
         <section class="page-header">
             <div class="page-header__bg" style="background-image: url(assets/images/backgrounds/page-header-bg.jpg);">

@@ -16,7 +16,7 @@
 @endphp
 @section('content')
 
-<x-strickyHeader/>
+<x-strickyHeaderThree/>
  
 
         <!--Faq Page Start-->
@@ -136,7 +136,7 @@
         </section>
         <!--Faq Page End-->
        
-<x-footer/>
+<x-footerThree/>
 <x-mobileMenu/>
 <x-searchPopup/>
 <x-scroll-to-top/>

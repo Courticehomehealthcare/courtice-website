@@ -14,7 +14,7 @@
 @endphp
 @section('content')
 
-    <x-strickyHeader />
+    <x-strickyHeaderThree />
 
     <section class="service-details">
         <div class="container">

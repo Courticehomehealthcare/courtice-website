@@ -35,11 +35,16 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $faq->question }}</td>
                         <td>
-                            @if($faq->page == 'services')
-                                <span class="badge badge-info">Services</span>
-                            @else
-                                <span class="badge badge-primary">Home</span>
-                            @endif
+                            @php
+                                $pages = is_array($faq->page) ? $faq->page : [$faq->page];
+                            @endphp
+                            @foreach($pages as $p)
+                                @if($p)
+                                    <span class="badge badge-{{ $p == 'services' ? 'info' : 'primary' }}">
+                                        {{ ucfirst($p) }}
+                                    </span>
+                                @endif
+                            @endforeach
                         </td>
                         <td>{!! Str::limit($faq->answer, 80) !!}</td>
 

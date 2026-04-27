@@ -17,7 +17,7 @@
 @endphp
 @section('content')
 
-<x-strickyHeader/>
+<x-strickyHeaderThree/>
  
         <!--Contact Page Start-->
         <section class="contact-page">
@@ -96,7 +96,7 @@
                                 <h3 class="section-title__title title-animation">{{ $siteSettings->companyname ?? 'Health First Always' }}
                                 </h3>
                             </div>
-                            <p class="contact-page__text">{{ $siteSettings->description ?? 'Health care is a vital aspect of maintaining overall well-being, encompassing a range of services from preventive care to treatment.' }}</p>
+                            <p class="contact-page__text">{!! $siteSettings->description ?? 'Health care is a vital aspect of maintaining overall well-being, encompassing a range of services from preventive care to treatment.' !!}</p>
                             <ul class="contact-page__contact-list list-unstyled">
                                 <li>
                                     <div class="icon">
@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="content">
                                         <h3>Location</h3>
-                                        <p>{{ $siteSettings->address ?? 'N/A' }}</p>
+                                        <p>{!! $siteSettings->address ?? 'N/A' !!}</p>
                                     </div>
                                 </li>
                             </ul>

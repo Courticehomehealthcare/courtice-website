@@ -17,7 +17,7 @@
 @endphp
 @section('content')
 
-<x-strickyHeader/>
+<x-strickyHeaderThree/>
  
         <!--Start Cart Page-->
         <section class="cart-page">
@@ -207,7 +207,7 @@
         </section>
         <!--End Cart Page-->
        
-<x-footer/>
+<x-footerThree/>
 <x-mobileMenu/>
 <x-searchPopup/>
 <x-scroll-to-top/>

@@ -17,7 +17,7 @@
 @endphp
 @section('content')
 
-<x-strickyHeader/>
+<x-strickyHeaderThree/>
  
         <!--Start Checkout Page-->
         <section class="checkout-page">
@@ -285,7 +285,7 @@
         </section>
         <!--End Checkout Page-->
        
-<x-footer/>
+<x-footerThree/>
 <x-mobileMenu/>
 <x-searchPopup/>
 <x-scroll-to-top/>

@@ -23,10 +23,19 @@
 
             <div class="form-group">
                 <label>Select Page *</label>
-                <select name="page" class="form-control" required>
-                    <option value="home" {{ old('page', $faq->page) == 'home' ? 'selected' : '' }}>Homepage</option>
-                    <option value="services" {{ old('page', $faq->page) == 'services' ? 'selected' : '' }}>Services Page</option>
-                </select>
+                <div class="checkbox-group @error('page') is-invalid @enderror">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="page[]" id="page_home" value="home" {{ (is_array(old('page')) && in_array('home', old('page'))) || (is_array($faq->page) && in_array('home', $faq->page)) ? 'checked' : '' }}>
+                        <label for="page_home" class="custom-control-label">Homepage</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="page[]" id="page_services" value="services" {{ (is_array(old('page')) && in_array('services', old('page'))) || (is_array($faq->page) && in_array('services', $faq->page)) ? 'checked' : '' }}>
+                        <label for="page_services" class="custom-control-label">Services Page</label>
+                    </div>
+                </div>
+                @error('page')
+                    <span class="invalid-feedback d-block">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">

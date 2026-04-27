@@ -711,11 +711,16 @@
 }
 
 .footer-widget-three__contact-text {
-    color: var(--careon-white);
+    color: white !important;
     font-size: 18px;
     font-weight: 700;
     margin-top: 6px;
-    text-transform: capitalize;
+    text-transform: none;
+}
+
+.footer-widget-three__contact-text p {
+    color: white !important;
+    margin-bottom: 0;
 }
 
 .footer-widget-three__contact-text a {
@@ -765,8 +770,9 @@
     display: block;
 }
 
-.footer-widget-three__newsletter-text {
-    color: var(--careon-white);
+.footer-widget-three__newsletter-text,
+.footer-widget-three__newsletter-text p {
+    color: white !important;
     margin-bottom: 31px;
 }
 

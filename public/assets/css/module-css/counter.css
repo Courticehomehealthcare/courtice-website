@@ -4,7 +4,7 @@
 .counter-one {
     position: relative;
     display: block;
-    padding: 90px 0 0;
+    padding: 40px 0 0;
     z-index: 1;
 }
 
@@ -21,6 +21,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     margin-left: -40px;
     margin-right: -40px;

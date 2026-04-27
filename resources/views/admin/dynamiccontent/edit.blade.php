@@ -163,9 +163,42 @@
 @stop
 
 @section('js')
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <script>
+    // Initialize CKEditor for Address
+    CKEDITOR.replace('address', {
+        height: 150,
+        toolbar: [
+            { name: 'document', items: ['Source'] },
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'tools', items: ['Maximize'] }
+        ]
+    });
+
+    // Initialize CKEditor for Description
+    CKEDITOR.replace('description', {
+        height: 150,
+        toolbar: [
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'tools', items: ['Maximize'] }
+        ]
+    });
+
     $(document).ready(function () {
-        bsCustomFileInput.init();
+        if (window.bsCustomFileInput) {
+            bsCustomFileInput.init();
+        }
+
+        // Force update CKEditor instances on form submit
+        $('form').on('submit', function() {
+            for (var instanceName in CKEDITOR.instances) {
+                CKEDITOR.instances[instanceName].updateElement();
+            }
+        });
     });
 </script>
 @stop

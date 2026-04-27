@@ -877,7 +877,7 @@
                         <div class="col-xl-5">
                             <div class="contact-one__left">
                                 <div class="contact-one__img">
-                                    <img src="{{ asset("/assets/images/resources/contact-one-img-1.jpg") }}" alt="">
+                                    <img src="{{ asset("/assets/images/resources/contact-products.png") }}" alt="">
                                 </div>
                             </div>
                         </div>

@@ -22,10 +22,19 @@
 
             <div class="form-group">
                 <label>Select Page *</label>
-                <select name="page" class="form-control" required>
-                    <option value="home">Homepage</option>
-                    <option value="services">Services Page</option>
-                </select>
+                <div class="checkbox-group @error('page') is-invalid @enderror">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="page[]" id="page_home" value="home" {{ is_array(old('page')) && in_array('home', old('page')) ? 'checked' : '' }}>
+                        <label for="page_home" class="custom-control-label">Homepage</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="page[]" id="page_services" value="services" {{ is_array(old('page')) && in_array('services', old('page')) ? 'checked' : '' }}>
+                        <label for="page_services" class="custom-control-label">Services Page</label>
+                    </div>
+                </div>
+                @error('page')
+                    <span class="invalid-feedback d-block">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">

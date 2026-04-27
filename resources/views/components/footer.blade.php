@@ -97,21 +97,18 @@
                                 <h3 class="footer-widget__title">Social Media</h3>
                             </div>
                             <ul class="footer-widget__services-link-list list-unstyled">
-                                <li>
-                                    <a href="{{ url("contact") }}">Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url("contact") }}">Instagram</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url("contact") }}">Twitter</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url("contact") }}">Pinterest</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url("contact") }}">Linkedin</a>
-                                </li>
+                                @if(optional($siteSettings)->facebook_link)
+                                    <li><a href="{{ $siteSettings->facebook_link }}">Facebook</a></li>
+                                @endif
+                                @if(optional($siteSettings)->instagram_link)
+                                    <li><a href="{{ $siteSettings->instagram_link }}">Instagram</a></li>
+                                @endif
+                                @if(optional($siteSettings)->twitter_link)
+                                    <li><a href="{{ $siteSettings->twitter_link }}">Twitter</a></li>
+                                @endif
+                                @if(optional($siteSettings)->linkedin_link)
+                                    <li><a href="{{ $siteSettings->linkedin_link }}">Linkedin</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>

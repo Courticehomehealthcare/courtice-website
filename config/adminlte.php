@@ -192,7 +192,7 @@ return [
     'classes_body' => 'layout-navbar-fixed layout-footer-fixed',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_sidebar' => 'sidebar-custom elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary sidebar-custom elevation-4',
     'classes_topnav' => 'navbar-custom navbar-white navbar-light',
 
 
@@ -317,10 +317,7 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+
         [
             'text' => 'Dashboard',
             'route' => 'admin.dashboard',
@@ -504,6 +501,16 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'CustomCSS' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'assets/css/admin-sidebar-custom.css',
                 ],
             ],
         ],

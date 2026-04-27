@@ -15,7 +15,7 @@
 @endphp
 @section('content')
 
-    <x-strickyHeader />
+    <x-strickyHeaderThree />
 
     <!--Blog List Start-->
     <section class="blog-list">
@@ -259,7 +259,7 @@
     </section>
     <!--Blog List End-->
 
-    <x-footer />
+    <x-footerThree />
     <x-mobileMenu />
     <x-searchPopup />
     <x-scroll-to-top />

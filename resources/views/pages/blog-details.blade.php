@@ -15,7 +15,7 @@
 @endphp
 @section('content')
 
-    <x-strickyHeader />
+    <x-strickyHeaderThree />
 
     <!--Blog Details Start-->
     <section class="blog-details">
@@ -150,7 +150,7 @@
     </section>
     <!--Blog Details End-->
 
-    <x-footer />
+    <x-footerThree />
     <x-mobileMenu />
     <x-searchPopup />
     <x-scroll-to-top />

@@ -24,7 +24,8 @@ class FaqController extends Controller
         $request->validate([
             'question' => 'required|string',
             'answer'   => 'required|string',
-            'page'     => 'required|string|in:home,services',
+            'page'     => 'required|array',
+            'page.*'   => 'string|in:home,services',
         ]);
 
         Faq::create($request->only('question', 'answer', 'page'));
@@ -43,7 +44,8 @@ class FaqController extends Controller
         $request->validate([
             'question' => 'required|string',
             'answer'   => 'required|string',
-            'page'     => 'required|string|in:home,services',
+            'page'     => 'required|array',
+            'page.*'   => 'string|in:home,services',
         ]);
 
         $faq->update($request->only('question', 'answer', 'page'));

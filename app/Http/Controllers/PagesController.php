@@ -68,7 +68,10 @@ class PagesController extends Controller
             ->where('pagecategory', 'services')
             ->orderBy('ServicesTitle')
             ->get();
-        $servicesFaqs = \App\Models\Faq::where('page', 'services')->orderByDesc('created_at')->get();
+        $servicesFaqs = \App\Models\Faq::where('page', 'services')
+            ->orWhereJsonContains('page', 'services')
+            ->orderByDesc('created_at')
+            ->get();
 
         return view('pages/services', compact('services', 'banners', 'servicesFaqs'));
     }
@@ -196,18 +199,21 @@ class PagesController extends Controller
         try {
             \Illuminate\Support\Facades\Log::info('Attempting to send contact form emails.');
             
-            // Internal notification to support and CC
-            $mail = \Illuminate\Support\Facades\Mail::to('support@courticehomehealthcare.com');
+            // Get admin email from .env, settings, or fallback
+            $siteSettings = \App\Models\DynamicContent::first();
+            $adminEmail = env('ADMIN_EMAIL', $siteSettings->email ?? 'support@courticehomehealthcare.com');
+            
+            // 1. Notification to Admin with all form details
+            $mail = \Illuminate\Support\Facades\Mail::to($adminEmail);
             
             if (env('MAIL_CC_ADDRESS')) {
-                \Illuminate\Support\Facades\Log::info('Adding CC: ' . env('MAIL_CC_ADDRESS'));
                 $mail->cc(env('MAIL_CC_ADDRESS'));
             }
 
             $mail->send(new ContactFormSubmitted($validated));
-            \Illuminate\Support\Facades\Log::info('Internal notification email sent.');
+            \Illuminate\Support\Facades\Log::info('Admin notification email sent to: ' . $adminEmail);
 
-            // Thank you email to the user
+            // 2. Thank you email to the User (the person who filled the form)
             \Illuminate\Support\Facades\Mail::to($validated['email'])
                 ->send(new ContactThankYou($validated));
             \Illuminate\Support\Facades\Log::info('Thank you email sent to: ' . $validated['email']);

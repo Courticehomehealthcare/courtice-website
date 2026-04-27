@@ -9,4 +9,8 @@ class Faq extends Model
     use HasFactory;
 protected $table = 'faqs';
     protected $fillable = ['question', 'answer', 'page'];
+
+    protected $casts = [
+        'page' => 'array'
+    ];
 }
