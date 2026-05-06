@@ -88,6 +88,10 @@
     <!--    </ul>-->
     <!--</li>-->
 
+    <li class="{{ Request::is('careers*') ? 'current' : '' }}">
+        <a href="{{ route('careers.index') }}">Careers</a>
+    </li>
+
     <!-- Contact -->
     <li class="{{ Request::is('contact') ? 'current' : '' }}">
         <a href="{{ url('contact') }}">Contact</a>

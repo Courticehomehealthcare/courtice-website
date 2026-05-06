@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('image1', 255)->nullable()->default('NULL');
             $table->string('image2', 255)->nullable()->default('NULL');
             $table->text('description')->nullable()->default('NULL');
-            $table->string('status')->default(''draft'');
+            $table->string('status')->default('draft');
             $table->string('writtenby', 50)->nullable()->default('NULL');
             $table->integer('visible');
             $table->string('seo_title', 255)->nullable()->default('NULL');

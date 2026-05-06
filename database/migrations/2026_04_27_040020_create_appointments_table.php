@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('appointment_date', 50);
             $table->string('appointment_time', 50);
             $table->string('chiefcomplaint', 100)->nullable()->default('NULL');
-            $table->string('status', 50)->nullable()->default(''Pending'');
+            $table->string('status', 50)->nullable()->default('Pending');
             $table->timestamps();
         });
     }

@@ -397,6 +397,17 @@ return [
             'route' => 'admin.settings.index',
             'icon' => 'fas fa-fw fa-cogs',
         ],
+        ['header' => 'CAREERS'],
+        [
+            'text' => 'Job Postings',
+            'route' => 'admin.job-postings.index',
+            'icon' => 'fas fa-fw fa-briefcase',
+        ],
+        [
+            'text' => 'Job Applications',
+            'route' => 'admin.job-applications.index',
+            'icon' => 'fas fa-fw fa-file-alt',
+        ],
     ],
 
     /*

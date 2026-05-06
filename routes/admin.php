@@ -81,5 +81,12 @@ Route::middleware(['web', 'auth:admin'])
         Route::get('/seo-pages/{id}/edit', [SeoPageController::class, 'edit'])->name('seo.edit');
         Route::post('/seo-pages/{id}', [SeoPageController::class, 'update'])->name('seo.update');
 
+        // Careers
+        Route::resource('job-postings', \App\Http\Controllers\Admin\JobPostingController::class);
+        Route::get('job-applications', [\App\Http\Controllers\Admin\JobApplicationController::class, 'index'])->name('job-applications.index');
+        Route::get('job-applications/{id}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'show'])->name('job-applications.show');
+        Route::post('job-applications/{id}/thank-you', [\App\Http\Controllers\Admin\JobApplicationController::class, 'sendThankYou'])->name('job-applications.thank-you');
+        Route::delete('job-applications/{id}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'destroy'])->name('job-applications.destroy');
+
     });
 

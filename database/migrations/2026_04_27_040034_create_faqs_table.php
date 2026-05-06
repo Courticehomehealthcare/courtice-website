@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('question', 255);
             $table->text('answer');
-            $table->string('page', 255)->nullable()->default(''home'');
+            $table->string('page', 255)->nullable()->default('home');
             $table->timestamps();
         });
     }

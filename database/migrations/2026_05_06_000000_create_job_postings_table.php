@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carousels', function (Blueprint $table) {
+        Schema::create('job_postings', function (Blueprint $table) {
             $table->id();
-            $table->string('image_url', 255);
-            $table->string('page', 255)->nullable()->default('home');
-            $table->string('title', 255);
+            $table->string('title');
             $table->text('description');
-            $table->string('button_text', 100);
-            $table->string('button_link', 100);
+            $table->string('location')->nullable();
+            $table->string('job_type')->nullable(); // Full-time, Part-time, etc.
+            $table->string('salary_range')->nullable();
+            $table->enum('status', ['open', 'closed'])->default('open');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carousels');
+        Schema::dropIfExists('job_postings');
     }
 };
