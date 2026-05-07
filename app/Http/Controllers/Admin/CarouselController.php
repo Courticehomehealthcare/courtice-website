@@ -34,7 +34,7 @@ class CarouselController extends Controller
                 'description' => 'required|string',
                 'button_text' => 'required|string',
                 'button_link' => 'required|url',
-                'image' => 'required|image|dimensions:width=650,height=650',
+                'image' => 'required|image',
                 'page' => 'required|string|in:home,services,aboutus',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -87,7 +87,7 @@ class CarouselController extends Controller
                 'description' => 'required|string',
                 'button_text' => 'required|string',
                 'button_link' => 'required|url',
-                'image' => 'nullable|image|dimensions:width=650,height=650',
+                'image' => 'nullable|image',
                 'page' => 'required|string|in:home,services,aboutus',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
