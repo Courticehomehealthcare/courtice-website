@@ -72,6 +72,10 @@
         <a href="{{ route('collections') }}">Products</a>
     </li>
 
+    <li class="{{ Request::is('careers*') ? 'current' : '' }}">
+        <a href="{{ route('careers') }}">Careers</a>
+    </li>
+
     <li class="{{ Request::is('blog') ? 'current' : '' }}">
         <a href="{{ url('blog') }}">Blogs</a>
     </li>

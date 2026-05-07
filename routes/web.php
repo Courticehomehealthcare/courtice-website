@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CareersController;
 
 Route::get('/', [HomeController::class, 'index4'])->name('index4');
 // Route::get('/index2', [HomeController::class, 'index2'])->name('index2');
@@ -66,6 +67,10 @@ Route::get('blog-list-2', [PagesController::class, 'blog_list_2'])->name('blog-l
 Route::get('blog/{slug}', [PagesController::class, 'blog_details'])->name('blog.details');
 Route::get('contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('contact-submit', [PagesController::class, 'submitContact'])->name('contact.submit');
+
+Route::get('careers', [CareersController::class, 'index'])->name('careers');
+Route::get('careers/{id}', [CareersController::class, 'show'])->name('careers.show');
+Route::post('careers/{id}/apply', [CareersController::class, 'apply'])->name('careers.apply');
 
 
 
