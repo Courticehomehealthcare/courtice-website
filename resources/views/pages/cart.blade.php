@@ -37,64 +37,45 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @forelse($cart as $id => $item)
                                         <tr>
                                             <td>
                                                 <div class="product-box">
                                                     <div class="img-box">
-                                                        <img src="{{ asset("/assets/images/shop/cart-page-img-1.jpg") }}" alt="">
+                                                        <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
                                                     </div>
-                                                    <h3><a href="{{ url("product-details") }}">Nebulizer</a></h3>
+                                                    <h3><a href="{{ route('product-details', $item['slug'] ?? '#') }}">{{ $item['title'] }}</a></h3>
                                                 </div>
                                             </td>
-                                            <td>$10.99</td>
+                                            <td>${{ number_format($item['price'], 2) }}</td>
                                             <td>
-                                                <div class="quantity-box">
-                                                    <button type="button" class="sub"><i
-                                                            class="fa fa-minus"></i></button>
-                                                    <input type="number" id="product-1" value="1" />
-                                                    <button type="button" class="add"><i
-                                                            class="fa fa-plus"></i></button>
+                                                <div class="quantity-box" style="display: flex; align-items: center; justify-content: center;">
+                                                    <input type="number" value="{{ $item['quantity'] }}" readonly style="width: 50px; text-align: center; border: 1px solid #ebebeb; border-radius: 4px;">
                                                 </div>
                                             </td>
                                             <td>
-                                                $10.99
+                                                ${{ number_format($item['price'] * $item['quantity'], 2) }}
                                             </td>
                                             <td>
-                                                <div class="cross-icon">
-                                                    <i class="fas fa-times"></i>
-                                                </div>
+                                                <form action="{{ route('cart.remove') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="variantId" value="{{ $id }}">
+                                                    <button type="submit" style="background: none; border: none; color: #ff4d4d; cursor: pointer;">
+                                                        <div class="cross-icon">
+                                                            <i class="fas fa-times"></i>
+                                                        </div>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
-
+                                        @empty
                                         <tr>
-                                            <td>
-                                                <div class="product-box">
-                                                    <div class="img-box">
-                                                        <img src="{{ asset("/assets/images/shop/cart-page-img-2.jpg") }}" alt="">
-                                                    </div>
-                                                    <h3><a href="{{ url("product-details") }}">Mouthwash</a></h3>
-                                                </div>
-                                            </td>
-                                            <td>$10.99</td>
-                                            <td>
-                                                <div class="quantity-box">
-                                                    <button type="button" class="sub"><i
-                                                            class="fa fa-minus"></i></button>
-                                                    <input type="number" id="product-2" value="1" />
-                                                    <button type="button" class="add"><i
-                                                            class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                $10.99
-                                            </td>
-                                            <td>
-                                                <div class="cross-icon">
-                                                    <i class="fas fa-times"></i>
-                                                </div>
+                                            <td colspan="5" class="text-center" style="padding: 50px 0;">
+                                                <h4>Your cart is empty</h4>
+                                                <a href="{{ route('collections') }}" class="thm-btn mt-3">Go to Shop</a>
                                             </td>
                                         </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -156,35 +137,38 @@
                                         </button>
                                     </form>
                                 </div>
-                                <div class="cart-page__cart-total">
+                                    @php
+                                        $subtotal = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
+                                    @endphp
                                     <ul class="cart-total list-unstyled">
                                         <li>
                                             <span>Cart Subtotal</span>
-                                            <span>$20.98 USD </span>
+                                            <span>${{ number_format($subtotal, 2) }}</span>
                                         </li>
                                         <li>
                                             <span>Shipping Cost</span>
-                                            <span>-$40.00 USD</span>
-                                        </li>
-                                        <li>
-                                            <span>Discount</span>
-                                            <span>$0.00 USD</span>
+                                            <span>Calculated at checkout</span>
                                         </li>
                                         <li>
                                             <span>Cart Total</span>
-                                            <span class="cart-total-amount">$20.98 USD</span>
+                                            <span class="cart-total-amount">${{ number_format($subtotal, 2) }}</span>
                                         </li>
                                     </ul>
                                     <div class="cart-page__buttons">
                                         <div class="cart-page__buttons-1">
-                                            <a class="thm-btn" href="{{ url("checkout") }}">Update
+                                            <a class="thm-btn" href="{{ route('collections') }}">Continue Shopping
                                                 <span class="icon-right-arrow"></span>
                                             </a>
                                         </div>
                                         <div class="cart-page__buttons-2">
-                                            <a href="{{ url("checkout") }}" class="thm-btn">Checkout
-                                                <span class="icon-right-arrow"></span>
-                                            </a>
+                                            @if(count($cart) > 0)
+                                            <form action="{{ route('checkout') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="thm-btn" style="width: 100%;">Checkout
+                                                    <span class="icon-right-arrow"></span>
+                                                </button>
+                                            </form>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

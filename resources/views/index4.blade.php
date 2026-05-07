@@ -20,6 +20,8 @@
 
         .image_c {
             height: 280px;
+            object-fit: cover;
+            width: 100%;
         }
 
         .banner-two__img {
@@ -239,7 +241,7 @@
                             compression, braces, and daily living essentials — with expert guidance from real people you can
                             call or visit today. </p>
                         <div class="banner-two__btn-box">
-                            <a href="{{ url("appoinment") }}" class="thm-btn">Shop our Products<span
+                            <a href="{{ route('collections') }}" class="thm-btn">Shop our Products<span
                                     class="icon-arrow-right"></span> </a>
                         </div>
                     </div>
@@ -572,37 +574,32 @@
                 </h3>
             </div>
             <div class="featured-products__carousel owl-theme owl-carousel">
-                @forelse ($featuredProducts as $index => $service)
+                @forelse ($featuredProducts as $index => $product)
                     @php
                         $animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight'];
                         $delays = ['100ms', '200ms', '300ms'];
                         $animationClass = $animations[$index % 3];
                         $animationDelay = $delays[$index % 3];
-                        $detailSlug = !empty($service->servicesUrl)
-                            ? $service->servicesUrl
-                            : \Illuminate\Support\Str::slug($service->ServicesTitle);
-                        $serviceLink = route('services.details', $detailSlug);
-                        $serviceImage = !empty($service->serviceimage)
-                            ? asset('uploads/services/' . $service->serviceimage)
-                            : asset('/assets/images/own/wheelchair.jpg');
+                        $productLink = route('product-details', $product->slug);
+                        $productImage = $product->main_image ?? asset('assets/images/resources/no-image.jpg');
                     @endphp
                     <div class="wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
                         <div class="blog-five__single">
                             <div class="blog-five__img">
-                                <img class="image_c" src="{{ $serviceImage }}" alt="{{ $service->ServicesTitle }}">
+                                <img class="image_c" src="{{ $productImage }}" alt="{{ $product->name }}">
                                 <div class="blog-five__plus">
-                                    <a href="{{ $serviceLink }}"><i class="fa fa-plus"></i></a>
+                                    <a href="{{ $productLink }}"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                             <div class="blog-five__content">
                                 <h3 class="blog-five__title">
-                                    <a href="{{ $serviceLink }}">{{ $service->ServicesTitle }}</a>
+                                    <a href="{{ $productLink }}">{{ $product->name }}</a>
                                 </h3>
                                 <p class="blog-five__text">
-                                    {{ \Illuminate\Support\Str::limit(strip_tags($service->ServicesText), 90) }}
+                                    ${{ number_format($product->price, 2) }}
                                 </p>
                                 <div class="blog-five__read-more">
-                                    <a href="{{ $serviceLink }}">Shop Now <span class="icon-arrow-right"></span></a>
+                                    <a href="{{ $productLink }}">Shop Now <span class="icon-arrow-right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -1238,20 +1235,22 @@
     <!--            </div>-->
     <!--            <div class="col-xl-6 col-lg-6">-->
     <!--                <div class="video-one__right">-->
-    <!--                    <div class="video-one__content-box">-->
-    <!--                        <div class="video-one__content-icon">-->
-    <!--                            <span class="icon-teeth"></span>-->
-    <!--                        </div>-->
-    <!--                        <h3 class="video-one__content-title">Gentle Touch Dental Care</h3>-->
-    <!--                        <p class="video-one__content-text">Dental care is essential for maintaining oral <br>-->
-    <!--                            health-->
-    <!--                            and overall well-being</p>-->
-    <!--                        <div class="video-one__btn-box">-->
-    <!--                            <a href="{{ url("contact") }}" class="thm-btn">Contact Us<span-->
-    <!--                                    class="icon-arrow-right"></span> </a>-->
-    <!--                        </div>-->
-    <!--                        <div class="video-one__shape-1 float-bob-y">-->
-    <!--                            <img src="{{ asset("/assets/images/shapes/video-one-shape-1.png") }}" alt="">-->
+    <!--                    <div class="video-one__right">-->
+    <!--                        <div class="video-one__content-box">-->
+    <!--                            <div class="video-one__content-icon">-->
+    <!--                                <span class="icon-teeth"></span>-->
+    <!--                            </div>-->
+    <!--                            <h3 class="video-one__content-title">Gentle Touch Dental Care</h3>-->
+    <!--                            <p class="video-one__content-text">Dental care is essential for maintaining oral <br>-->
+    <!--                                health-->
+    <!--                                and overall well-being</p>-->
+    <!--                            <div class="video-one__btn-box">-->
+    <!--                                <a href="{{ url("contact") }}" class="thm-btn">Contact Us<span-->
+    <!--                                        class="icon-arrow-right"></span> </a>-->
+    <!--                            </div>-->
+    <!--                            <div class="video-one__shape-1 float-bob-y">-->
+    <!--                                <img src="{{ asset("/assets/images/shapes/video-one-shape-1.png") }}" alt="">-->
+    <!--                            </div>-->
     <!--                        </div>-->
     <!--                    </div>-->
     <!--                </div>-->

@@ -41,8 +41,12 @@ Route::redirect('pure-life-health-services', '/services/pure-life-health-service
 Route::get('/products', [PagesController::class, 'collections'])->name('collections');
 Route::get('/products/{slug}', [PagesController::class, 'products'])->name('products');
 Route::get('/product-details/{slug}', [PagesController::class, 'product_details'])->name('product-details');
-Route::get('cart', [PagesController::class, 'cart'])->name('cart');
-Route::get('checkout', [PagesController::class, 'checkout'])->name('checkout');
+
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', function() { return redirect()->route('cart'); });
 Route::get('wishlist', [PagesController::class, 'wishlist'])->name('wishlist');
 Route::get('sign-up', [PagesController::class, 'sign_up'])->name('sign-up');
 Route::get('login', [PagesController::class, 'login'])->name('login');
@@ -62,11 +66,6 @@ Route::get('blog-list-2', [PagesController::class, 'blog_list_2'])->name('blog-l
 Route::get('blog/{slug}', [PagesController::class, 'blog_details'])->name('blog.details');
 Route::get('contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('contact-submit', [PagesController::class, 'submitContact'])->name('contact.submit');
-
-use App\Http\Controllers\CareersController;
-Route::get('careers', [CareersController::class, 'index'])->name('careers.index');
-Route::get('careers/{id}', [CareersController::class, 'show'])->name('careers.show');
-Route::post('careers/{id}/apply', [CareersController::class, 'apply'])->name('careers.apply');
 
 
 
@@ -112,3 +111,4 @@ Route::get('/test-contact-email', function () {
 });
 
 Route::fallback([PagesController::class, 'not_found']);
+Route::get('/shop', function() { return redirect()->route('collections'); });

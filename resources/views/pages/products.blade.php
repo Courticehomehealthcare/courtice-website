@@ -1,455 +1,269 @@
 
 @extends('layouts.layout3')
-@section('title', ($category->meta_title ?: $category->categoriename) . ' || Courtice Home Health Care')
-@section('meta_description', $category->meta_description)
-@section('meta_keywords', $category->meta_keywords)
+@section('title', (isset($category->meta_title) ? $category->meta_title : ($category->categoriename ?? 'Products')) . ' || Courtice Home Health Care')
+@section('meta_description', $category->meta_description ?? '')
+@section('meta_keywords', $category->meta_keywords ?? '')
 
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
             <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-            <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-            <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-            <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-            <link rel="stylesheet" href="' . asset('assets/css/module-css/shop.css') . '"/>
-            <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
-            
-@endphp
-@php
-    $title = $category->categoriename;
-    $subtitle = 'Products';
+            <link rel="stylesheet" href="' . asset('assets/css/module-css/shop.css') . '"/>';
 @endphp
 
 @section('content')
 
-<x-strickyHeaderThree/>
-
-<!--Page Header Start-->
-<section class="page-header">
-    <div class="page-header__bg" style="background-image: url({{ asset('assets/images/banner/about_banner.png') }});"></div>
-    <div class="container">
-        <div class="page-header__inner">
-            <h3>{{ $category->categoriename }}</h3>
-            <div class="thm-breadcrumb__inner">
-                <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><span class="icon-arrow-left"></span></li>
-                    @if($category->id == 0)
-                        <li>Shop</li>
-                    @else
-                        <li><a href="{{ route('collections') }}">Shop</a></li>
-                        <li><span class="icon-arrow-left"></span></li>
-                        <li>{{ $category->categoriename }}</li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<!--Page Header End-->
-
-<!--Product Start-->
-<section class="product">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="product__showing-result" style="padding: 0 !important; margin-bottom: 30px !important; display: flex; align-items: center; justify-content: space-between; width: 100% !important; background: transparent;">
-                    <p class="product__showing-text" style="margin: 0; font-weight: 500;">
-                        Showing {{ $products->firstItem() }}–{{ $products->lastItem() }}/{{ $products->total() }} of {{ $products->total() }} results
-                    </p>
-                    <div class="product__showing-sort" style="display: flex; align-items: center; gap: 15px; max-width: none; margin-right: 0 !important; width: auto !important;">
-                        <div class="select-box" style="width: 250px;">
-                            <select class="wide">
-                                <option data-display="Sort by popular">Sort by popular</option>
-                                <option value="1">Sort by Popularity</option>
-                                <option value="2">Sort by Price</option>
-                                <option value="3">Sort by Ratings</option>
-                            </select>
-                        </div>
-                        <div class="product__all-tab-button" style="position: static !important; top: 0 !important; display: flex; align-items: center; background: #f4f7f6; padding: 5px 10px; border-radius: 4px; margin: 0 !important;">
-                            <ul class="tabs-button-box clearfix list-unstyled" style="display: flex; margin: 0; gap: 8px;">
-                                <li data-tab="#grid" class="tab-btn-item active-btn-item" style="cursor: pointer;">
-                                    <div class="product__all-tab-button-icon one" style="background: #006666; color: #fff; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
-                                        <i class="fa fa-solid fa-bars"></i>
-                                    </div>
-                                </li>
-                                <li data-tab="#list" class="tab-btn-item" style="cursor: pointer;">
-                                    <div class="product__all-tab-button-icon" style="background: #fff; color: #006666; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 4px; border: 1px solid #ebebeb;">
-                                        <i class="fa fa-solid fa-list-ul"></i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Content Start -->
-            <div class="col-xl-9 col-lg-8">
-                <div class="product__items">
-
-                    <div class="product__all">
-                        <!--Start Tabs Content Box-->
-                        <div class="tabs-content-box">
-                            <!--Start Tab Grid-->
-                            <div class="tab-content-box-item tab-content-box-item-active" id="grid">
-                                <div class="product__all-tab-content-box-item">
-                                    <div class="product__all-tab-single">
-                                        <div class="row">
-                                            @forelse ($products as $product)
-                                            <!--Product Grid Single Start-->
-                                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                                <div class="single-product-style1">
-                                                    <div class="single-product-style1__img">
-                                                        @if($product->main_image)
-                                                            <img src="{{ asset('uploads/products/' . $product->main_image) }}" alt="{{ $product->name }}">
-                                                            <img src="{{ asset('uploads/products/' . $product->main_image) }}" alt="{{ $product->name }}">
-                                                        @else
-                                                            <img src="{{ asset('assets/images/resources/no-image.jpg') }}" alt="No Image">
-                                                            <img src="{{ asset('assets/images/resources/no-image.jpg') }}" alt="No Image">
-                                                        @endif
-                                                        
-                                                        @if($loop->first)
-                                                        <ul class="single-product-style1__overlay">
-                                                            <li><p>New</p></li>
-                                                        </ul>
-                                                        @elseif($loop->index == 2)
-                                                        <ul class="single-product-style1__overlay">
-                                                            <li><p>5% Off</p></li>
-                                                        </ul>
-                                                        @endif
-
-                                                        <ul class="single-product-style1__info">
-                                                            <li><a href="#" title="Add to Wishlist"><i class="fa fa-regular fa-heart"></i></a></li>
-                                                            <li><a href="#" title="Add to cart"><i class="fa fa-solid fa-cart-plus"></i></a></li>
-                                                            <li><a href="{{ route('product-details', $product->slug) }}" title="Quick View"><i class="fa fa-regular fa-eye"></i></a></li>
-                                                            <li><a href="#" title="Compare"><i class="fa fa-solid fa-repeat"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="single-product-style1__content" style="padding: 20px 15px; background: #fff;">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-8">
-                                                                <h4 style="margin: 0; font-size: 18px; font-weight: 700;"><a href="{{ route('product-details', $product->slug) }}" style="color: #061738; text-decoration: none;">{{ $product->name }}</a></h4>
-                                                                <p style="margin: 5px 0 0; font-size: 16px; font-weight: 600; color: #006666;">
-                                                                    @if($product->sale_price)
-                                                                        <span style="text-decoration: line-through; color: #999; margin-right: 8px; font-weight: 400;">${{ number_format($product->price, 2) }}</span>
-                                                                        <span>${{ number_format($product->sale_price, 2) }}</span>
-                                                                    @else
-                                                                        {{ $product->price ? '$' . number_format($product->price, 2) : 'Contact' }}
-                                                                    @endif
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-4 text-end">
-                                                                <div class="single-product-style1__review" style="background: #f4f7f6; padding: 6px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 6px;">
-                                                                    <i class="fa fa-star" style="color: #006666; font-size: 14px;"></i>
-                                                                    <p style="margin: 0; font-size: 15px; font-weight: 700; color: #061738;">5.0</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--Product Grid Single End-->
-                                            @empty
-                                            <div class="col-12 text-center" style="padding: 100px 0;">
-                                                <span class="icon-broken-bone" style="font-size: 60px; color: #3bb18f; margin-bottom: 20px; display: block;"></span>
-                                                <h4>No products found in this category.</h4>
-                                                <p>We're working on adding more items soon.</p>
-                                            </div>
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--End Tab Grid-->
-
-                            <!--Start Tab List-->
-                            <div class="tab-content-box-item" id="list">
-                                <div class="product__all-tab-content-box-item">
-                                    <div class="product__all-tab-single">
-                                        <div class="row">
-                                            @foreach ($products as $product)
-                                            <!--Product List Single Start-->
-                                            <div class="col-xl-12">
-                                                <div class="single-product-style2" style="margin-bottom: 30px; border: 1px solid #ebebeb; border-radius: 8px; overflow: hidden;">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-md-4">
-                                                            <div class="single-product-style2__img">
-                                                                @if($product->main_image)
-                                                                    <img src="{{ asset('uploads/products/' . $product->main_image) }}" alt="{{ $product->name }}">
-                                                                    <img src="{{ asset('uploads/products/' . $product->main_image) }}" alt="{{ $product->name }}">
-                                                                @else
-                                                                    <img src="{{ asset('assets/images/resources/no-image.jpg') }}" alt="No Image">
-                                                                    <img src="{{ asset('assets/images/resources/no-image.jpg') }}" alt="No Image">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="single-product-style2__content" style="padding: 30px 40px; display: flex; flex-direction: column; justify-content: center;">
-                                                                <div class="single-product-style2__review" style="margin-bottom: 12px; position: static;">
-                                                                    <i class="fa fa-star" style="color: #ff9800;"></i>
-                                                                    <i class="fa fa-star" style="color: #ff9800;"></i>
-                                                                    <i class="fa fa-star" style="color: #ff9800;"></i>
-                                                                    <i class="fa fa-star" style="color: #ff9800;"></i>
-                                                                    <i class="fa fa-star" style="color: #ff9800;"></i>
-                                                                </div>
-                                                                <div class="single-product-style2__text" style="padding: 0; border: none; position: static;">
-                                                                    <h4 style="font-size: 26px; font-weight: 700; margin-bottom: 10px; line-height: 1.2;"><a href="{{ route('product-details', $product->slug) }}" style="color: #061738; text-decoration: none;">{{ $product->name }}</a></h4>
-                                                                    <p style="font-size: 22px; font-weight: 700; color: #006666; margin-bottom: 15px;">{{ $product->price ? '$' . number_format($product->price, 2) : 'Contact for Price' }}</p>
-                                                                    <p style="margin: 0 0 25px; color: #666; line-height: 1.6; font-size: 15px;">{{ Str::limit(strip_tags($product->description), 140) }}</p>
-                                                                </div>
-                                                                <div class="product-list-btn-box" style="display: flex; gap: 10px; position: static; margin-top: 5px;">
-                                                                    <a href="{{ route('product-details', $product->slug) }}" class="thm-btn" style="padding: 10px 25px;">View Details</a>
-                                                                    <a href="tel:+19057210004" class="thm-btn" style="padding: 10px 25px; background: #061738;">Inquire Now</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--Product List Single End-->
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--End Tab List-->
-                        </div>
-
-                        <div class="mt-4">
-                            {{ $products->links('pagination::bootstrap-4') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Content End -->
-
-            <!-- Sidebar Start -->
-            <div class="col-xl-3 col-lg-4">
-                <div class="shop-sidebar" style="background: #f4f7f6; padding: 30px; border-radius: 12px;">
-                    <!-- Search Widget -->
-                    <div class="shop-sidebar__single shop-sidebar__search" style="margin-bottom: 40px;">
-                        <form action="#" class="shop-sidebar__search-form" style="position: relative;">
-                            <input type="text" placeholder="Search" style="width: 100%; height: 60px; border: none; border-radius: 8px; padding-left: 20px; padding-right: 60px; font-weight: 500;">
-                            <button type="submit" style="position: absolute; top: 5px; right: 5px; width: 50px; height: 50px; background: #006666; border: none; border-radius: 6px; color: #fff;">
-                                <i class="icon-search"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Price Filter Widget -->
-                    <div class="shop-sidebar__single shop-sidebar__price-filter" style="margin-bottom: 40px;">
-                        <h3 class="shop-sidebar__title" style="font-size: 22px; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: #006666;">▶</span> Price
-                        </h3>
-                        <div class="price-range-slider" style="background: #fff; padding: 25px; border-radius: 10px;">
-                            <div style="height: 6px; background: #ebebeb; border-radius: 3px; position: relative; margin-bottom: 25px;">
-                                <div style="position: absolute; left: 0; right: 20%; top: 0; bottom: 0; background: #006666; border-radius: 3px;"></div>
-                                <div style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: #006666; border-radius: 50%; cursor: pointer;"></div>
-                                <div style="position: absolute; right: 20%; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: #006666; border-radius: 50%; cursor: pointer;"></div>
-                            </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between;">
-                                <p style="margin: 0; font-weight: 500; color: #666; font-size: 14px;">0 - 3000</p>
-                                <button class="thm-btn" style="padding: 8px 20px; font-size: 13px; text-transform: uppercase; background: #061738; letter-spacing: 1px;">Filter</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Categories Widget -->
-                    <div class="shop-sidebar__single shop-sidebar__category" style="margin-bottom: 40px;">
-                        <h3 class="shop-sidebar__title" style="font-size: 22px; font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: #006666;">▶</span> Categories
-                        </h3>
-                        <ul class="shop-sidebar__category-list list-unstyled">
-                            <li style="margin-bottom: 12px;">
-                                <a href="{{ route('collections') }}" 
-                                   style="display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
-                                   {{ $category->id == 0 ? 'background: #006666; color: #fff;' : 'background: #fff; color: #222;' }}">
-                                    All Products
-                                    <span style="width: 30px; height: 30px; {{ $category->id == 0 ? 'background: #fff; color: #006666;' : 'background: #006666; color: #fff;' }} display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px;">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            @foreach($categories as $cat)
-                            <li style="margin-bottom: 12px;">
-                                <a href="{{ route('products', $cat->slug) }}" 
-                                   style="display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.02); 
-                                   {{ $category->id == $cat->id ? 'background: #006666; color: #fff;' : 'background: #fff; color: #222;' }}">
-                                    {{ $cat->categoriename }}
-                                    <span style="width: 30px; height: 30px; {{ $category->id == $cat->id ? 'background: #fff; color: #006666;' : 'background: #006666; color: #fff;' }} display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 12px;">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- Sidebar End -->
-        </div>
-    </div>
-</section>
-<!--Product End-->
-
 <style>
-    .single-product-style1__img {
-        position: relative;
-        overflow: hidden;
-        border-radius: 12px;
-        background: #f4f7f6;
+    :root {
+        --shop-purple: #2e2a4f;
+        --shop-gray: #f8f9fa;
+        --shop-text: #212529;
     }
-    .single-product-style1__img img {
-        width: 100%;
-        transition: transform 0.6s ease;
-    }
-    .single-product-style1:hover .single-product-style1__img img {
-        transform: scale(1.1);
-    }
-    .single-product-style1__overlay {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 2;
-        padding: 0;
-        list-style: none;
-    }
-    .single-product-style1__overlay li p {
+
+    .shop-container {
+        padding: 60px 0;
         background: #fff;
-        color: #006666;
-        padding: 6px 15px;
-        border-radius: 4px;
-        font-weight: 700;
-        font-size: 13px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        margin: 0;
     }
-    .single-product-style1__info {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%) translateY(20px);
-        background: #fff;
+
+    .shop-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .shop-header h2 {
+        font-size: 42px;
+        font-weight: 800;
+        color: var(--shop-purple);
+        margin-bottom: 15px;
+    }
+
+    .shop-breadcrumb {
         display: flex;
         justify-content: center;
-        gap: 5px;
-        padding: 8px;
-        border-radius: 30px;
-        transition: all 0.4s ease;
+        gap: 10px;
         list-style: none;
-        margin: 0;
-        opacity: 0;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        z-index: 5;
+        padding: 0;
+        font-weight: 500;
+        color: #666;
     }
-    .single-product-style1:hover .single-product-style1__info {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
+
+    .shop-breadcrumb a {
+        color: var(--shop-purple);
+        text-decoration: none;
     }
-    .single-product-style1__info a {
-        width: 40px;
-        height: 40px;
-        background: transparent;
-        color: #006666;
+
+    /* Category Grid */
+    .category-card {
+        background: var(--shop-gray);
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: block;
+        height: 100%;
+        border: 1px solid transparent;
+    }
+
+    .category-card:hover {
+        transform: translateY(-10px);
+        background: #fff;
+        border-color: var(--shop-purple);
+        box-shadow: 0 15px 30px rgba(46, 42, 79, 0.1);
+    }
+
+    .category-card__img {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 25px;
+        background: #fff;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        font-size: 16px;
-    }
-    .single-product-style1__info a:hover {
-        background: #f4f7f6;
-        color: #061738;
-    }
-    .single-product-style1__content {
-        padding: 20px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-    .single-product-style1__content h4 {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
-    .single-product-style1__content h4 a {
-        color: #222;
-        text-decoration: none;
-    }
-    .single-product-style1__content p {
-        margin: 0;
-        color: #006666;
-        font-weight: 700;
-        font-size: 16px;
-    }
-    
-    
-    .tab-content-box-item {
-        display: none;
-    }
-    .tab-content-box-item.tab-content-box-item-active {
-        display: block;
-        animation: fadeIn 0.5s ease-in-out;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+        overflow: hidden;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
-    .tab-btn-item.active-btn-item .product__all-tab-button-icon {
-        background: #006666 !important;
-        color: #fff !important;
+    .category-card__img img {
+        max-width: 100%;
+        height: auto;
     }
-    
-    .shop-sidebar__category-list a:hover {
-        background: #006666 !important;
-        color: #fff !important;
-        transform: translateX(5px);
+
+    .category-card h4 {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--shop-purple);
+        margin: 0;
     }
-    .shop-sidebar__category-list a:hover span {
-        background: #fff !important;
-        color: #006666 !important;
+
+    /* Product Grid */
+    .product-card {
+        background: var(--shop-gray);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        background: #fff;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    }
+
+    .product-card__img {
+        position: relative;
+        padding: 20px;
+        background: #fff;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-card__img img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .product-card__content {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-card__title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    .product-card__title a {
+        color: var(--shop-text);
+        text-decoration: none;
+    }
+
+    .product-card__price {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--shop-purple);
+    }
+
+    .product-card__btn {
+        margin-top: 20px;
+        background: var(--shop-purple);
+        color: #fff;
+        text-align: center;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+
+    .product-card__btn:hover {
+        opacity: 0.9;
+        color: #fff;
+    }
+
+    .back-to-shop {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--shop-purple);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 30px;
     }
 </style>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-btn-item');
-    const tabItems = document.querySelectorAll('.tab-content-box-item');
+<x-strickyHeaderThree/>
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetTab = this.getAttribute('data-tab');
-            
-            // Update buttons
-            tabButtons.forEach(btn => btn.classList.remove('active-btn-item'));
-            this.classList.add('active-btn-item');
-            
-            // Update icons styling (optional if using CSS classes)
-            tabButtons.forEach(btn => {
-                const icon = btn.querySelector('.product__all-tab-button-icon');
-                if (btn.classList.contains('active-btn-item')) {
-                    icon.style.background = '#006666';
-                    icon.style.color = '#fff';
-                } else {
-                    icon.style.background = '#fff';
-                    icon.style.color = '#006666';
-                }
-            });
+<section class="shop-container">
+    <div class="container">
+        
+        @if($is_root)
+            <div class="shop-header">
+                <h2>Shop by Category</h2>
+                <ul class="shop-breadcrumb">
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li>/</li>
+                    <li>Shop</li>
+                </ul>
+            </div>
 
-            // Update content
-            tabItems.forEach(item => {
-                item.classList.remove('tab-content-box-item-active');
-                if ('#' + item.id === targetTab) {
-                    item.classList.add('tab-content-box-item-active');
-                }
-            });
-        });
-    });
-});
-</script>
+            <div class="row">
+                @foreach($categories as $cat)
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <a href="{{ route('products', $cat->slug) }}" class="category-card">
+                            <div class="category-card__img">
+                                <img src="{{ $cat->image }}" alt="{{ $cat->categoriename }}">
+                            </div>
+                            <h4>{{ $cat->categoriename }}</h4>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="shop-header">
+                <a href="{{ route('collections') }}" class="back-to-shop">
+                    <i class="fa fa-arrow-left"></i> Back to Categories
+                </a>
+                <h2>{{ $category->categoriename }}</h2>
+                <ul class="shop-breadcrumb">
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li>/</li>
+                    <li><a href="{{ route('collections') }}">Shop</a></li>
+                    <li>/</li>
+                    <li>{{ $category->categoriename }}</li>
+                </ul>
+            </div>
+
+            <div class="row">
+                @forelse($products as $product)
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="product-card">
+                            <div class="product-card__img">
+                                <a href="{{ route('product-details', $product->slug) }}">
+                                    <img src="{{ $product->main_image ?? asset('assets/images/resources/no-image.jpg') }}" alt="{{ $product->name }}">
+                                </a>
+                            </div>
+                            <div class="product-card__content">
+                                <div>
+                                    <h4 class="product-card__title">
+                                        <a href="{{ route('product-details', $product->slug) }}">{{ $product->name }}</a>
+                                    </h4>
+                                    <p class="product-card__price">
+                                        @if(isset($product->sale_price) && $product->sale_price)
+                                            <span style="text-decoration: line-through; color: #999; font-size: 14px; margin-right: 5px;">${{ number_format($product->price, 2) }}</span>
+                                            <span>${{ number_format($product->sale_price, 2) }}</span>
+                                        @else
+                                            ${{ number_format($product->price, 2) }}
+                                        @endif
+                                    </p>
+                                </div>
+                                <a href="{{ route('product-details', $product->slug) }}" class="product-card__btn">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center" style="padding: 100px 0;">
+                        <h4>No products found in this category.</h4>
+                        <a href="{{ route('collections') }}" class="thm-btn">Back to Categories</a>
+                    </div>
+                @endforelse
+            </div>
+        @endif
+
+    </div>
+</section>
 
 @endsection

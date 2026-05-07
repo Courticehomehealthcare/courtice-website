@@ -11,8 +11,11 @@ use App\Models\Carousel;
 use App\Models\ClientImage;
 use App\Models\SlidingText;
 
+use App\Services\ShopifyStorefrontService;
+
 class HomeController extends Controller
 {
+    public function __construct(private ShopifyStorefrontService $shopify) {}
     public function index()
     {
         return view('index');
@@ -37,11 +40,24 @@ class HomeController extends Controller
             ->take(9)
             ->get();
 
-        $featuredProducts = Service::where('status', 1)
-            ->where('pagecategory', 'products')
-            ->orderByDesc('created_at')
-            ->take(6)
-            ->get();
+        $shopifyData = $this->shopify->query('{
+            products(first: 8) {
+                edges {
+                    node {
+                        id title handle
+                        priceRange { minVariantPrice { amount } }
+                        images(first: 1) { edges { node { url } } }
+                    }
+                }
+            }
+        }');
+
+        $featuredProducts = collect($shopifyData['data']['products']['edges'])->map(fn($e) => (object)[
+            'name' => $e['node']['title'],
+            'slug' => $e['node']['handle'],
+            'price' => $e['node']['priceRange']['minVariantPrice']['amount'],
+            'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null
+        ]);
 
         $homeFaqs = Faq::where('page', 'home')
             ->orWhereJsonContains('page', 'home')

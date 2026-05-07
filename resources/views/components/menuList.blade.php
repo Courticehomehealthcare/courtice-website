@@ -68,8 +68,8 @@
     <!--    </ul>-->
     <!--</li>-->
 
-    <li class="{{ Request::is('collections*') || Request::is('products*') || Request::is('product-details*') ? 'current' : '' }}">
-        <a href="{{ route('collections') }}">Shop</a>
+    <li class="{{ Request::is('products*') || Request::is('product-details*') ? 'current' : '' }}">
+        <a href="{{ route('collections') }}">Products</a>
     </li>
 
     <li class="{{ Request::is('blog') ? 'current' : '' }}">
@@ -87,10 +87,6 @@
     <!--<li class="{{ Request::is('blog-details') ? 'current' : '' }}"><a href="{{ url('blog-details') }}">Blog Details</a></li>-->
     <!--    </ul>-->
     <!--</li>-->
-
-    <li class="{{ Request::is('careers*') ? 'current' : '' }}">
-        <a href="{{ route('careers.index') }}">Careers</a>
-    </li>
 
     <!-- Contact -->
     <li class="{{ Request::is('contact') ? 'current' : '' }}">
