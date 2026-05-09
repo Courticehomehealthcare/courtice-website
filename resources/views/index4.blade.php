@@ -1034,11 +1034,27 @@
     <section class="counter-three">
         <div class="container">
             <div class="counter-three__inner">
+                <style>
+                    .counter-three__count-box h3.odometer {
+                        line-height: 1.2 !important;
+                        display: flex;
+                        align-items: center;
+                        color: var(--careon-black);
+                    }
+                    .odometer.odometer-auto-theme .odometer-digit, 
+                    .odometer.odometer-theme-default .odometer-digit {
+                        overflow: visible !important;
+                        background: transparent !important;
+                    }
+                    .odometer-digit-inner, .odometer-ribbon, .odometer-value {
+                        background: transparent !important;
+                    }
+                </style>
                 <ul class="list-unstyled counter-three__list">
                     <li>
                         <div class="counter-three__single">
                             <div class="counter-three__count-box">
-                                <h3 class="odometer" data-count="1,000+">00</h3>
+                                <h3 class="odometer" data-count="1000">00</h3>
                                 <span>+</span>
                             </div>
                             <p class="counter-three__text"> Products Available</p>
