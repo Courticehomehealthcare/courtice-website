@@ -1041,6 +1041,10 @@
                         justify-content: center;
                         gap: 5px;
                     }
+                    /* Ticker effect for Brand Two */
+                    .brand-two__carousel .owl-stage {
+                        transition-timing-function: linear !important;
+                    }
                     .counter-three__count-box h3.odometer {
                         line-height: 1.2 !important;
                         display: flex;

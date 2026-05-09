@@ -293,13 +293,12 @@
       margin: 30,
       nav: false,
       dots: false,
-      smartSpeed: 1000,
       autoplay: true,
-      autoplayTimeout: 3000,
-      navText: [
-        '<span class="icon-left-arrow"></span>',
-        '<span class="icon-right-arrow"></span>',
-      ],
+      slideTransition: 'linear',
+      autoplayTimeout: 0,
+      autoplaySpeed: 5000,
+      smartSpeed: 5000,
+      autoplayHoverPause: false,
       responsive: {
         0: {
           items: 1,
