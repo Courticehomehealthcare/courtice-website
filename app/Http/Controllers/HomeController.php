@@ -40,6 +40,11 @@ class HomeController extends Controller
             ->take(9)
             ->get();
 
+        $featuredProductServices = Service::where('status', 1)
+            ->where('pagecategory', 'products')
+            ->orderByDesc('created_at')
+            ->get();
+
         $shopifyData = $this->shopify->query('{
             products(first: 8) {
                 edges {
@@ -47,6 +52,7 @@ class HomeController extends Controller
                         id title handle
                         priceRange { minVariantPrice { amount } }
                         images(first: 1) { edges { node { url } } }
+                        availableForSale
                     }
                 }
             }
@@ -56,7 +62,8 @@ class HomeController extends Controller
             'name' => $e['node']['title'],
             'slug' => $e['node']['handle'],
             'price' => $e['node']['priceRange']['minVariantPrice']['amount'],
-            'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null
+            'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null,
+            'is_available' => $e['node']['availableForSale'] ?? false
         ]);
 
         $homeFaqs = Faq::where('page', 'home')
@@ -75,7 +82,7 @@ class HomeController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return view('index4', compact('featuredServices', 'featuredProducts', 'homeFaqs', 'blogs', 'carousels', 'aboutCarousels', 'slidingTexts', 'clientImages'));
+        return view('index4', compact('featuredServices', 'featuredProductServices', 'featuredProducts', 'homeFaqs', 'blogs', 'carousels', 'aboutCarousels', 'slidingTexts', 'clientImages'));
     }
     public function index5()
     {

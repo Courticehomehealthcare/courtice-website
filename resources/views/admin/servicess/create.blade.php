@@ -56,6 +56,7 @@
                         <label for="pagecategory">Page Category <span class="text-danger">*</span></label>
                         <select class="form-control @error('pagecategory') is-invalid @enderror" id="pagecategory" name="pagecategory" required>
                             <option value="services" {{ old('pagecategory', 'services') == 'services' ? 'selected' : '' }}>Services</option>
+                            <option value="products" {{ old('pagecategory') == 'products' ? 'selected' : '' }}>Products</option>
                         </select>
                         @error('pagecategory')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -66,8 +67,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="pagesubcategory">Page Subcategory</label>
-                        <input type="text" class="form-control" id="pagesubcategory" name="pagesubcategory"
-                            value="{{ old('pagesubcategory') }}">
+                        <select class="form-control" id="pagesubcategory" name="pagesubcategory">
+                            <option value="">Select Subcategory</option>
+                            <option value="productrentals" {{ old('pagesubcategory') == 'productrentals' ? 'selected' : '' }}>productrentals</option>
+                            <option value="Online & In-Store Shipping Options" {{ old('pagesubcategory') == 'Online & In-Store Shipping Options' ? 'selected' : '' }}>Online & In-Store Shipping Options</option>
+                            <option value="latest products" {{ old('pagesubcategory') == 'latest products' ? 'selected' : '' }}>latest products</option>
+                            <option value="services" {{ old('pagesubcategory') == 'services' ? 'selected' : '' }}>services</option>
+                        </select>
                     </div>
                 </div>
             </div>

@@ -222,6 +222,23 @@
                 font-size: 14px !important;
             }
         }
+
+        .out-of-stock-badge-home {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 77, 79, 0.9);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            z-index: 5;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(255, 77, 79, 0.3);
+        }
     </style>
     <x-strickyHeaderThree />
 
@@ -574,41 +591,35 @@
                 </h3>
             </div>
             <div class="featured-products__carousel owl-theme owl-carousel">
-                @forelse ($featuredProducts as $index => $product)
-                    @php
-                        $animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight'];
-                        $delays = ['100ms', '200ms', '300ms'];
-                        $animationClass = $animations[$index % 3];
-                        $animationDelay = $delays[$index % 3];
-                        $productLink = route('product-details', $product->slug);
-                        $productImage = $product->main_image ?? asset('assets/images/resources/no-image.jpg');
-                    @endphp
-                    <div class="wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
-                        <div class="blog-five__single">
-                            <div class="blog-five__img">
-                                <img class="image_c" src="{{ $productImage }}" alt="{{ $product->name }}">
-                                <div class="blog-five__plus">
-                                    <a href="{{ $productLink }}"><i class="fa fa-plus"></i></a>
+                @foreach ($featuredProductServices as $service)
+                    <div class="item">
+                        <div class="blog-five__single" style="border-radius: 20px; overflow: hidden; border: 1px solid #f0f0f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s; background: #fff; margin-bottom: 30px; display: flex; flex-direction: column; min-height: 550px;">
+                            <div class="blog-five__img" style="height: 300px; overflow: hidden; position: relative; background: #f8f8f8;">
+                                @if($service->serviceimage)
+                                    <img src="{{ asset('uploads/services/' . $service->serviceimage) }}" alt="{{ $service->ServicesTitle }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('assets/images/resources/no-image.jpg') }}" alt="No Image" style="width: 100%; height: 100%; object-fit: cover;">
+                                @endif
+                                <div class="blog-five__plus" style="background: var(--careon-base); opacity: 0.9;">
+                                    <a href="{{ route('services.details', $service->servicesUrl) }}"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
-                            <div class="blog-five__content">
-                                <h3 class="blog-five__title">
-                                    <a href="{{ $productLink }}">{{ $product->name }}</a>
+                            <div class="blog-five__content" style="padding: 30px; text-align: left; flex-grow: 1; display: flex; flex-direction: column;">
+                                <h3 class="blog-five__title" style="font-size: 22px; margin-bottom: 12px; font-weight: 700; height: 60px; overflow: hidden;">
+                                    <a href="{{ route('services.details', $service->servicesUrl) }}" style="color: #061738; text-decoration: none;">{{ $service->ServicesTitle }}</a>
                                 </h3>
-                                <p class="blog-five__text">
-                                    ${{ number_format($product->price, 2) }}
+                                <p class="blog-five__text" style="font-size: 15px; color: #666; margin-bottom: 20px; line-height: 1.6; height: 72px; overflow: hidden;">
+                                    {{ Str::limit(strip_tags($service->ServicesText), 100) }}
                                 </p>
-                                <div class="blog-five__read-more">
-                                    <a href="{{ $productLink }}">Shop Now <span class="icon-arrow-right"></span></a>
+                                <div class="blog-five__read-more" style="margin-top: auto;">
+                                    <a href="{{ route('services.details', $service->servicesUrl) }}" class="thm-btn" style="width: 100%; padding: 12px 25px; font-size: 14px; font-weight: 700; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #fff !important; background: #061738; transition: all 0.3s ease;">
+                                        Shop Now <span class="icon-arrow-right" style="font-size: 11px;"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @empty
-                    <div class="text-center">
-                        <p>No featured products found.</p>
-                    </div>
-                @endforelse
+                @endforeach
             </div>
 
             <!--<div class="row">-->

@@ -67,9 +67,7 @@
                     <option value="services" {{ old('pagecategory', $service->pagecategory ?? '') == 'services' ? 'selected' : '' }}>
                         services
                     </option>
-                    <option value="projects" {{ old('pagecategory', $service->pagecategory ?? '') == 'projects' ? 'selected' : '' }}>
-                        projects
-                    </option>
+
                     <option value="products" {{ old('pagecategory', $service->pagecategory ?? '') == 'products' ? 'selected' : '' }}>
                         products
                     </option>
@@ -529,19 +527,18 @@ function addVideo() {
 
             if (category.value === "services") {
                 addOption("services", "services");
+                addOption("productrentals", "productrentals");
+                addOption("Online & In-Store Shipping Options", "Online & In-Store Shipping Options");
             }
 
             if (category.value === "products") {
                 addOption("latest products", "latest products");
                 addOption("upcomming products", "upcomming products");
+                addOption("productrentals", "productrentals");
+                addOption("Online & In-Store Shipping Options", "Online & In-Store Shipping Options");
             }
 
-            if (category.value === "projects") {
-                addOption("ongoingprojects", "Ongoing Projects");
-                addOption("upcommingprojects", "Upcoming Projects");
-                addOption("Pre-Launch", "Pre-Launch Projects");
-                addOption("completedprojects", "Completed Projects");
-            }
+
 
 
             if (oldSubCategory) {

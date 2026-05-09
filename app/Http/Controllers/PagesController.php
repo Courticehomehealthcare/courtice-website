@@ -12,6 +12,8 @@ use App\Mail\ContactThankYou;
 use Illuminate\Http\Request;
 
 use App\Services\ShopifyStorefrontService;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 
 class PagesController extends Controller
@@ -108,17 +110,52 @@ class PagesController extends Controller
 
         return view('pages/service-details', compact('service', 'services'));
     }
-    public function collections()
+    public function collections(Request $request)
     {
+        $per_page = (int)$request->get('per_page', 12);
+        $sort_by = $request->get('sort_by', 'TITLE');
+        $reverse = false;
+        $sortKey = 'TITLE';
+
+        if ($sort_by == 'price-low-high') { $sortKey = 'PRICE'; $reverse = false; }
+        elseif ($sort_by == 'price-high-low') { $sortKey = 'PRICE'; $reverse = true; }
+        elseif ($sort_by == 'newest') { $sortKey = 'CREATED_AT'; $reverse = true; }
+        elseif ($sort_by == 'title-desc') { $sortKey = 'TITLE'; $reverse = true; }
+
+        $filters = [];
+        if ($request->filled('min_price') || $request->filled('max_price')) {
+            $priceFilter = ['price' => []];
+            if ($request->filled('min_price')) $priceFilter['price']['min'] = (float)$request->min_price;
+            if ($request->filled('max_price')) $priceFilter['price']['max'] = (float)$request->max_price;
+            $filters[] = $priceFilter;
+        }
+        if ($request->get('in_stock') == 'true') {
+            $filters[] = ['available' => true];
+        }
+
+        $filters = [];
+        if ($request->filled('min_price') || $request->filled('max_price')) {
+            $priceFilter = ['price' => []];
+            if ($request->filled('min_price')) $priceFilter['price']['min'] = (float)$request->min_price;
+            if ($request->filled('max_price')) $priceFilter['price']['max'] = (float)$request->max_price;
+            $filters[] = $priceFilter;
+        }
+        if ($request->get('in_stock') == 'true') {
+            $filters[] = ['available' => true];
+        }
+
         $data = $this->shopify->query('
-            query($first: Int!) {
-                products(first: $first) {
+            query($first: Int, $last: Int, $after: String, $before: String, $sortKey: ProductSortKeys, $reverse: Boolean) {
+                products(first: $first, last: $last, after: $after, before: $before, sortKey: $sortKey, reverse: $reverse) {
+                    pageInfo { hasNextPage hasPreviousPage startCursor endCursor }
                     edges {
+                        cursor
                         node {
                             id title handle description
                             priceRange { minVariantPrice { amount currencyCode } }
                             compareAtPriceRange { minVariantPrice { amount } }
                             images(first: 1) { edges { node { url altText } } }
+                            availableForSale
                         }
                     }
                 }
@@ -128,12 +165,41 @@ class PagesController extends Controller
                     }
                 }
             }',
-            ['first' => 24]
+            [
+                'first' => $request->cursor_before ? null : $per_page,
+                'last' => $request->cursor_before ? $per_page : null,
+                'after' => $request->cursor_after,
+                'before' => $request->cursor_before,
+                'sortKey' => $sortKey,
+                'reverse' => $reverse
+            ]
         );
 
+        if (isset($data['errors'])) {
+             Log::error('Shopify Errors', ['errors' => $data['errors']]);
+             // If there are errors, return empty but safe
+             $data['data'] = null; 
+        }
+
+        if (!isset($data['data'])) {
+            $is_root = true;
+            $category = (object)[
+                'categoriename' => 'Shop by Category',
+                'slug' => 'all-products',
+                'meta_title' => 'Shop All Categories',
+                'meta_description' => 'Explore our categories of home health care products.',
+                'meta_keywords' => ''
+            ];
+            $products = collect();
+            $categories = collect();
+            $pageInfo = ['hasNextPage' => false, 'hasPreviousPage' => false, 'startCursor' => null, 'endCursor' => null];
+            return view('pages/products', compact('category', 'products', 'categories', 'is_root', 'pageInfo'));
+        }
+
         $is_root = true;
+        $pageInfo = $data['data']['products']['pageInfo'];
         $category = (object)[
-            'categoriename' => 'Shop All Categories',
+            'categoriename' => 'Shop by Category',
             'slug' => 'all-products',
             'meta_title' => 'Shop All Categories',
             'meta_description' => 'Explore our categories of home health care products.',
@@ -151,7 +217,8 @@ class PagesController extends Controller
                 'description' => $e['node']['description'] ?? '',
                 'price' => $comparePrice ?: $currentPrice,
                 'sale_price' => $comparePrice ? $currentPrice : null,
-                'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null
+                'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null,
+                'is_available' => $e['node']['availableForSale'] ?? false
             ];
         });
 
@@ -161,23 +228,58 @@ class PagesController extends Controller
             'image' => $e['node']['image']['url'] ?? asset('assets/images/resources/no-image.jpg')
         ]);
 
-        return view('pages/products', compact('category', 'products', 'categories', 'is_root'));
+        return view('pages/products', compact('category', 'products', 'categories', 'is_root', 'pageInfo'));
     }
-    public function products($slug)
+    public function products(Request $request, $slug)
     {
+        $per_page = (int)$request->get('per_page', 12);
+        $sort_by = $request->get('sort_by', 'TITLE');
+        $reverse = false;
+        $sortKey = 'TITLE';
+
+        if ($sort_by == 'price-low-high') { $sortKey = 'PRICE'; $reverse = false; }
+        elseif ($sort_by == 'price-high-low') { $sortKey = 'PRICE'; $reverse = true; }
+        elseif ($sort_by == 'newest') { $sortKey = 'CREATED'; $reverse = true; }
+        elseif ($sort_by == 'title-desc') { $sortKey = 'TITLE'; $reverse = true; }
+
+        $filters = [];
+        if ($request->filled('min_price') || $request->filled('max_price')) {
+            $priceFilter = ['price' => []];
+            if ($request->filled('min_price')) $priceFilter['price']['min'] = (float)$request->min_price;
+            if ($request->filled('max_price')) $priceFilter['price']['max'] = (float)$request->max_price;
+            $filters[] = $priceFilter;
+        }
+        if ($request->get('in_stock') == 'true') {
+            $filters[] = ['available' => true];
+        }
+
+        $filters = [];
+        if ($request->filled('min_price') || $request->filled('max_price')) {
+            $priceFilter = ['price' => []];
+            if ($request->filled('min_price')) $priceFilter['price']['min'] = (float)$request->min_price;
+            if ($request->filled('max_price')) $priceFilter['price']['max'] = (float)$request->max_price;
+            $filters[] = $priceFilter;
+        }
+        if ($request->get('in_stock') == 'true') {
+            $filters[] = ['available' => true];
+        }
+
         $data = $this->shopify->query('
-            query($handle: String!, $first: Int!) {
+            query($handle: String!, $first: Int, $last: Int, $after: String, $before: String, $sortKey: ProductCollectionSortKeys, $reverse: Boolean, $filters: [ProductFilter!]) {
                 collectionByHandle(handle: $handle) {
                     title
                     description
                     seo { title description }
-                    products(first: $first) {
+                    products(first: $first, last: $last, after: $after, before: $before, sortKey: $sortKey, reverse: $reverse, filters: $filters) {
+                        pageInfo { hasNextPage hasPreviousPage startCursor endCursor }
                         edges {
+                            cursor
                             node {
                                 id title handle description
                                 priceRange { minVariantPrice { amount currencyCode } }
                                 compareAtPriceRange { minVariantPrice { amount } }
                                 images(first: 1) { edges { node { url altText } } }
+                                availableForSale
                             }
                         }
                     }
@@ -188,11 +290,40 @@ class PagesController extends Controller
                     }
                 }
             }',
-            ['handle' => $slug, 'first' => 24]
+            [
+                'handle' => $slug,
+                'first' => $request->cursor_before ? null : $per_page,
+                'last' => $request->cursor_before ? $per_page : null,
+                'after' => $request->cursor_after,
+                'before' => $request->cursor_before,
+                'sortKey' => $sortKey,
+                'reverse' => $reverse,
+                'filters' => $filters ?: null
+            ]
         );
 
+        if (isset($data['errors'])) {
+             Log::error('Shopify Errors Collection', ['errors' => $data['errors']]);
+             $data['data'] = null; 
+        }
+
+        if (!isset($data['data']) || !isset($data['data']['collectionByHandle'])) {
+            $category = (object)[
+                'categoriename' => 'Products',
+                'slug' => $slug,
+                'meta_title' => 'Products',
+                'meta_description' => '',
+                'meta_keywords' => ''
+            ];
+            $products = collect();
+            $categories = collect();
+            $pageInfo = ['hasNextPage' => false, 'hasPreviousPage' => false, 'startCursor' => null, 'endCursor' => null];
+            $is_root = false;
+            return view('pages/products', compact('category', 'products', 'categories', 'is_root', 'pageInfo'));
+        }
+
         $collectionData = $data['data']['collectionByHandle'];
-        if (!$collectionData) abort(404);
+        $pageInfo = $collectionData['products']['pageInfo'];
 
         $category = (object)[
             'categoriename' => $collectionData['title'],
@@ -213,7 +344,8 @@ class PagesController extends Controller
                 'description' => $e['node']['description'] ?? '',
                 'price' => $comparePrice ?: $currentPrice,
                 'sale_price' => $comparePrice ? $currentPrice : null,
-                'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null
+                'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null,
+                'is_available' => $e['node']['availableForSale'] ?? false
             ];
         });
 
@@ -224,7 +356,7 @@ class PagesController extends Controller
         ]);
 
         $is_root = false;
-        return view('pages/products', compact('category', 'products', 'categories', 'is_root'));
+        return view('pages/products', compact('category', 'products', 'categories', 'is_root', 'pageInfo'));
     }
     public function product_details($slug)
     {
@@ -250,8 +382,11 @@ class PagesController extends Controller
             ['handle' => $slug]
         );
 
+        if (!isset($data['data']) || !isset($data['data']['productByHandle'])) {
+            abort(404);
+        }
+
         $productData = $data['data']['productByHandle'];
-        if (!$productData) abort(404);
 
         $mainVariant = $productData['variants']['edges'][0]['node'] ?? null;
         $currentPrice = $mainVariant['price']['amount'] ?? null;
@@ -275,7 +410,8 @@ class PagesController extends Controller
             'meta_description' => Str::limit(strip_tags($productData['description']), 160),
             'meta_keywords' => '',
             'shopify_options' => $productData['options'],
-            'shopify_variants' => collect($productData['variants']['edges'])->map(fn($e) => $e['node'])
+            'shopify_variants' => collect($productData['variants']['edges'])->map(fn($e) => $e['node']),
+            'is_available' => collect($productData['variants']['edges'])->contains(fn($v) => $v['node']['availableForSale'])
         ];
 
         // Fetch related products (simulated from same collection)
@@ -291,6 +427,7 @@ class PagesController extends Controller
                                     priceRange { minVariantPrice { amount } }
                                     compareAtPriceRange { minVariantPrice { amount } }
                                     images(first: 1) { edges { node { url } } }
+                                    availableForSale
                                 }
                             }
                         }
@@ -311,7 +448,8 @@ class PagesController extends Controller
                         'slug' => $p['handle'],
                         'price' => $comparePrice ?: $currentPrice,
                         'sale_price' => $comparePrice ? $currentPrice : null,
-                        'main_image' => $p['images']['edges'][0]['node']['url'] ?? null
+                        'main_image' => $p['images']['edges'][0]['node']['url'] ?? null,
+                        'is_available' => $p['availableForSale'] ?? false
                     ];
                 });
         }
@@ -355,7 +493,11 @@ class PagesController extends Controller
     }
     public function contact()
     {
-        return view('pages/contact');
+        $services = Service::where('status', 1)
+            ->where('pagecategory', 'services')
+            ->orderBy('ServicesTitle')
+            ->get();
+        return view('pages/contact', compact('services'));
     }
 
     public function submitContact(Request $request)
@@ -366,6 +508,7 @@ class PagesController extends Controller
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['required', 'string', 'max:30'],
             'subject' => ['nullable', 'string', 'max:255'],
+            'service' => ['nullable', 'string', 'max:255'],
             'message' => ['nullable', 'string', 'max:2000'],
         ]);
 
@@ -376,6 +519,7 @@ class PagesController extends Controller
             'Emailaddress' => $validated['email'],
             'Location' => null,
             'Qualification' => $validated['subject'] ?? 'Contact Request',
+            'Description' => $validated['service'] ?? null,
             'Message' => $validated['message'] ?? null,
         ]);
 
@@ -383,8 +527,7 @@ class PagesController extends Controller
             \Illuminate\Support\Facades\Log::info('Attempting to send contact form emails.');
             
             // Get admin email from .env, settings, or fallback
-            $siteSettings = \App\Models\DynamicContent::first();
-            $adminEmail = env('ADMIN_EMAIL', $siteSettings->email ?? 'support@courticehomehealthcare.com');
+            $adminEmail = config('mail.admin_email', 'support@courticehomehealthcare.com');
             
             // 1. Notification to Admin with all form details
             $mail = \Illuminate\Support\Facades\Mail::to($adminEmail);

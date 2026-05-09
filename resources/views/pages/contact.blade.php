@@ -71,6 +71,24 @@
                                         @enderror
                                     </div>
 
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <div class="contact-page__input-box" style="position: relative; margin-bottom: 20px;">
+                                            <select name="service" class="form-control ignore" style="height: 54px !important; width: 100% !important; border: none !important; border-bottom: 2px solid var(--careon-bdr-color) !important; background: transparent !important; padding: 0 0px !important; font-size: 14px !important; font-weight: 400 !important; color: var(--careon-gray) !important; appearance: none !important; -webkit-appearance: none !important; cursor: pointer !important; outline: none !important;">
+                                                <option value="" style="color: var(--careon-gray);">Select Service You Are Interested In</option>
+                                                @foreach($services as $service)
+                                                    <option value="{{ $service->ServicesTitle }}" {{ old('service') == $service->ServicesTitle ? 'selected' : '' }}>
+                                                        {{ $service->ServicesTitle }}
+                                                    </option>
+                                                @endforeach
+                                                <option value="Braces & Supports Fittings" {{ old('service') == 'Braces & Supports Fittings' ? 'selected' : '' }}>Braces & Supports Fittings</option>
+                                            </select>
+                                            <span class="fa fa-angle-down" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 18px; color: var(--careon-base); pointer-events: none; z-index: 2;"></span>
+                                        </div>
+                                        @error('service')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
                                     <div class="col-xl-12">
                                         <div class="contact-page__input-box text-message-box">
                                             <textarea name="message" placeholder="Message here..">{{ old('message') }}</textarea>

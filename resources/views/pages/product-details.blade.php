@@ -133,11 +133,18 @@
                                         style="font-size: 18px; color: #999; text-decoration: line-through; margin-left: 10px;">${{ number_format($product->price, 2) }}</span>
                                 @endif
                             </div>
+                            <div class="availability-status" style="margin-bottom: 25px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 15px; border-radius: 30px; font-size: 14px; {{ $product->is_available ? 'background: #e8f5e9; color: #2e7d32;' : 'background: #ffebee; color: #ff4d4f;' }}">
+                                @if($product->is_available)
+                                    <i class="fa fa-check-circle"></i> <strong>In Stock</strong>
+                                @else
+                                    <i class="fa fa-times-circle"></i> <strong>Currently Out of Stock</strong>
+                                @endif
+                            </div>
                         </div>
                         <div class="product-details__content"
-                            style="border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; padding: 20px 0; margin-bottom: 25px;">
+                            style="border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; padding: 25px 0; margin-bottom: 30px;">
                             <p class="product-details__content-text1"
-                                style="font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 15px;">
+                                style="font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 0;">
                                 {{ $product->small_description }}
                             </p>
                             <!-- <div
@@ -167,36 +174,52 @@
                             @endforeach
                         </div>
 
-                        <div class="product-details__quantity"
-                            style="margin-top: 30px; margin-bottom: 30px; display: flex !important; align-items: center !important; gap: 20px !important;">
-                            <h5 style="font-size: 16px; font-weight: 700; margin: 0; color: #061738;">Quantity</h5>
-                            <div class="quantity-box"
-                                style="display: flex !important; align-items: center !important; background: #fff !important; border-radius: 30px !important; padding: 5px !important; border: 1px solid #ebebeb !important; box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important; width: 130px !important; justify-content: space-between !important; height: 42px !important; overflow: visible !important;">
-                                <button type="button" onclick="changeQty(-1)"
-                                    style="width: 39px !important; height: 39px !important; border: none !important; background: #f4f7f6 !important; color: #061738 !important; font-size: 12px !important; cursor: pointer !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; margin: 0 !important; padding: 0 !important;">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <input type="text" id="quantity" value="1" readonly
-                                    style="width: 40px !important; text-align: center !important; border: none !important; background: transparent !important; font-weight: 800 !important; font-size: 18px !important; color: #061738 !important; padding: 0 !important; margin: 0 !important; line-height: 1 !important; outline: none !important;">
-                                <button type="button" onclick="changeQty(1)"
-                                    style="width: 39px !important; height: 39px !important; border: none !important; background: #00bdd6 !important; color: #fff !important; font-size: 12px !important; cursor: pointer !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; margin: 0 !important; padding: 0 !important; box-shadow: 0 2px 5px rgba(0, 189, 214, 0.3) !important;">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+                        @if($product->is_available)
+                            <div class="product-details__quantity"
+                                style="margin-top: 30px; margin-bottom: 30px; display: flex !important; align-items: center !important; gap: 20px !important;">
+                                <h5 style="font-size: 16px; font-weight: 700; margin: 0; color: #061738;">Quantity</h5>
+                                <div class="quantity-box"
+                                    style="display: flex !important; align-items: center !important; justify-content: space-between !important; background: #fff !important; border-radius: 50px !important; padding: 6px !important; border: 1px solid #e0e0e0 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.06) !important; width: 155px !important; height: 54px !important; flex-shrink: 0 !important; user-select: none !important; margin: 0 !important;">
+                                    
+                                    <!-- Minus Action -->
+                                    <div onclick="changeQty(-1)"
+                                        style="width: 42px !important; height: 42px !important; background: #00bdd6 !important; color: #fff !important; font-size: 20px !important; font-weight: 800 !important; cursor: pointer !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 3px 10px rgba(0, 189, 214, 0.2) !important; line-height: 1 !important;">
+                                        <i class="fa fa-minus"></i>
+                                    </div>
+                                    
+                                    <input type="text" id="quantity" value="1" readonly
+                                        style="width: 45px !important; text-align: center !important; border: none !important; background: transparent !important; font-weight: 800 !important; font-size: 20px !important; color: #061738 !important; outline: none !important; padding: 0 !important; margin: 0 !important; pointer-events: none !important;">
+                                    
+                                    <!-- Plus Action -->
+                                    <div onclick="changeQty(1)"
+                                        style="width: 42px !important; height: 42px !important; background: #00bdd6 !important; color: #fff !important; font-size: 18px !important; font-weight: 800 !important; cursor: pointer !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 3px 10px rgba(0, 189, 214, 0.2) !important; line-height: 1 !important;">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="product-details__buttons-boxes" style="margin-top: 40px;">
-                            <div class="product-details__buttons-1" style="display: flex; gap: 15px; flex-wrap: wrap;">
-                                <button type="button" onclick="addToCart()" class="thm-btn btn-add-to-cart"
-                                    style="flex: 1; min-width: 200px; height: 55px; background: #fff; border: 2px solid #00bdd6; color: #00bdd6; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 189, 214, 0.1);">
-                                    <span class="fa fa-shopping-cart" style="margin-right: 8px;"></span> Add to Cart
-                                </button>
-                                <button type="button" onclick="buyNow()" class="thm-btn btn-buy-now"
-                                    style="flex: 1; min-width: 200px; height: 55px; background: #0d1e3b; border: 2px solid #0d1e3b; color: #fff; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(13, 30, 59, 0.2);">
-                                    Buy Now <span class="icon-right-arrow"></span>
-                                </button>
+                            <div class="product-details__buttons-boxes" style="margin-top: 40px;">
+                                <div class="product-details__buttons-1" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                    <button type="button" onclick="addToCart()" class="thm-btn btn-add-to-cart"
+                                        style="flex: 1; min-width: 200px; height: 55px; background: #fff; border: 2px solid #00bdd6; color: #00bdd6; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 189, 214, 0.1);">
+                                        <span class="fa fa-shopping-cart" style="margin-right: 8px;"></span> Add to Cart
+                                    </button>
+                                    <button type="button" onclick="buyNow()" class="thm-btn btn-buy-now"
+                                        style="flex: 1; min-width: 200px; height: 55px; background: #0d1e3b; border: 2px solid #0d1e3b; color: #fff; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(13, 30, 59, 0.2);">
+                                        Buy Now <span class="icon-right-arrow"></span>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="product-details__buttons-boxes" style="margin-top: 40px;">
+                                <div class="product-details__buttons-1" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                    <button type="button" class="thm-btn" disabled
+                                        style="flex: 1; min-width: 200px; height: 55px; background: #ccc; border: 2px solid #ccc; color: #fff; border-radius: 12px; font-weight: 700; cursor: not-allowed;">
+                                        Currently Out of Stock
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
 
 
                         <div id="cartMessage"
@@ -204,15 +227,46 @@
                         </div>
                         <div class="product-details__social">
                             <div class="title">
-                                <h3>Share with friends:</h3>
+                                <h3 style="font-size: 18px; font-weight: 700; color: #061738; margin-bottom: 15px;">Share with friends:</h3>
                             </div>
-                            <div class="product-details__social-link">
-                                <a href="#"><span class="fab fa-twitter"></span></a>
-                                <a href="#"><span class="fab fa-facebook"></span></a>
-                                <a href="#"><span class="fab fa-pinterest-p"></span></a>
-                                <a href="#"><span class="fab fa-instagram"></span></a>
+                            <div class="product-details__social-link" style="display: flex; gap: 12px;">
+                                @php
+                                    $shareUrl = urlencode(request()->fullUrl());
+                                    $shareTitle = urlencode($product->name);
+                                    $shareImage = urlencode($product->main_image);
+                                @endphp
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}" target="_blank" class="share-icon fb" title="Share on Facebook"><span class="fab fa-facebook-f"></span></a>
+                                <a href="https://twitter.com/intent/tweet?text={{ $shareTitle }}&url={{ $shareUrl }}" target="_blank" class="share-icon tw" title="Share on Twitter"><span class="fab fa-twitter"></span></a>
+                                <a href="https://pinterest.com/pin/create/button/?url={{ $shareUrl }}&media={{ $shareImage }}&description={{ $shareTitle }}" target="_blank" class="share-icon pin" title="Pin on Pinterest"><span class="fab fa-pinterest-p"></span></a>
+                                <a href="https://api.whatsapp.com/send?text={{ $shareTitle }}%20{{ $shareUrl }}" target="_blank" class="share-icon wa" title="Share on WhatsApp"><span class="fab fa-whatsapp"></span></a>
+                                <a href="https://www.instagram.com/" target="_blank" class="share-icon ins" title="Share on Instagram"><span class="fab fa-instagram"></span></a>
                             </div>
                         </div>
+
+                        <style>
+                            .share-icon {
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: #fff !important;
+                                transition: all 0.3s ease;
+                                font-size: 16px;
+                                text-decoration: none !important;
+                            }
+                            .share-icon.fb { background: #3b5998; }
+                            .share-icon.tw { background: #1da1f2; }
+                            .share-icon.pin { background: #bd081c; }
+                            .share-icon.wa { background: #25d366; }
+                            .share-icon.ins { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+                            .share-icon:hover {
+                                transform: translateY(-3px);
+                                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                                filter: brightness(1.1);
+                            }
+                        </style>
                     </div>
                 </div>
             </div>
@@ -261,6 +315,9 @@
                                         <img src="{{ $related->main_image }}" alt="{{ $related->name }}">
                                     @else
                                         <img src="{{ asset('assets/images/resources/no-image.jpg') }}" alt="No Image">
+                                    @endif
+                                    @if(!$related->is_available)
+                                        <div class="out-of-stock-badge-related">Out of Stock</div>
                                     @endif
                                     <ul class="single-product-style1__info">
                                         <li>
@@ -386,6 +443,21 @@
             .product-details__img {
                 height: 350px !important;
             }
+        }
+
+        .out-of-stock-badge-related {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4d4f;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
     </style>
 

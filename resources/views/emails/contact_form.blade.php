@@ -13,6 +13,7 @@
         <p><strong>Email:</strong> {{ $data['email'] }}</p>
         <p><strong>Phone:</strong> {{ $data['phone'] }}</p>
         <p><strong>Subject:</strong> {{ $data['subject'] ?? 'Contact Request' }}</p>
+        <p><strong>Service Interested:</strong> {{ $data['service'] ?? 'N/A' }}</p>
 
         <div style="margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-left: 4px solid #00bdd6;">
             <p><strong>Message:</strong></p>
