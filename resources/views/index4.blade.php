@@ -1046,6 +1046,10 @@
                         overflow: visible !important;
                         background: transparent !important;
                     }
+                    .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, 
+                    .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
+                        left: auto !important;
+                    }
                     .odometer-digit-inner, .odometer-ribbon, .odometer-value {
                         background: transparent !important;
                     }
