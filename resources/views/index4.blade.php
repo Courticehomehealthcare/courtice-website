@@ -1051,6 +1051,7 @@
                     .odometer.odometer-theme-default .odometer-digit {
                         overflow: visible !important;
                         background: transparent !important;
+                        margin: 0 2px !important;
                     }
                     .odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, 
                     .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
