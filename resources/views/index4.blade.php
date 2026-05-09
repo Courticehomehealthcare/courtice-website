@@ -1035,6 +1035,12 @@
         <div class="container">
             <div class="counter-three__inner">
                 <style>
+                    .counter-three__count-box {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 5px;
+                    }
                     .counter-three__count-box h3.odometer {
                         line-height: 1.2 !important;
                         display: flex;
