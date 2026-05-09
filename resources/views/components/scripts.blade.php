@@ -29,7 +29,7 @@
 <script src="{{ asset('assets/js/jquery.fittext.js') }}"></script>
 
 <!-- Template JS -->
-<script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('assets/js/script.js') }}?v={{ time() }}"></script>
 
 @stack('scripts')
 

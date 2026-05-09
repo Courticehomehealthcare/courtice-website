@@ -294,10 +294,10 @@
       nav: false,
       dots: false,
       autoplay: true,
-      slideTransition: 'linear',
-      autoplayTimeout: 0,
+      autoplayTimeout: 100,
       autoplaySpeed: 5000,
       smartSpeed: 5000,
+      slideTransition: 'linear',
       autoplayHoverPause: false,
       responsive: {
         0: {
@@ -307,13 +307,13 @@
           items: 2,
         },
         992: {
-          items: 4,
+          items: 3,
         },
         1200: {
-          items: 5,
+          items: 4,
         },
         1320: {
-          items: 5,
+          items: 4,
         },
       },
     });
