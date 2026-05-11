@@ -24,8 +24,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-7 col-lg-7">
-                        <div class="contact-page__left">
-                            <!-- <h3 class="contact-page__title">Appiontment Now</h3> -->
+                        <div class="contact-page__left p-4 p-md-5 rounded-4 shadow-sm" style="background: #fff; border: 1px solid rgba(var(--careon-base-rgb), 0.1);">
+                            <div class="section-title text-left mb-4">
+                                <h3 class="section-title__title" style="font-size: 32px; margin-bottom: 10px;">Send Us a Message</h3>
+                                <p class="section-title__text" style="margin-bottom: 0;">Fill out the form below and our team will get back to you shortly.</p>
+                            </div>
                             @if (session('success'))
                                 <div class="alert alert-success mb-3">{{ session('success') }}</div>
                             @endif
@@ -195,8 +198,18 @@
         display: block;
         border-radius: 0;
     }
-    .contact-page__input-box .iti input[type="tel"]:focus {
-        border-bottom-color: var(--careon-base);
+    .contact-page__input-box input[type="text"],
+    .contact-page__input-box input[type="email"],
+    .contact-page__input-box textarea {
+        border-bottom: 2px solid #eee !important;
+        transition: all 0.3s ease;
+    }
+    .contact-page__input-box input:focus,
+    .contact-page__input-box textarea:focus {
+        border-bottom-color: var(--careon-base) !important;
+    }
+    .contact-page__left {
+        box-shadow: 0 20px 40px rgba(0,0,0,0.05) !important;
     }
 </style>
 <script>
