@@ -125,7 +125,7 @@
                                 @csrf
                                 <input type="email" placeholder="Email address" name="email" required>
                                 <button type="submit" class="thm-btn" id="subscribeBtn">
-                                    <span id="subscribeBtnText">Subcribe Now</span>
+                                    <span id="subscribeBtnText">Subscribe Now</span>
                                     <i class="fa fa-spinner fa-spin btn-loader" id="subscribeLoader"
                                         style="display: none; margin-left: 5px;"></i>
                                     <span class="icon-paper-plane" id="subscribeBtnIcon"></span>
@@ -213,7 +213,7 @@
                     complete: function () {
                         // Revert state
                         $btn.prop('disabled', false);
-                        $btnText.text('Subcribe Now');
+                        $btnText.text('Subscribe Now');
                         $loader.hide();
                         $icon.show();
                     }
