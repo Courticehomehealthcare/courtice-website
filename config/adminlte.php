@@ -360,6 +360,12 @@ return [
             'icon' => 'fas fa-fw fa-align-center',
         ],
         [
+            'text' => 'Sitemap',
+            'url' => 'sitemap.xml',
+            'icon' => 'fas fa-fw fa-sitemap',
+            'target' => '_blank',
+        ],
+        [
             'text' => 'Team',
             'route' => 'admin.team.index',
             'icon' => 'fas fa-fw fa-users',
