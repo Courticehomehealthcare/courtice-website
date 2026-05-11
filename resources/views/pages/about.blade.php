@@ -89,7 +89,7 @@
         }
 
         .hc-counter-count-box span {
-            font-size: 32px;
+            font-size: 45px;
             font-weight: 700;
             color: var(--careon-base);
         }
