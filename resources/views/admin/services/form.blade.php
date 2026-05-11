@@ -530,7 +530,7 @@ function addVideo() {
 
             if (category.value === "services") {
                 addOption("services", "services");
-                addOption("Rentals", "Rentals");
+                addOption("Product rentals", "Product rentals");
                 addOption("Breast Pumps", "Breast Pumps");
                 addOption("Hospital Beds", "Hospital Beds");
                 addOption("Online Shopping", "Online Shopping");
@@ -542,7 +542,7 @@ function addVideo() {
             if (category.value === "products") {
                 addOption("latest products", "latest products");
                 addOption("upcomming products", "upcomming products");
-                addOption("Rentals", "Rentals");
+                addOption("Product rentals", "Product rentals");
                 addOption("Online Shopping", "Online Shopping");
                 addOption("In-Store Shopping", "In-Store Shopping");
             }

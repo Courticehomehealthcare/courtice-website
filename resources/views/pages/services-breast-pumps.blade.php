@@ -24,7 +24,7 @@
                         <li><span class="icon-arrow-left"></span></li>
                         <li><a href="{{ route('services') }}">Services</a></li>
                         <li><span class="icon-arrow-left"></span></li>
-                        <li><a href="{{ route('services.rentals') }}">Rentals</a></li>
+                        <li><a href="{{ route('services.rentals') }}">Product rentals</a></li>
                         <li><span class="icon-arrow-left"></span></li>
                         <li>Breast Pumps</li>
                     </ul>
@@ -92,10 +92,10 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="service-details__right">
                         <div class="service-details__services-box">
-                            <h3 class="service-details__service-title">Other Rentals</h3>
+                            <h3 class="service-details__service-title">Other Product rentals</h3>
                             <ul class="service-details__service-list list-unstyled">
                                 <li><a href="{{ route('services.rentals.hospital-beds') }}"><span class="icon-left-arrows"></span>Hospital Beds</a></li>
-                                <li><a href="{{ route('services.rentals') }}"><span class="icon-left-arrows"></span>View All Rentals</a></li>
+                                <li><a href="{{ route('services.rentals') }}"><span class="icon-left-arrows"></span>View All Product rentals</a></li>
                             </ul>
                         </div>
                         <div class="service-details__need-help-inner">

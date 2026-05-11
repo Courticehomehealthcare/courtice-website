@@ -8,7 +8,7 @@
                         <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
                         <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
     $title = 'Product Rentals';
-    $subtitle = 'Rentals';
+    $subtitle = 'Product rentals';
 @endphp
 @section('content')
 
@@ -24,7 +24,7 @@
                         <li><span class="icon-arrow-left"></span></li>
                         <li><a href="{{ route('services') }}">Services</a></li>
                         <li><span class="icon-arrow-left"></span></li>
-                        <li>Rentals</li>
+                        <li>Product rentals</li>
                     </ul>
                 </div>
             </div>
