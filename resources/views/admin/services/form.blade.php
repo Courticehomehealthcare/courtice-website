@@ -71,6 +71,9 @@
                     <option value="products" {{ old('pagecategory', $service->pagecategory ?? '') == 'products' ? 'selected' : '' }}>
                         products
                     </option>
+                    <option value="productrentals" {{ old('pagecategory', $service->pagecategory ?? '') == 'productrentals' ? 'selected' : '' }}>
+                        productrentals
+                    </option>
                 </select>
 
 
@@ -542,6 +545,11 @@ function addVideo() {
                 addOption("Rentals", "Rentals");
                 addOption("Online Shopping", "Online Shopping");
                 addOption("In-Store Shopping", "In-Store Shopping");
+            }
+
+            if (category.value === "productrentals") {
+                addOption("Breast Pumps", "Breast Pumps");
+                addOption("Hospital Beds", "Hospital Beds");
             }
 
 

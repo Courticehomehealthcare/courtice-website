@@ -52,9 +52,9 @@
         <a href="{{ url('services') }}">Services</a>
         <ul>
             <li><a href="{{ route('services') }}">All Services</a></li>
-            <li><a href="{{ route('services.rentals') }}">Rentals</a></li>
-            <li><a href="{{ route('services.online') }}">Online Shopping</a></li>
-            <li><a href="{{ route('services.instore') }}">In-Store Shopping</a></li>
+            <li><a href="{{ route('services.details', 'product-rentals') }}">Rentals</a></li>
+            <li><a href="{{ route('services.details', 'online-in-store-shipping-options') }}">Online Shopping</a></li>
+            <li><a href="{{ route('services.details', 'online-in-store-shipping-options') }}">In-Store Shopping</a></li>
         </ul>
     </li>
 

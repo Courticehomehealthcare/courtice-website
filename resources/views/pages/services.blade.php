@@ -230,21 +230,21 @@
                 <h3 class="section-title-three__title title-animation">Service Categories</h3>
             </div>
             <div class="row mt-4 mb-5">
-                <!-- In-Store Shopping -->
-                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                <!-- Rentals -->
+                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
                     <div class="blog-five__single">
                         <div class="blog-five__img">
-                            <img src="{{ asset('assets/images/resources/fittings-service.png') }}" alt="In-Store Shopping">
+                            <img src="{{ $rentals && $rentals->serviceimage ? asset('uploads/services/' . $rentals->serviceimage) : asset('assets/images/resources/rentals-service.png') }}" alt="Rentals">
                             <div class="blog-five__plus">
-                                <a href="{{ route('services.instore') }}"><i class="fa fa-plus"></i></a>
+                                <a href="{{ route('services.details', 'product-rentals') }}"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                         <div class="blog-five__content text-center">
                             <h3 class="blog-five__title">
-                                <a href="{{ route('services.instore') }}">In-Store Shopping</a>
+                                <a href="{{ route('services.details', 'product-rentals') }}">Rentals</a>
                             </h3>
                             <div class="blog-five__read-more">
-                                <a href="{{ route('services.instore') }}">Explore <span class="icon-arrow-right"></span></a>
+                                <a href="{{ route('services.details', 'product-rentals') }}">Explore <span class="icon-arrow-right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -253,40 +253,22 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="200ms">
                     <div class="blog-five__single">
                         <div class="blog-five__img">
-                            <img src="{{ asset('assets/images/resources/contact-products.png') }}" alt="Online Shopping">
+                            <img src="{{ $shipping && $shipping->serviceimage ? asset('uploads/services/' . $shipping->serviceimage) : asset('assets/images/resources/contact-products.png') }}" alt="Online Shopping">
                             <div class="blog-five__plus">
-                                <a href="{{ route('services.online') }}"><i class="fa fa-plus"></i></a>
+                                <a href="{{ route('services.details', 'online-in-store-shipping-options') }}"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                         <div class="blog-five__content text-center">
                             <h3 class="blog-five__title">
-                                <a href="{{ route('services.online') }}">Online Shopping</a>
+                                <a href="{{ route('services.details', 'online-in-store-shipping-options') }}">Online Shopping</a>
                             </h3>
                             <div class="blog-five__read-more">
-                                <a href="{{ route('services.online') }}">Explore <span class="icon-arrow-right"></span></a>
+                                <a href="{{ route('services.details', 'online-in-store-shipping-options') }}">Explore <span class="icon-arrow-right"></span></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Rentals -->
-                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                    <div class="blog-five__single">
-                        <div class="blog-five__img">
-                            <img src="{{ asset('assets/images/resources/rentals-service.png') }}" alt="Rentals">
-                            <div class="blog-five__plus">
-                                <a href="{{ route('services.rentals') }}"><i class="fa fa-plus"></i></a>
-                            </div>
-                        </div>
-                        <div class="blog-five__content text-center">
-                            <h3 class="blog-five__title">
-                                <a href="{{ route('services.rentals') }}">Rentals</a>
-                            </h3>
-                            <div class="blog-five__read-more">
-                                <a href="{{ route('services.rentals') }}">Explore <span class="icon-arrow-right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <div class="section-title-three text-center sec-title-animation animation-style2">

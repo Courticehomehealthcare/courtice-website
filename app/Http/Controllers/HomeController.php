@@ -15,7 +15,9 @@ use App\Services\ShopifyStorefrontService;
 
 class HomeController extends Controller
 {
-    public function __construct(private ShopifyStorefrontService $shopify) {}
+    public function __construct(private ShopifyStorefrontService $shopify)
+    {
+    }
     public function index()
     {
         return view('index');
@@ -35,7 +37,7 @@ class HomeController extends Controller
         $clientImages = ClientImage::orderByDesc('clientid')->get();
 
         $featuredServices = Service::where('status', 1)
-            ->where('pagecategory', 'services')
+            ->whereIn('pagecategory', ['services', 'productrentals'])
             ->orderByDesc('created_at')
             ->take(9)
             ->get();
@@ -58,7 +60,7 @@ class HomeController extends Controller
             }
         }');
 
-        $featuredProducts = collect($shopifyData['data']['products']['edges'])->map(fn($e) => (object)[
+        $featuredProducts = collect($shopifyData['data']['products']['edges'])->map(fn($e) => (object) [
             'name' => $e['node']['title'],
             'slug' => $e['node']['handle'],
             'price' => $e['node']['priceRange']['minVariantPrice']['amount'],
