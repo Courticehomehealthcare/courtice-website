@@ -143,6 +143,15 @@
                                         <p>{!! $siteSettings->address ?? 'N/A' !!}</p>
                                     </div>
                                 </li>
+                                <li>
+                                    <div class="icon">
+                                        <span class="icon-clock"></span>
+                                    </div>
+                                    <div class="content">
+                                        <h3>Business Hours</h3>
+                                        <p>{!! $siteSettings->operating_hours ?? 'Mon–Fri: 9:00 AM – 5:00 PM<br>Saturday: 11:00 AM – 2:00 PM<br>Sunday: Closed' !!}</p>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>

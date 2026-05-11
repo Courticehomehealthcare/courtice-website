@@ -80,8 +80,8 @@
 
                     <div class="form-group">
                         <label for="operating_hours">Operating Hours</label>
-                        <input type="text" name="operating_hours" class="form-control" id="operating_hours"
-                            value="{{ $content->operating_hours }}">
+                        <textarea name="operating_hours" class="form-control" id="operating_hours"
+                            rows="3">{{ $content->operating_hours }}</textarea>
                     </div>
                 </div>
             </div>
@@ -184,6 +184,16 @@
             { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
             { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
             { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'tools', items: ['Maximize'] }
+        ]
+    });
+
+    // Initialize CKEditor for Operating Hours
+    CKEDITOR.replace('operating_hours', {
+        height: 150,
+        toolbar: [
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
             { name: 'tools', items: ['Maximize'] }
         ]
     });
