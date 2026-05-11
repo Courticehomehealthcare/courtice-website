@@ -1,13 +1,14 @@
- <!--Site Footer Start-->
- <footer class="site-footer">
-    <div class="site-footer__bg-shape"
-        style="background-image: url(assets/images/shapes/site-footer-bg-shape.png);"></div>
+<!--Site Footer Start-->
+<footer class="site-footer">
+    <div class="site-footer__bg-shape" style="background-image: url(assets/images/shapes/site-footer-bg-shape.png);">
+    </div>
     <div class="site-footer__newsletter">
         <div class="container">
             <div class="site-footer__newsletter-inner">
                 <div class="site-footer__newsletter-inner-title-box">
                     <div class="footer-widget__logo">
-                        <a href="{{ url("/") }}"><img src="{{ asset("/assets/images/resources/logo-3.png") }}" alt=""></a>
+                        <a href="{{ url("/") }}"><img src="{{ asset("/assets/images/resources/logo-3.png") }}"
+                                alt=""></a>
                     </div>
                     <h2 class="site-footer__newsletter-title">Subscribe To Our <br>Newsletter</h2>
                 </div>
@@ -46,7 +47,8 @@
                                     </div>
                                     <div class="footer-widget__contact-content">
                                         <span>Phone Number</span>
-                                        <p class="footer-widget__contact-text"><a href="{{ url("tel:0123456789101") }}">012
+                                        <p class="footer-widget__contact-text"><a
+                                                href="{{ url("tel:0123456789101") }}">012
                                                 345
                                                 678 9101</a></p>
                                     </div>
@@ -57,8 +59,8 @@
                                     </div>
                                     <div class="footer-widget__contact-content">
                                         <span>Email</span>
-                                        <p class="footer-widget__contact-text"><a
-                                                href="{{ url("mailto:abcd@gmail.com") }}">abcd@gmail.com</a></p>
+                                        <p class="footer-widget__contact-text"><a href="{{ url(" mailto:abcd@gmail.com")
+                                                }}">abcd@gmail.com</a></p>
                                     </div>
                                 </li>
                             </ul>
@@ -151,9 +153,9 @@
                         </div>
                         <div class="site-footer__bottom-menu-box">
                             <ul class="list-unstyled site-footer__bottom-menu">
-                                <li><a href="{{ url("about") }}">Trems & Condition</a></li>
-                                <li><a href="{{ url("about") }}">Privacy Policy</a></li>
-                                <li><a href="{{ url("about") }}">Contact Us</a></li>
+                                <li><a href="{{ route('static.page', 'terms-conditions') }}">Terms & Conditions</a></li>
+                                <li><a href="{{ route('static.page', 'privacy-policy') }}">Privacy Policy</a></li>
+                                <li><a href="{{ url("contact") }}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>

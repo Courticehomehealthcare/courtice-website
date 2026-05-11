@@ -345,6 +345,11 @@ return [
             'icon' => 'fas fa-fw fa-blog',
         ],
         [
+            'text' => 'Static Pages',
+            'route' => 'admin.static-pages.index',
+            'icon' => 'fas fa-fw fa-file-alt',
+        ],
+        [
             'text' => 'FAQs',
             'route' => 'admin.faqs.index',
             'icon' => 'fas fa-fw fa-question-circle',

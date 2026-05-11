@@ -6,6 +6,7 @@ use App\Models\ContactUs;
 use App\Models\Service;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\StaticPage;
 use Illuminate\Support\Str;
 use App\Mail\ContactFormSubmitted;
 use App\Mail\ContactThankYou;
@@ -562,6 +563,12 @@ class PagesController extends Controller
 
 
 
+
+    public function staticPage($slug)
+    {
+        $page = StaticPage::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        return view('pages.static_page', compact('page'));
+    }
 
     public function not_found()
     {

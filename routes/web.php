@@ -51,6 +51,7 @@ Route::get('/checkout', function() { return redirect()->route('cart'); });
 Route::get('wishlist', [PagesController::class, 'wishlist'])->name('wishlist');
 Route::get('sign-up', [PagesController::class, 'sign_up'])->name('sign-up');
 Route::get('login', [PagesController::class, 'login'])->name('login');
+Route::get('page/{slug}', [PagesController::class, 'staticPage'])->name('static.page');
 
 use App\Http\Controllers\Admin\SubscriberController;
 

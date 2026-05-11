@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\SlidingTextController;
 use App\Http\Controllers\Admin\SeoPageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\StaticPageController;
 use App\Http\Middleware\AdminRole;
 
 Route::middleware(['web', 'auth:admin'])
@@ -33,6 +34,7 @@ Route::middleware(['web', 'auth:admin'])
         Route::resource('blogs', BlogController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('products', ProductController::class);
+        Route::resource('static-pages', StaticPageController::class);
         Route::get('products/image/{id}/delete', [ProductController::class, 'deleteImage'])->name('products.image.delete');
         Route::resource('carousel', CarouselController::class);
         Route::resource('faqs', FaqController::class)->parameters(['faqs' => 'faq']);
