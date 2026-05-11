@@ -598,7 +598,7 @@
                                 @if($service->serviceimage)
                                     <img src="{{ asset('uploads/services/' . $service->serviceimage) }}" alt="{{ $service->ServicesTitle }}" style="width: 100%; height: 100%; object-fit: cover;">
                                 @else
-                                    <img src="{{ asset('assets/images/resources/no-image.jpg') }}" alt="No Image" style="width: 100%; height: 100%; object-fit: cover;">
+                                    <img src="https://placehold.co/410x410?text=No+Image" alt="No Image" style="width: 100%; height: 100%; object-fit: cover;">
                                 @endif
                                 <div class="blog-five__plus" style="background: var(--careon-base); opacity: 0.9;">
                                     <a href="{{ route('services.details', $service->servicesUrl) }}"><i class="fa fa-plus"></i></a>
@@ -1523,8 +1523,8 @@
                         <div class="blog-four__single">
                             <div class="blog-four__img-box">
                                 <div class="blog-four__img">
-                                    <img src="{{ str_contains($blog->image1, 'uploads/') ? asset($blog->image1) : asset('storage/' . $blog->image1) }}" alt="{{ $blog->name }}"
-                                        style="height:410px">
+                                    <img src="{{ $blog->image1 ? (str_contains($blog->image1, 'uploads/') ? asset($blog->image1) : asset('storage/' . $blog->image1)) : 'https://placehold.co/410x410?text=No+Image' }}" alt="{{ $blog->name }}"
+                                        style="height:410px; width:100%; object-fit:cover;">
                                 </div>
                                 <div class="blog-four__content">
                                     <ul class="blog-four__meta list-unstyled">
