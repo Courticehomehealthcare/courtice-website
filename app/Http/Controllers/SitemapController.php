@@ -14,13 +14,9 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::where('visible', 1)->get();
-        $services = Service::all();
-        $products = Product::where('status', 1)->get();
-        $categories = Category::where('status', 1)->get();
-        $staticPages = StaticPage::where('is_active', true)->get();
+        $urls = SitemapUrl::where('is_active', true)->orderBy('priority', 'desc')->get();
 
-        $content = view('sitemap', compact('blogs', 'services', 'products', 'categories', 'staticPages'))->render();
+        $content = view('sitemap', compact('urls'))->render();
 
         return Response::make($content, 200, [
             'Content-Type' => 'application/xml'

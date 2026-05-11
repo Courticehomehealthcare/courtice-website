@@ -360,9 +360,14 @@ return [
             'icon' => 'fas fa-fw fa-align-center',
         ],
         [
-            'text' => 'Sitemap',
-            'url' => 'sitemap.xml',
+            'text' => 'Sitemap Manager',
+            'route' => 'admin.sitemap-urls.index',
             'icon' => 'fas fa-fw fa-sitemap',
+        ],
+        [
+            'text' => 'View Sitemap (XML)',
+            'url' => 'sitemap.xml',
+            'icon' => 'fas fa-fw fa-external-link-alt',
             'target' => '_blank',
         ],
         [

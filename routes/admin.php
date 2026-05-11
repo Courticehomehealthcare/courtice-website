@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\SeoPageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StaticPageController;
+use App\Http\Controllers\Admin\SitemapUrlController;
 use App\Http\Middleware\AdminRole;
 
 Route::middleware(['web', 'auth:admin'])
@@ -89,6 +90,10 @@ Route::middleware(['web', 'auth:admin'])
         Route::get('job-applications/{id}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'show'])->name('job-applications.show');
         Route::post('job-applications/{id}/thank-you', [\App\Http\Controllers\Admin\JobApplicationController::class, 'sendThankYou'])->name('job-applications.thank-you');
         Route::delete('job-applications/{id}', [\App\Http\Controllers\Admin\JobApplicationController::class, 'destroy'])->name('job-applications.destroy');
+
+        // Sitemap Management
+        Route::get('sitemap-urls/sync', [SitemapUrlController::class, 'sync'])->name('sitemap-urls.sync');
+        Route::resource('sitemap-urls', SitemapUrlController::class);
 
     });
 
