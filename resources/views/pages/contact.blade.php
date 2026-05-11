@@ -148,7 +148,7 @@
                                 </li>
                                 <li>
                                     <div class="icon">
-                                        <span class="icon-clock"></span>
+                                        <span class="fas fa-clock"></span>
                                     </div>
                                     <div class="content">
                                         <h3>Business Hours</h3>
