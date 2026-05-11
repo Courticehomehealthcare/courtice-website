@@ -111,6 +111,98 @@ class PagesController extends Controller
 
         return view('pages/service-details', compact('service', 'services'));
     }
+
+    public function service_rentals()
+    {
+        $banners = \App\Models\Carousel::where('page', 'services')->latest()->get();
+        $allServices = Service::where('status', 1)->where('pagecategory', 'services')->orderBy('ServicesTitle')->get();
+        
+        $landingService = Service::where('servicesUrl', 'product-rentals')
+            ->orWhere('ServicesTitle', 'like', '%Product Rentals%')
+            ->first();
+
+        $services = Service::where('status', 1)
+            ->whereIn('pagesubcategory', ['Rentals', 'productrentals'])
+            ->where('Serviceid', '!=', $landingService ? $landingService->Serviceid : 0)
+            ->orderBy('ServicesTitle')
+            ->get();
+            
+        return view('pages/services-rentals', compact('services', 'banners', 'landingService', 'allServices'));
+    }
+
+    public function service_online()
+    {
+        $banners = \App\Models\Carousel::where('page', 'services')->latest()->get();
+        $allServices = Service::where('status', 1)->where('pagecategory', 'services')->orderBy('ServicesTitle')->get();
+        
+        $landingService = Service::where('servicesUrl', 'online-in-store-shipping-options')
+            ->orWhere('ServicesTitle', 'like', '%Online % In-Store Shipping%')
+            ->first();
+
+        $services = Service::where('status', 1)
+            ->where(function($q) {
+                $q->where('pagesubcategory', 'Online Shopping')
+                  ->orWhere('pagesubcategory', 'Online & In-Store Shipping Options');
+            })
+            ->where('Serviceid', '!=', $landingService ? $landingService->Serviceid : 0)
+            ->orderBy('ServicesTitle')
+            ->get();
+            
+        return view('pages/services-online', compact('services', 'banners', 'landingService', 'allServices'));
+    }
+
+    public function service_instore()
+    {
+        $banners = \App\Models\Carousel::where('page', 'services')->latest()->get();
+        $allServices = Service::where('status', 1)->where('pagecategory', 'services')->orderBy('ServicesTitle')->get();
+        
+        $landingService = Service::where('servicesUrl', 'online-in-store-shipping-options')
+            ->orWhere('ServicesTitle', 'like', '%Online % In-Store Shipping%')
+            ->first();
+
+        $services = Service::where('status', 1)
+            ->where(function($q) {
+                $q->where('pagesubcategory', 'In-Store Shopping')
+                  ->orWhere('pagesubcategory', 'Online & In-Store Shipping Options');
+            })
+            ->where('Serviceid', '!=', $landingService ? $landingService->Serviceid : 0)
+            ->orderBy('ServicesTitle')
+            ->get();
+            
+        return view('pages/services-instore', compact('services', 'banners', 'landingService', 'allServices'));
+    }
+
+    public function service_breast_pumps()
+    {
+        $banners = \App\Models\Carousel::where('page', 'services')->latest()->get();
+        $allServices = Service::where('status', 1)->where('pagecategory', 'services')->orderBy('ServicesTitle')->get();
+        
+        $landingService = Service::where('ServicesTitle', 'like', '%Breast Pump%')->first();
+
+        $services = Service::where('status', 1)
+            ->where('pagesubcategory', 'Breast Pumps')
+            ->where('Serviceid', '!=', $landingService ? $landingService->Serviceid : 0)
+            ->orderBy('ServicesTitle')
+            ->get();
+            
+        return view('pages/services-breast-pumps', compact('services', 'banners', 'landingService', 'allServices'));
+    }
+
+    public function service_hospital_beds()
+    {
+        $banners = \App\Models\Carousel::where('page', 'services')->latest()->get();
+        $allServices = Service::where('status', 1)->where('pagecategory', 'services')->orderBy('ServicesTitle')->get();
+        
+        $landingService = Service::where('ServicesTitle', 'like', '%Hospital Bed%')->first();
+
+        $services = Service::where('status', 1)
+            ->where('pagesubcategory', 'Hospital Beds')
+            ->where('Serviceid', '!=', $landingService ? $landingService->Serviceid : 0)
+            ->orderBy('ServicesTitle')
+            ->get();
+            
+        return view('pages/services-hospital-beds', compact('services', 'banners', 'landingService', 'allServices'));
+    }
     public function collections(Request $request)
     {
         $per_page = (int)$request->get('per_page', 12);

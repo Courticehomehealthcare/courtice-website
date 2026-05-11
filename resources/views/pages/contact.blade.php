@@ -100,7 +100,7 @@
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                         <div class="contact-page__btn-box">
-                                            <button id="contactSubmitBtn" type="submit" class="thm-btn">Contact Now
+                                            <button id="contactSubmitBtn" type="submit" class="thm-btn">Send Message
                                                 <span class="icon-plus"></span></button>
                                         </div>
                                     </div>

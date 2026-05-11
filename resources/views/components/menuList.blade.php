@@ -48,8 +48,14 @@
     <!--</li>-->
 
 
-    <li class="{{ Request::is('services') ? 'current' : '' }}">
+    <li class="dropdown {{ Request::is('services*') ? 'current' : '' }}">
         <a href="{{ url('services') }}">Services</a>
+        <ul>
+            <li><a href="{{ route('services') }}">All Services</a></li>
+            <li><a href="{{ route('services.rentals') }}">Rentals</a></li>
+            <li><a href="{{ route('services.online') }}">Online Shopping</a></li>
+            <li><a href="{{ route('services.instore') }}">In-Store Shopping</a></li>
+        </ul>
     </li>
 
 

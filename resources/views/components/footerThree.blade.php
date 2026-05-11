@@ -13,13 +13,13 @@
             </div>
             <div class="site-footer-three__social">
                 @if(optional($siteSettings)->facebook_link)
-                    <a href="{{ $siteSettings->facebook_link }}"><span class="icon-facebook"></span></a>
+                    <a href="{{ $siteSettings->facebook_link }}"><span class="fab fa-facebook-f"></span></a>
                 @endif
                 @if(optional($siteSettings)->twitter_link)
-                    <a href="{{ $siteSettings->twitter_link }}"><span class="icon-twitter"></span></a>
+                    <a href="{{ $siteSettings->twitter_link }}"><span class="fab fa-twitter"></span></a>
                 @endif
                 @if(optional($siteSettings)->instagram_link)
-                    <a href="{{ $siteSettings->instagram_link }}"><span class="icon-instagram"></span></a>
+                    <a href="{{ $siteSettings->instagram_link }}"><span class="fab fa-instagram"></span></a>
                 @endif
                 @if(optional($siteSettings)->linkedin_link)
                     <a href="{{ $siteSettings->linkedin_link }}"><span class="fab fa-linkedin-in"></span></a>

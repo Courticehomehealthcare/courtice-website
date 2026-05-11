@@ -28,7 +28,7 @@
                             <div class="text">
                                 <p>
                                     Monday-Friday 9 am - 5 pm |
-                                   
+
                                     Saturday 11 am - 2 pm |
                                     Sunday Closed
                                 </p>
@@ -38,13 +38,13 @@
                     <div class="main-menu-three__top-right">
                         <div class="main-menu-three__social">
                             @if(optional($siteSettings)->facebook_link)
-                                <a href="{{ $siteSettings->facebook_link }}"><i class="icon-facebook"></i></a>
+                                <a href="{{ $siteSettings->facebook_link }}"><i class="fab fa-facebook-f"></i></a>
                             @endif
                             @if(optional($siteSettings)->twitter_link)
-                                <a href="{{ $siteSettings->twitter_link }}"><i class="icon-twitter"></i></a>
+                                <a href="{{ $siteSettings->twitter_link }}"><i class="fab fa-twitter"></i></a>
                             @endif
                             @if(optional($siteSettings)->instagram_link)
-                                <a href="{{ $siteSettings->instagram_link }}"><i class="icon-instagram"></i></a>
+                                <a href="{{ $siteSettings->instagram_link }}"><i class="fab fa-instagram"></i></a>
                             @endif
                             @if(optional($siteSettings)->linkedin_link)
                                 <a href="{{ $siteSettings->linkedin_link }}"><i class="fab fa-linkedin-in"></i></a>
@@ -56,7 +56,7 @@
         </div>
         <nav class="main-menu main-menu-three">
             <div class="main-menu-three__wrapper">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="main-menu-three__wrapper-inner">
                         <div class="main-menu-three__left">
                             <div class="main-menu-three__logo">

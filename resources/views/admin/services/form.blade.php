@@ -527,6 +527,11 @@ function addVideo() {
 
             if (category.value === "services") {
                 addOption("services", "services");
+                addOption("Rentals", "Rentals");
+                addOption("Breast Pumps", "Breast Pumps");
+                addOption("Hospital Beds", "Hospital Beds");
+                addOption("Online Shopping", "Online Shopping");
+                addOption("In-Store Shopping", "In-Store Shopping");
                 addOption("productrentals", "productrentals");
                 addOption("Online & In-Store Shipping Options", "Online & In-Store Shipping Options");
             }
@@ -534,8 +539,9 @@ function addVideo() {
             if (category.value === "products") {
                 addOption("latest products", "latest products");
                 addOption("upcomming products", "upcomming products");
-                addOption("productrentals", "productrentals");
-                addOption("Online & In-Store Shipping Options", "Online & In-Store Shipping Options");
+                addOption("Rentals", "Rentals");
+                addOption("Online Shopping", "Online Shopping");
+                addOption("In-Store Shopping", "In-Store Shopping");
             }
 
 

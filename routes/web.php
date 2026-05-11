@@ -7,16 +7,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CareersController;
 
 Route::get('/', [HomeController::class, 'index4'])->name('index4');
-// Route::get('/index2', [HomeController::class, 'index2'])->name('index2');
-// Route::get('/index3', [HomeController::class, 'index3'])->name('index3');
-// Route::get('/index4', [HomeController::class, 'index4'])->name('index4');
-// Route::get('/index5', [HomeController::class, 'index5'])->name('index5');
-// Route::get('/index-dark', [HomeController::class, 'index_dark'])->name('index-dark');
-// Route::get('/index-one-page', [HomeController::class, 'index_one_page'])->name('index-one-page');
-// Route::get('/index2-one-page', [HomeController::class, 'index2_one_page'])->name('index2-one-page');
-// Route::get('/index3-one-page', [HomeController::class, 'index3_one_page'])->name('index3-one-page');
-// Route::get('/index4-one-page', [HomeController::class, 'index4_one_page'])->name('index4-one-page');
-// Route::get('/index5-one-page', [HomeController::class, 'index5_one_page'])->name('index5-one-page');
 
 // Pages 
 Route::get('about', [PagesController::class, 'about'])->name('about');
@@ -32,6 +22,11 @@ Route::get('pricing', [PagesController::class, 'pricing'])->name('pricing');
 Route::get('appoinment', [PagesController::class, 'appoinment'])->name('appoinment');
 Route::get('faq', [PagesController::class, 'faq'])->name('faq');
 Route::get('services', [PagesController::class, 'services'])->name('services');
+Route::get('services/rentals', [PagesController::class, 'service_rentals'])->name('services.rentals');
+Route::get('services/online', [PagesController::class, 'service_online'])->name('services.online');
+Route::get('services/in-store', [PagesController::class, 'service_instore'])->name('services.instore');
+Route::get('services/rentals/breast-pumps', [PagesController::class, 'service_breast_pumps'])->name('services.rentals.breast-pumps');
+Route::get('services/rentals/hospital-beds', [PagesController::class, 'service_hospital_beds'])->name('services.rentals.hospital-beds');
 Route::get('services/{slug}', [PagesController::class, 'service_details'])->name('services.details');
 Route::get('service-carousel', [PagesController::class, 'service_carousel'])->name('service-carousel');
 Route::redirect('vitality-health-solutions', '/services/vitality-health-solutions', 301);
@@ -47,7 +42,8 @@ Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name
 Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
-Route::get('/checkout', function() { return redirect()->route('cart'); });
+Route::get('/checkout', function () {
+    return redirect()->route('cart'); });
 Route::get('wishlist', [PagesController::class, 'wishlist'])->name('wishlist');
 Route::get('sign-up', [PagesController::class, 'sign_up'])->name('sign-up');
 Route::get('login', [PagesController::class, 'login'])->name('login');
@@ -117,7 +113,8 @@ Route::get('/test-contact-email', function () {
 });
 
 
-Route::get('/shop', function() { return redirect()->route('collections'); });
+Route::get('/shop', function () {
+    return redirect()->route('collections'); });
 Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 Route::get('/{slug}', [PagesController::class, 'staticPage'])->name('static.page');
 Route::fallback([PagesController::class, 'not_found']);
