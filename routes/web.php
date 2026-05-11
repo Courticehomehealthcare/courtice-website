@@ -118,5 +118,6 @@ Route::get('/test-contact-email', function () {
 
 
 Route::get('/shop', function() { return redirect()->route('collections'); });
+Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 Route::get('/{slug}', [PagesController::class, 'staticPage'])->name('static.page');
 Route::fallback([PagesController::class, 'not_found']);
