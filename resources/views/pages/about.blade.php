@@ -20,33 +20,119 @@
         }
 
         .page-header__inner {
-            text-align: left;
+            text-align: center;
         }
 
         .thm-breadcrumb {
-            justify-content: flex-start !important;
+            justify-content: center !important;
         }
 
-        .counter-one__count-list {
+        /* Homepage Style Counters */
+        .hc-counter-box {
+            margin-top: 60px;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .hc-counter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            background: linear-gradient(135deg, rgba(0, 189, 214, 0.08) 0%, rgba(0, 120, 160, 0.12) 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 189, 214, 0.18);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .hc-counter-list>li {
+            flex: 1 1 33.333%;
+            position: relative;
+            border-right: 1px solid rgba(0, 189, 214, 0.15);
+        }
+
+        .hc-counter-list>li:last-child {
+            border-right: none;
+        }
+
+        .hc-counter-item {
+            display: flex;
+            align-items: center;
             justify-content: center;
+            gap: 20px;
+            padding: 50px 30px;
+            transition: all 0.3s ease;
+            cursor: default;
+            height: 100%;
         }
 
-        .counter-one__count-list li {
-            flex: 0 0 33.333%;
-            max-width: 33.333%;
+        .hc-counter-item:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .hc-counter-count-box {
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        .hc-counter-count-box h3 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 800;
+            color: #0d1e3b;
+            line-height: 1;
+        }
+
+        .hc-counter-count-box span {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--careon-base);
+        }
+
+        .hc-counter-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hc-counter-label {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 700;
+            color: #5a6a7e;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         @media (max-width: 991px) {
-            .counter-one__count-list li {
-                flex: 0 0 50%;
-                max-width: 50%;
+            .hc-counter-list>li {
+                flex: 1 1 50%;
+            }
+            .hc-counter-list>li:nth-child(2n) {
+                border-right: none;
+            }
+            .hc-counter-list>li:nth-child(1), 
+            .hc-counter-list>li:nth-child(2) {
+                border-bottom: 1px solid rgba(0, 189, 214, 0.15);
+            }
+            .hc-counter-item {
+                padding: 40px 20px;
             }
         }
 
         @media (max-width: 767px) {
-            .counter-one__count-list li {
-                flex: 0 0 100%;
-                max-width: 100%;
+            .hc-counter-list>li {
+                flex: 1 1 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 189, 214, 0.15);
+            }
+            .hc-counter-list>li:last-child {
+                border-bottom: none;
             }
         }
     </style>
@@ -491,41 +577,45 @@
         </div>
     </section>
 
-    <section class="counter-one">
+    <div class="hc-counter-box">
         <div class="container">
-            <div class="counter-one__inner">
-                <ul class="counter-one__count-list list-unstyled">
-                    <li>
-                        <div class="counter-one__count-single">
-                            <div class="counter-one__count-box">
-                                <h3 class="odometer" data-count="1000">00</h3>
-                                <span>+</span>
-                            </div>
-                            <p class="counter-one__count-text">Families<br>Supported</p>
+            <ul class="hc-counter-list list-unstyled">
+                <li>
+                    <div class="hc-counter-item">
+                        <div class="hc-counter-count-box">
+                            <h3 class="odometer" data-count="1000">00</h3>
+                            <span>+</span>
                         </div>
-                    </li>
-                    <li>
-                        <div class="counter-one__count-single">
-                            <div class="counter-one__count-box">
-                                <h3 class="odometer" data-count="15">00</h3>
-                                <span>+</span>
-                            </div>
-                            <p class="counter-one__count-text">Years in the<br>Community</p>
+                        <div class="hc-counter-body">
+                            <p class="hc-counter-label">Families<br>Supported</p>
                         </div>
-                    </li>
-                    <li>
-                        <div class="counter-one__count-single">
-                            <div class="counter-one__count-box">
-                                <h3 class="odometer" data-count="200">00</h3>
-                                <span>+</span>
-                            </div>
-                            <p class="counter-one__count-text">Products<br>Available</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="hc-counter-item">
+                        <div class="hc-counter-count-box">
+                            <h3 class="odometer" data-count="15">00</h3>
+                            <span>+</span>
                         </div>
-                    </li>
-                </ul>
-            </div>
+                        <div class="hc-counter-body">
+                            <p class="hc-counter-label">Years in the<br>Community</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="hc-counter-item">
+                        <div class="hc-counter-count-box">
+                            <h3 class="odometer" data-count="200">00</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="hc-counter-body">
+                            <p class="hc-counter-label">Products<br>Available</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
-    </section>
+    </div>
 
     <section class="why-choose-one">
         <div class="container">
