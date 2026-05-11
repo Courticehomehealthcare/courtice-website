@@ -311,7 +311,7 @@
                                 <div class="accrodion {{ $loop->first ? '' : '' }} wow fadeInLeft"
                                     data-wow-delay="{{ 100 * ($index + 1) }}ms">
                                     <div class="accrodion-title">
-                                        <div class="faq-one-accrodion__count"></div>
+                                        <div class="faq-one-accrodion__count">{{ sprintf('%02d', $loop->iteration) }}</div>
                                         <h4>{{ $faq->question }}</h4>
                                     </div>
                                     <div class="accrodion-content">
@@ -323,7 +323,7 @@
                             @empty
                                 <div class="accrodion wow fadeInLeft" data-wow-delay="100ms">
                                     <div class="accrodion-title">
-                                        <div class="faq-one-accrodion__count"></div>
+                                        <div class="faq-one-accrodion__count">{{ sprintf('%02d', $loop->iteration + ($loop->parent->half ?? (isset($half) ? $half : 0)) ) }}</div>
                                         <h4>No Services FAQs available right now.</h4>
                                     </div>
                                 </div>
@@ -337,7 +337,7 @@
                             @foreach ($rightFaqs as $index => $faq)
                                 <div class="accrodion wow fadeInRight" data-wow-delay="{{ 100 * ($index + 1) }}ms">
                                     <div class="accrodion-title">
-                                        <div class="faq-one-accrodion__count"></div>
+                                        <div class="faq-one-accrodion__count">{{ sprintf('%02d', $loop->iteration + $half) }}</div>
                                         <h4>{{ $faq->question }}</h4>
                                     </div>
                                     <div class="accrodion-content">
