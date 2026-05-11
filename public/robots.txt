@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemaps
+Sitemap: https://courticehomehealthcare.com/sitemap.xml
