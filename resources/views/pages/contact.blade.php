@@ -150,6 +150,17 @@
             </div>
         </section>
         <!--Contact Page End-->
+
+        <!--Google Map Start-->
+        <section class="google-map-two">
+            <div class="container-fluid" style="padding: 0;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2873.01358043644!2d-78.78913922380892!3d43.91763787109151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d51b3240292723%3A0xbc4e8e1215b3e2b2!2s1423%20King%20St%20E%2C%20Courtice%2C%20ON%20L1E%202J6%2C%20Canada!5e0!3m2!1sen!2sca!4v1715400000000!5m2!1sen!2sca"
+                    width="100%" height="450" style="border:0; display: block;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        <!--Google Map End-->
        
 <x-footerThree/>
 <x-mobileMenu/>
