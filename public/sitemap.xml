@@ -48,4 +48,26 @@
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
+
+    <!-- Services -->
+    <url><loc>https://courticehomehealthcare.com/services/mobility-aids</loc><priority>0.8</priority></url>
+    <url><loc>https://courticehomehealthcare.com/services/bath-safety</loc><priority>0.8</priority></url>
+    <url><loc>https://courticehomehealthcare.com/services/home-safety</loc><priority>0.8</priority></url>
+    <url><loc>https://courticehomehealthcare.com/services/professional-fittings-for-braces-supports</loc><priority>0.8</priority></url>
+    <url><loc>https://courticehomehealthcare.com/services/compression-services</loc><priority>0.8</priority></url>
+    <url><loc>https://courticehomehealthcare.com/services/product-rentals</loc><priority>0.8</priority></url>
+    <url><loc>https://courticehomehealthcare.com/services/online-in-store-shipping-options</loc><priority>0.8</priority></url>
+
+    <!-- Blogs -->
+    <url><loc>https://courticehomehealthcare.com/blog/walker-vs-rollator-vs-wheelchair-how-to-choose</loc><priority>0.7</priority></url>
+    <url><loc>https://courticehomehealthcare.com/blog/assistive-devices-program-adp-ontario-how-to-apply</loc><priority>0.7</priority></url>
+    <url><loc>https://courticehomehealthcare.com/blog/home-safety-checklist-seniors-10-modifications</loc><priority>0.7</priority></url>
+    <url><loc>https://courticehomehealthcare.com/blog/everything-you-need-to-know-about-compression-therapy</loc><priority>0.7</priority></url>
+    <url><loc>https://courticehomehealthcare.com/blog/recovering-hip-knee-surgery-home-equipment</loc><priority>0.7</priority></url>
+
+    <!-- Categories -->
+    <url><loc>https://courticehomehealthcare.com/products/bathroom-equipments</loc><priority>0.8</priority></url>
+
+    <!-- Products -->
+    <url><loc>https://courticehomehealthcare.com/product-details/bath-chair</loc><priority>0.8</priority></url>
 </urlset>
