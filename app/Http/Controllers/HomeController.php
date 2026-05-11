@@ -37,9 +37,9 @@ class HomeController extends Controller
         $clientImages = ClientImage::orderByDesc('clientid')->get();
 
         $featuredServices = Service::where('status', 1)
-            ->whereIn('pagecategory', ['services', 'productrentals'])
+            ->whereIn('pagecategory', ['services', 'Services'])
             ->orderByDesc('created_at')
-            ->take(9)
+            ->take(3)
             ->get();
 
         $featuredProductServices = Service::where('status', 1)

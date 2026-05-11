@@ -72,7 +72,7 @@ class PagesController extends Controller
     {
         $banners = \App\Models\Carousel::where('page', 'services')->latest()->get();
         $allServices = Service::where('status', 1)
-            ->whereIn('pagecategory', ['services', 'productrentals'])
+            ->whereIn('pagecategory', ['services', 'Services'])
             ->orderBy('ServicesTitle')
             ->get();
 
@@ -80,9 +80,8 @@ class PagesController extends Controller
         $shipping = $allServices->firstWhere('servicesUrl', 'online-in-store-shipping-options');
         $fittings = $allServices->firstWhere('servicesUrl', 'professional-fittings-for-braces-supports');
 
-        // Show all services in the general listing
-        $services = $allServices->where('servicesUrl', '!=', 'product-rentals')
-                                ->where('servicesUrl', '!=', 'online-in-store-shipping-options');
+        // Show all services in the dynamic listing
+        $services = $allServices;
 
         $servicesFaqs = \App\Models\Faq::where('page', 'services')
             ->orWhereJsonContains('page', 'services')

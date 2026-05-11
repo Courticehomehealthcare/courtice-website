@@ -2,12 +2,12 @@
 @section('title', 'Services || Careon || Careon Laravel Template')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>
-                                                                                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/css/intlTelInput.css"/>';
+                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>
+                                                                                                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/css/intlTelInput.css"/>';
 
 @endphp
 @php
@@ -185,6 +185,7 @@
         .thm-breadcrumb {
             justify-content: flex-start !important;
         }
+
         .faq-one-accrodion__count::before {
             display: none !important;
         }
@@ -223,119 +224,59 @@
         </div>
     </section>
 
-    <!--Services Page Start-->
-    <section class="blog-five services-page">
-        <div class="container">
-            <div class="section-title-three text-center sec-title-animation animation-style2">
-                <h3 class="section-title-three__title title-animation">Service Categories</h3>
-            </div>
-            <div class="row mt-4 mb-5">
-                <!-- Rentals -->
-                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+
+
+
+    <div class="container">
+        <div class="section-title-three text-center sec-title-animation animation-style2" style="padding-top:50px">
+            <h3 class="section-title-three__title title-animation">Explore Featured Services.</h3>
+        </div>
+        <div class="row">
+            @forelse ($services as $index => $service)
+                @php
+                    $animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight'];
+                    $delays = ['100ms', '200ms', '300ms'];
+                    $animationClass = $animations[$index % 3];
+                    $animationDelay = $delays[$index % 3];
+                    $detailSlug = !empty($service->servicesUrl)
+                        ? $service->servicesUrl
+                        : \Illuminate\Support\Str::slug($service->ServicesTitle);
+                @endphp
+                <div class="col-xl-4 col-lg-4 wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
                     <div class="blog-five__single">
                         <div class="blog-five__img">
-                            <img src="{{ $rentals && $rentals->serviceimage ? asset('uploads/services/' . $rentals->serviceimage) : asset('assets/images/resources/rentals-service.png') }}" alt="Rentals">
+                            <img class="image_c"
+                                src="{{ !empty($service->serviceimage) ? asset('uploads/services/' . $service->serviceimage) : asset('/assets/images/own/wheelchair.jpg') }}"
+                                alt="{{ $service->ServicesTitle }}">
                             <div class="blog-five__plus">
-                                <a href="{{ route('services.details', 'product-rentals') }}"><i class="fa fa-plus"></i></a>
+                                <a href="{{ route('services.details', $detailSlug) }}"><i class="fa fa-plus"></i></a>
                             </div>
-                        </div>
-                        <div class="blog-five__content text-center">
-                            <h3 class="blog-five__title">
-                                <a href="{{ route('services.details', 'product-rentals') }}">Rentals</a>
-                            </h3>
-                            <div class="blog-five__read-more">
-                                <a href="{{ route('services.details', 'product-rentals') }}">Explore <span class="icon-arrow-right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Online Shopping -->
-                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="200ms">
-                    <div class="blog-five__single">
-                        <div class="blog-five__img">
-                            <img src="{{ $shipping && $shipping->serviceimage ? asset('uploads/services/' . $shipping->serviceimage) : asset('assets/images/resources/contact-products.png') }}" alt="Online Shopping">
-                            <div class="blog-five__plus">
-                                <a href="{{ route('services.details', 'online-in-store-shipping-options') }}"><i class="fa fa-plus"></i></a>
-                            </div>
-                        </div>
-                        <div class="blog-five__content text-center">
-                            <h3 class="blog-five__title">
-                                <a href="{{ route('services.details', 'online-in-store-shipping-options') }}">Online Shopping</a>
-                            </h3>
-                            <div class="blog-five__read-more">
-                                <a href="{{ route('services.details', 'online-in-store-shipping-options') }}">Explore <span class="icon-arrow-right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="section-title-three text-center sec-title-animation animation-style2">
-                <h3 class="section-title-three__title title-animation">Explore Featured Services.</h3>
-            </div>
-            <div class="row">
-                @forelse ($services as $index => $service)
-                    @php
-                        $animations = ['fadeInLeft', 'fadeInUp', 'fadeInRight'];
-                        $delays = ['100ms', '200ms', '300ms'];
-                        $animationClass = $animations[$index % 3];
-                        $animationDelay = $delays[$index % 3];
-                        $detailSlug = !empty($service->servicesUrl)
-                            ? $service->servicesUrl
-                            : \Illuminate\Support\Str::slug($service->ServicesTitle);
-                    @endphp
-                    <div class="col-xl-6 col-lg-6 wow {{ $animationClass }}" data-wow-delay="{{ $animationDelay }}">
-                        <div class="blog-five__single">
-                            <div class="blog-five__img">
-                                <img class="image_c"
-                                    src="{{ !empty($service->serviceimage) ? asset('uploads/services/' . $service->serviceimage) : asset('/assets/images/own/wheelchair.jpg') }}"
-                                    alt="{{ $service->ServicesTitle }}">
-                                <div class="blog-five__plus">
-                                    <a href="{{ route('services.details', $detailSlug) }}"><i class="fa fa-plus"></i></a>
-                                </div>
-                            </div>
-                            <div class="blog-five__content">
-                                <h3 class="blog-five__title">
-                                    <a href="{{ route('services.details', $detailSlug) }}">{{ $service->ServicesTitle }}</a>
-                                </h3>
-                                <p class="blog-five__text">
-                                    {{ \Illuminate\Support\Str::limit(strip_tags($service->ServicesText), 90) }}
-                                </p>
-                                <div class="blog-five__read-more">
-                                    <a href="{{ route('services.details', $detailSlug) }}">Read More <span
-                                            class="icon-arrow-right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <div class="col-12">
-                        <p class="text-center">No services found.</p>
-                    </div>
-                @endforelse
-
-                <!-- Static Service: Braces & Supports Fittings -->
-                <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay="400ms">
-                    <div class="blog-five__single">
-                        <div class="blog-five__img">
-                            <img class="image_c" src="{{ asset("/assets/images/resources/fittings-service.png") }}"
-                                alt="Braces & Supports Fittings">
                         </div>
                         <div class="blog-five__content">
-                            <h3 class="blog-five__title">Braces & Supports Fittings</h3>
-                            <p class="blog-five__text">Expert measurement and adjustment of orthopedic supports to ensure
-                                maximum comfort and effectiveness.</p>
-                            <div class="blog-one__read-more">
-                                <a href="{{ url("contact") }}" class="thm-btn">Book Fitting <span
-                                        class="icon-plus"></span></a>
+                            <h3 class="blog-five__title">
+                                <a href="{{ route('services.details', $detailSlug) }}">{{ $service->ServicesTitle }}</a>
+                            </h3>
+                            <p class="blog-five__text">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($service->ServicesText), 90) }}
+                            </p>
+                            <div class="blog-five__read-more">
+                                <a href="{{ route('services.details', $detailSlug) }}">Read More <span
+                                        class="icon-arrow-right"></span></a>
                             </div>
                         </div>
                     </div>
                 </div>
+            @empty
+                <div class="col-12">
+                    <p class="text-center">No services found.</p>
+                </div>
+            @endforelse
 
-            </div>
+
+
         </div>
+    </div>
+    </div>
     </section>
     <!--Services Page End-->
 
@@ -371,7 +312,9 @@
                             @empty
                                 <div class="accrodion wow fadeInLeft" data-wow-delay="100ms">
                                     <div class="accrodion-title">
-                                        <div class="faq-one-accrodion__count">{{ sprintf('%02d', $loop->iteration + ($loop->parent->half ?? (isset($half) ? $half : 0)) ) }}</div>
+                                        <div class="faq-one-accrodion__count">
+                                            {{ sprintf('%02d', $loop->iteration + ($loop->parent->half ?? (isset($half) ? $half : 0))) }}
+                                        </div>
                                         <h4>No Services FAQs available right now.</h4>
                                     </div>
                                 </div>
@@ -417,9 +360,11 @@
                     </div>
                     <div class="col-xl-7">
                         <div class="contact-one__right">
-                            <h6 class="section-title__tagline"><span class="icon-broken-bone"></span>If you have questions;</h6>
+                            <h6 class="section-title__tagline"><span class="icon-broken-bone"></span>If you have questions;
+                            </h6>
                             <h5 class="contact-one__tite" style="text-align: start;padding-top:10px;padding-bottom:15px">
-                                Let’s Talk Complete the form; and let’s talk about how <span style="color: #00bdd6;">CHHC</span> can help.</h5>
+                                Let’s Talk Complete the form; and let’s talk about how <span
+                                    style="color: #00bdd6;">CHHC</span> can help.</h5>
                             @if (session('success'))
                                 <div class="alert alert-success mb-3">{{ session('success') }}</div>
                             @endif
@@ -466,17 +411,22 @@
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 col-md-12">
-                                        <div class="contact-one__input-box" style="position: relative; margin-bottom: 20px;">
-                                            <select name="service" class="form-control ignore" style="height: 60px !important; width: 100% !important; border: 1px solid var(--careon-base) !important; border-radius: 35px !important; background: #fff !important; padding: 0 30px !important; font-size: 14px !important; font-weight: 400 !important; color: var(--careon-gray) !important; appearance: none !important; -webkit-appearance: none !important; cursor: pointer !important; outline: none !important; background-image: none !important;">
-                                                <option value="" style="color: var(--careon-gray);">Select Service You Are Interested In</option>
+                                        <div class="contact-one__input-box"
+                                            style="position: relative; margin-bottom: 20px;">
+                                            <select name="service" class="form-control ignore"
+                                                style="height: 60px !important; width: 100% !important; border: 1px solid var(--careon-base) !important; border-radius: 35px !important; background: #fff !important; padding: 0 30px !important; font-size: 14px !important; font-weight: 400 !important; color: var(--careon-gray) !important; appearance: none !important; -webkit-appearance: none !important; cursor: pointer !important; outline: none !important; background-image: none !important;">
+                                                <option value="" style="color: var(--careon-gray);">Select Service You Are
+                                                    Interested In</option>
                                                 @foreach($services as $service)
                                                     <option value="{{ $service->ServicesTitle }}" {{ old('service') == $service->ServicesTitle ? 'selected' : '' }}>
                                                         {{ $service->ServicesTitle }}
                                                     </option>
                                                 @endforeach
-                                                <option value="Braces & Supports Fittings" {{ old('service') == 'Braces & Supports Fittings' ? 'selected' : '' }}>Braces & Supports Fittings</option>
+                                                <option value="Braces & Supports Fittings" {{ old('service') == 'Braces & Supports Fittings' ? 'selected' : '' }}>Braces & Supports Fittings
+                                                </option>
                                             </select>
-                                            <span class="fa fa-angle-down" style="position: absolute; top: 50%; right: 30px; transform: translateY(-50%); font-size: 18px; color: var(--careon-base); pointer-events: none; z-index: 2;"></span>
+                                            <span class="fa fa-angle-down"
+                                                style="position: absolute; top: 50%; right: 30px; transform: translateY(-50%); font-size: 18px; color: var(--careon-base); pointer-events: none; z-index: 2;"></span>
                                         </div>
                                         @error('service')
                                             <small class="text-danger" style="margin-left: 30px;">{{ $message }}</small>
