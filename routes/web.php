@@ -51,7 +51,7 @@ Route::get('/checkout', function() { return redirect()->route('cart'); });
 Route::get('wishlist', [PagesController::class, 'wishlist'])->name('wishlist');
 Route::get('sign-up', [PagesController::class, 'sign_up'])->name('sign-up');
 Route::get('login', [PagesController::class, 'login'])->name('login');
-Route::get('page/{slug}', [PagesController::class, 'staticPage'])->name('static.page');
+
 
 use App\Http\Controllers\Admin\SubscriberController;
 
@@ -116,5 +116,7 @@ Route::get('/test-contact-email', function () {
     }
 });
 
-Route::fallback([PagesController::class, 'not_found']);
+
 Route::get('/shop', function() { return redirect()->route('collections'); });
+Route::get('/{slug}', [PagesController::class, 'staticPage'])->name('static.page');
+Route::fallback([PagesController::class, 'not_found']);
