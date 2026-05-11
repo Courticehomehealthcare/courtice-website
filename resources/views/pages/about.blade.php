@@ -82,14 +82,14 @@
 
         .hc-counter-count-box h3 {
             margin: 0;
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 800;
             color: #0d1e3b;
             line-height: 1;
         }
 
         .hc-counter-count-box span {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--careon-base);
         }
@@ -101,7 +101,7 @@
 
         .hc-counter-label {
             margin: 0;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 700;
             color: #5a6a7e;
             line-height: 1.2;
@@ -241,7 +241,7 @@
         }
 
         .about-six__title {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 800;
             line-height: 1.15;
             color: #0d1e3b;
@@ -253,7 +253,7 @@
         }
 
         .about-six__text {
-            font-size: 17px;
+            font-size: 18px;
             line-height: 1.8;
             color: #5a6a7e;
             margin-bottom: 25px;
