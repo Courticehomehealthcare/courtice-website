@@ -35,7 +35,7 @@
                         <div class="blog-four__single">
                             <div class="blog-four__img-box">
                                 <div class="blog-four__img">
-                                    <img src="{{ str_contains($blog->image1, 'uploads/') ? asset($blog->image1) : asset('storage/' . $blog->image1) }}" 
+                                    <img src="{{ $blog->image1 ? (str_contains($blog->image1, 'uploads/') ? asset($blog->image1) : asset('storage/' . $blog->image1)) : 'https://placehold.co/410x410?text=No+Image' }}" 
                                          alt="{{ $blog->name }}"
                                          style="height:410px; width:100%; object-fit:cover;">
                                 </div>

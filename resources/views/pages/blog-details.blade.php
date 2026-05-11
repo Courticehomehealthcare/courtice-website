@@ -24,7 +24,7 @@
                 <div class="col-xl-8 col-lg-7">
                     <div class="blog-details__left">
                         <div class="blog-details__img">
-                            <img src="{{ str_contains($blog->image1, 'uploads/') ? asset($blog->image1) : asset('storage/' . $blog->image1) }}"
+                            <img src="{{ $blog->image1 ? (str_contains($blog->image1, 'uploads/') ? asset($blog->image1) : asset('storage/' . $blog->image1)) : 'https://placehold.co/800x400?text=No+Image' }}"
                                 alt="{{ $blog->name }}">
                         </div>
                         <div class="blog-details__content">

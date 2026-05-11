@@ -126,3 +126,26 @@
         <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Cancel</a>
     </div>
 </div>
+
+@section('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const shortDesc = document.getElementById('short_description');
+        const seoDesc = document.getElementById('seo_description');
+
+        if (shortDesc && seoDesc) {
+            let manualChange = false;
+
+            seoDesc.addEventListener('input', function() {
+                manualChange = true;
+            });
+
+            shortDesc.addEventListener('input', function() {
+                if (!manualChange) {
+                    seoDesc.value = this.value;
+                }
+            });
+        }
+    });
+</script>
+@stop

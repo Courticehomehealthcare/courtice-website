@@ -22,6 +22,7 @@ class Blog extends Model
         'status',
         'writtenby',
         'visible',
+        'tags',
         'seo_title','seo_description','seo_keywords','seo_image',
     'canonical_url','og_title','og_description','og_image',
     'twitter_title','twitter_description','twitter_image'

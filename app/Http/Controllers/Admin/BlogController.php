@@ -128,6 +128,7 @@ class BlogController extends Controller
             'og_description' => 'nullable|string|max:300',
             'twitter_title' => 'nullable|string|max:255',
             'twitter_description' => 'nullable|string|max:300',
+            'tags' => 'nullable|string',
         ]);
 
         $image1Path = null;
@@ -158,6 +159,7 @@ class BlogController extends Controller
             'status' => $request->status ?? 'draft',
             'writtenby' => $request->writtenby,
             'visible' => $request->visible ?? 1,
+            'tags' => $request->tags,
 
             // SEO fields
             'seo_title' => $request->seo_title,
@@ -251,6 +253,7 @@ class BlogController extends Controller
             'og_description' => 'nullable|string|max:300',
             'twitter_title' => 'nullable|string|max:255',
             'twitter_description' => 'nullable|string|max:300',
+            'tags' => 'nullable|string',
         ]);
 
         $image1Path = $blog->image1;
@@ -288,6 +291,7 @@ class BlogController extends Controller
             'status' => $request->status ?? $blog->status,
             'writtenby' => $request->writtenby,
             'visible' => $request->visible ?? $blog->visible,
+            'tags' => $request->tags,
 
             // SEO fields
             'seo_title' => $request->seo_title,

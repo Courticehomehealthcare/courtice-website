@@ -43,10 +43,17 @@
                            value="{{ old('writtenby') }}">
                 </div>
 
+                {{-- Tags --}}
+                <div class="col-md-6 form-group">
+                    <label>Tags (comma separated)</label>
+                    <input type="text" name="tags" class="form-control"
+                           value="{{ old('tags') }}" placeholder="tag1, tag2, tag3">
+                </div>
+
                 {{-- Short Description --}}
                 <div class="col-md-12 form-group">
                     <label>Short Description</label>
-                    <textarea name="shortdescription" class="form-control" rows="3">{{ old('shortdescription') }}</textarea>
+                    <textarea id="shortdescription" name="shortdescription" class="form-control" rows="3">{{ old('shortdescription') }}</textarea>
                 </div>
 
                 {{-- Description --}}
@@ -92,7 +99,7 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>SEO Title</label>
-                    <input type="text" name="seo_title" class="form-control"
+                    <input type="text" id="seo_title" name="seo_title" class="form-control"
                            value="{{ old('seo_title') }}">
                 </div>
 
@@ -104,7 +111,7 @@
 
                 <div class="col-md-12 form-group">
                     <label>SEO Description</label>
-                    <textarea name="seo_description" class="form-control" rows="3">{{ old('seo_description') }}</textarea>
+                    <textarea id="seo_description" name="seo_description" class="form-control" rows="3">{{ old('seo_description') }}</textarea>
                 </div>
 
                 <div class="col-md-12 form-group">
@@ -116,7 +123,7 @@
                 {{-- Open Graph --}}
                 <div class="col-md-6 form-group">
                     <label>OG Title</label>
-                    <input type="text" name="og_title" class="form-control"
+                    <input type="text" id="og_title" name="og_title" class="form-control"
                            value="{{ old('og_title') }}">
                 </div>
 
@@ -128,13 +135,13 @@
 
                 <div class="col-md-12 form-group">
                     <label>OG Description</label>
-                    <textarea name="og_description" class="form-control" rows="3">{{ old('og_description') }}</textarea>
+                    <textarea id="og_description" name="og_description" class="form-control" rows="3">{{ old('og_description') }}</textarea>
                 </div>
 
                 {{-- Twitter --}}
                 <div class="col-md-6 form-group">
                     <label>Twitter Title</label>
-                    <input type="text" name="twitter_title" class="form-control"
+                    <input type="text" id="twitter_title" name="twitter_title" class="form-control"
                            value="{{ old('twitter_title') }}">
                 </div>
 
@@ -146,7 +153,7 @@
 
                 <div class="col-md-12 form-group">
                     <label>Twitter Description</label>
-                    <textarea name="twitter_description" class="form-control" rows="3">{{ old('twitter_description') }}</textarea>
+                    <textarea id="twitter_description" name="twitter_description" class="form-control" rows="3">{{ old('twitter_description') }}</textarea>
                 </div>
             </div>
 
@@ -169,5 +176,62 @@
 <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('description');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Description Sync ---
+        const shortDesc = document.getElementById('shortdescription');
+        const seoDesc = document.getElementById('seo_description');
+        const ogDesc = document.getElementById('og_description');
+        const twitterDesc = document.getElementById('twitter_description');
+
+        const descTargets = [seoDesc, ogDesc, twitterDesc];
+        const descManualChanges = new Set();
+
+        descTargets.forEach(target => {
+            if (target) {
+                target.addEventListener('input', function() {
+                    descManualChanges.add(target.id);
+                });
+            }
+        });
+
+        if (shortDesc) {
+            shortDesc.addEventListener('input', function() {
+                const value = this.value;
+                descTargets.forEach(target => {
+                    if (target && !descManualChanges.has(target.id)) {
+                        target.value = value;
+                    }
+                });
+            });
+        }
+
+        // --- Title Sync ---
+        const seoTitle = document.getElementById('seo_title');
+        const ogTitle = document.getElementById('og_title');
+        const twitterTitle = document.getElementById('twitter_title');
+
+        const titleTargets = [ogTitle, twitterTitle];
+        const titleManualChanges = new Set();
+
+        titleTargets.forEach(target => {
+            if (target) {
+                target.addEventListener('input', function() {
+                    titleManualChanges.add(target.id);
+                });
+            }
+        });
+
+        if (seoTitle) {
+            seoTitle.addEventListener('input', function() {
+                const value = this.value;
+                titleTargets.forEach(target => {
+                    if (target && !titleManualChanges.has(target.id)) {
+                        target.value = value;
+                    }
+                });
+            });
+        }
+    });
 </script>
 @stop
