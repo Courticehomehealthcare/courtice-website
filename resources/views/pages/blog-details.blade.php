@@ -2,11 +2,11 @@
 @section('title', 'Blog Details || Careon || Careon Laravel Template')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
+                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
 
 @endphp
 @php
@@ -88,20 +88,7 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    <div class="blog-details__social">
-                                        @if(isset($siteSettings->facebook_link))
-                                            <a href="{{ $siteSettings->facebook_link }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                        @endif
-                                        @if(isset($siteSettings->twitter_link))
-                                            <a href="{{ $siteSettings->twitter_link }}" target="_blank"><i class="fab fa-twitter"></i></a>
-                                        @endif
-                                        @if(isset($siteSettings->linkedin_link))
-                                            <a href="{{ $siteSettings->linkedin_link }}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                        @endif
-                                        @if(isset($siteSettings->instagram_link))
-                                            <a href="{{ $siteSettings->instagram_link }}" target="_blank"><i class="fab fa-instagram"></i></a>
-                                        @endif
-                                    </div>
+
                                 </div>
                             @endif
 
