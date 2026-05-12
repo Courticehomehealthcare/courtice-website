@@ -78,12 +78,13 @@
                                         <div class="contact-page__input-box" style="position: relative; margin-bottom: 20px;">
                                             <select name="service" class="form-control ignore" style="height: 54px !important; width: 100% !important; border: none !important; border-bottom: 2px solid var(--careon-bdr-color) !important; background: transparent !important; padding: 0 0px !important; font-size: 14px !important; font-weight: 400 !important; color: var(--careon-gray) !important; appearance: none !important; -webkit-appearance: none !important; cursor: pointer !important; outline: none !important;">
                                                 <option value="" style="color: var(--careon-gray);">Select Service You Are Interested In</option>
-                                                @foreach($services as $service)
-                                                    <option value="{{ $service->ServicesTitle }}" {{ old('service') == $service->ServicesTitle ? 'selected' : '' }}>
-                                                        {{ $service->ServicesTitle }}
-                                                    </option>
-                                                @endforeach
-                                                <option value="Braces & Supports Fittings" {{ old('service') == 'Braces & Supports Fittings' ? 'selected' : '' }}>Braces & Supports Fittings</option>
+                                                <option value="In-Store Shopping" {{ old('service') == 'In-Store Shopping' ? 'selected' : '' }}>In-Store Shopping</option>
+                                                <option value="Online Shopping" {{ old('service') == 'Online Shopping' ? 'selected' : '' }}>Online Shopping</option>
+                                                <option value="Product Rentals – Breast Pumps" {{ old('service') == 'Product Rentals – Breast Pumps' ? 'selected' : '' }}>Product Rentals – Breast Pumps</option>
+                                                <option value="Product Rentals – Hospital Beds" {{ old('service') == 'Product Rentals – Hospital Beds' ? 'selected' : '' }}>Product Rentals – Hospital Beds</option>
+                                                <option value="Compression Services" {{ old('service') == 'Compression Services' ? 'selected' : '' }}>Compression Services</option>
+                                                <option value="Professional Fittings" {{ old('service') == 'Professional Fittings' ? 'selected' : '' }}>Professional Fittings</option>
+                                                <option value="General Inquiry" {{ old('service') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
                                             </select>
                                             <span class="fa fa-angle-down" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 18px; color: var(--careon-base); pointer-events: none; z-index: 2;"></span>
                                         </div>

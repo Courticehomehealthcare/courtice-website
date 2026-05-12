@@ -537,6 +537,8 @@ function addVideo() {
                 addOption("In-Store Shopping", "In-Store Shopping");
                 addOption("productrentals", "productrentals");
                 addOption("Online & In-Store Shipping Options", "Online & In-Store Shipping Options");
+                addOption("Compression Services", "Compression Services");
+                addOption("Professional Fittings", "Professional Fittings");
             }
 
             if (category.value === "products") {
