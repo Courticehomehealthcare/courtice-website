@@ -2,11 +2,11 @@
 @section('title', 'Blog List || Careon || Careon Laravel Template')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
+                    <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                    <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                    <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                    <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                    <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
 
 @endphp
 @php
@@ -249,7 +249,7 @@
                                 <span class="icon-call"></span>
                             </div>
                             <div class="sidebar__need-help-call">
-                                <a href="{{ url("tel:888178456765") }}">+1 905-721-0004</a>
+                                <a href="{{ url("tel:+19057210004") }}">+1 905-721-0004</a>
                             </div>
                         </div>
                     </div>
