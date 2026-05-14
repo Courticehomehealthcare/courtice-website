@@ -798,22 +798,26 @@
         <div class="container">
             <div class="flyer-cta__inner wow fadeInUp" data-wow-delay="100ms">
                 <div class="flyer-cta__content">
-                    <span class="flyer-cta__tagline">Exclusive Savings</span>
-                    <h3 class="flyer-cta__title">Check Our Monthly Flyer for Exceptional Deals</h3>
-                    <p class="flyer-cta__text">
-                        Stay up to date with Courtice Home Health Care's monthly flyer, featuring exclusive discounts on
-                        mobility aids, home safety essentials, and daily living products. New deals drop every month,
-                        curated to help you live better for less.
-                    </p>
-                    <a href="{{ url('products') }}" class="flyer-cta__btn">
+                    <span class="flyer-cta__tagline">{{ $siteSettings->flyer_tagline ?? 'Exclusive Savings' }}</span>
+                    <h3 class="flyer-cta__title">{{ $siteSettings->flyer_title ?? 'Check Our Monthly Flyer for Exceptional Deals' }}</h3>
+                    <div class="flyer-cta__text">
+                        {!! $siteSettings->flyer_description ?? 'Stay up to date with Courtice Home Health Care\'s monthly flyer, featuring exclusive discounts on mobility aids, home safety essentials, and daily living products. New deals drop every month, curated to help you live better for less.' !!}
+                    </div>
+                    <a href="{{ $siteSettings->flyer_pdf ? asset($siteSettings->flyer_pdf) : url('products') }}" class="flyer-cta__btn" {{ $siteSettings->flyer_pdf ? 'target="_blank"' : '' }}>
                         View This Month's Flyer <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="flyer-cta__image-box">
                     <div class="flyer-cta__shape"></div>
-                    <div class="flyer-cta__icon-circle">
-                        <i class="icon-broken-bone"></i>
-                    </div>
+                    @if($siteSettings->flyer_image)
+                        <div class="flyer-cta__image">
+                            <img src="{{ asset($siteSettings->flyer_image) }}" alt="Monthly Flyer" style="max-width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                        </div>
+                    @else
+                        <div class="flyer-cta__icon-circle">
+                            <i class="icon-broken-bone"></i>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -22,5 +22,10 @@ class DynamicContent extends Model
         'email',
         'address',
         'favicon',
+        'flyer_tagline',
+        'flyer_title',
+        'flyer_description',
+        'flyer_image',
+        'flyer_pdf',
     ];
 }

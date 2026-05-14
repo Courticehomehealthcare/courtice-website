@@ -146,6 +146,9 @@ class DynamicContentController extends Controller
                 'operating_hours' => $request->operating_hours,
                 'copyrightyear' => $request->copyrightyear,
                 'description' => $request->description,
+                'flyer_tagline' => $request->flyer_tagline,
+                'flyer_title' => $request->flyer_title,
+                'flyer_description' => $request->flyer_description,
             ]);
 
             // logo upload
@@ -167,6 +170,28 @@ class DynamicContentController extends Controller
                 $fav->move($favpath, $favname);
 
                 $content->favicon = $favpath . $favname;
+                $content->save();
+            }
+
+            // flyer image upload
+            if ($request->hasFile('flyer_image')) {
+                $fimage = $request->file('flyer_image');
+                $fimage_name = hexdec(uniqid()) . '.' . $fimage->getClientOriginalExtension();
+                $fimage_path = 'uploads/flyer/';
+                $fimage->move($fimage_path, $fimage_name);
+
+                $content->flyer_image = $fimage_path . $fimage_name;
+                $content->save();
+            }
+
+            // flyer pdf upload
+            if ($request->hasFile('flyer_pdf')) {
+                $fpdf = $request->file('flyer_pdf');
+                $fpdf_name = hexdec(uniqid()) . '.' . $fpdf->getClientOriginalExtension();
+                $fpdf_path = 'uploads/flyer/';
+                $fpdf->move($fpdf_path, $fpdf_name);
+
+                $content->flyer_pdf = $fpdf_path . $fpdf_name;
                 $content->save();
             }
 

@@ -115,6 +115,74 @@
                 </div>
             </div>
 
+            <div class="card card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">Monthly Flyer Settings</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="flyer_tagline">Flyer Tagline</label>
+                                <input type="text" name="flyer_tagline" class="form-control" id="flyer_tagline"
+                                    value="{{ $content->flyer_tagline }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="flyer_title">Flyer Title</label>
+                                <input type="text" name="flyer_title" class="form-control" id="flyer_title"
+                                    value="{{ $content->flyer_title }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="flyer_description">Flyer Description</label>
+                        <textarea name="flyer_description" class="form-control" id="flyer_description"
+                            rows="3">{{ $content->flyer_description }}</textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="flyer_image">Flyer Image (Right Side)</label>
+                                @if($content->flyer_image)
+                                    <div class="mb-2">
+                                        <img src="{{ asset($content->flyer_image) }}" width="100" class="img-thumbnail d-block">
+                                    </div>
+                                @endif
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="flyer_image" class="custom-file-input" id="flyer_image">
+                                        <label class="custom-file-label" for="flyer_image">Choose image</label>
+                                    </div>
+                                </div>
+                                <small class="text-muted">Upload an image to replace the default icon circle.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="flyer_pdf">Flyer PDF Document</label>
+                                @if($content->flyer_pdf)
+                                    <div class="mb-2">
+                                        <a href="{{ asset($content->flyer_pdf) }}" target="_blank" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-file-pdf"></i> View Current PDF
+                                        </a>
+                                    </div>
+                                @endif
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="flyer_pdf" class="custom-file-input" id="flyer_pdf" accept="application/pdf">
+                                        <label class="custom-file-label" for="flyer_pdf">Choose PDF</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">Social Media Links</h3>
@@ -194,6 +262,17 @@
         toolbar: [
             { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
             { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
+            { name: 'tools', items: ['Maximize'] }
+        ]
+    });
+
+    // Initialize CKEditor for Flyer Description
+    CKEDITOR.replace('flyer_description', {
+        height: 150,
+        toolbar: [
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
             { name: 'tools', items: ['Maximize'] }
         ]
     });
