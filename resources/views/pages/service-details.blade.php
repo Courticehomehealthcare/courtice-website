@@ -2,11 +2,11 @@
 @section('title', (($service->seo_title ?: $service->ServicesTitle) ?? 'Service Details') . ' || Careon')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                            <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
+                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
     $title = $service->ServicesTitle;
     $subtitle = $service->ServicesTitle;
     $metaDescription = $service->seo_description ?: \Illuminate\Support\Str::limit(strip_tags($service->ServicesText), 160);
@@ -21,49 +21,52 @@
             <div class="row">
                 <div class="col-xl-8 col-lg-7">
                     <div class="service-details__left">
-                        <div class="service-details__img">
+                        @if(in_array($service->servicesUrl, ['product-rentals', 'productrentals']) && $subServices->count() > 0)
+                            <div class="section-title-three">
+                                <h3 class="section-title-three__title">{{ $service->ServicesTitle }} Options</h3>
+                            </div>
+                            <div class="row mt-4">
+                                @foreach($subServices as $sub)
+                                    @php
+                                        $subSlug = !empty($sub->servicesUrl) ? $sub->servicesUrl : \Illuminate\Support\Str::slug($sub->ServicesTitle);
+                                    @endphp
+                                    <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay="100ms">
+                                        <div class="blog-five__single">
+                                            <div class="blog-five__img">
+                                                <img src="{{ !empty($sub->serviceimage) ? asset('uploads/services/' . $sub->serviceimage) : asset('assets/images/resources/service-details-img-1.jpg') }}"
+                                                    alt="{{ $sub->ServicesTitle }}">
+                                                <div class="blog-five__plus">
+                                                    <a href="{{ route('services.details', $subSlug) }}"><i
+                                                            class="fa fa-plus"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="blog-five__content">
+                                                <h3 class="blog-five__title">
+                                                    <a
+                                                        href="{{ route('services.details', $subSlug) }}">{{ $sub->ServicesTitle }}</a>
+                                                </h3>
+                                                <p class="blog-five__text">
+                                                    {{ \Illuminate\Support\Str::limit(strip_tags($sub->ServicesText), 120) }}
+                                                </p>
+                                                <div class="blog-five__read-more">
+                                                    <a href="{{ route('services.details', $subSlug) }}">Learn More <span
+                                                            class="icon-arrow-right"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        <div class="service-details__img mt-5" style="max-height: 400px; overflow: hidden; border-radius: 20px;">
                             <img src="{{ !empty($service->serviceimage) ? asset('uploads/services/' . $service->serviceimage) : asset('/assets/images/resources/service-details-img-1.jpg') }}"
-                                alt="{{ $service->ServicesTitle }}">
+                                alt="{{ $service->ServicesTitle }}" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                         <div class="service-details__content">
                             <h3 class="service-details__title-1">{{ $service->ServicesTitle }}</h3>
                             <div class="service-details__text-1">{!! $service->ServicesText !!}</div>
                         </div>
-
-                        @if(in_array($service->servicesUrl, ['product-rentals', 'productrentals']) && $subServices->count() > 0)
-                        <div class="section-title-three mt-5">
-                            <h3 class="section-title-three__title">{{ $service->ServicesTitle }} Options</h3>
-                        </div>
-                        <div class="row mt-4">
-                            @foreach($subServices as $sub)
-                            @php
-                                $subSlug = !empty($sub->servicesUrl) ? $sub->servicesUrl : \Illuminate\Support\Str::slug($sub->ServicesTitle);
-                            @endphp
-                            <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay="100ms">
-                                <div class="blog-five__single">
-                                    <div class="blog-five__img">
-                                        <img src="{{ !empty($sub->serviceimage) ? asset('uploads/services/' . $sub->serviceimage) : asset('assets/images/resources/service-details-img-1.jpg') }}" alt="{{ $sub->ServicesTitle }}">
-                                        <div class="blog-five__plus">
-                                            <a href="{{ route('services.details', $subSlug) }}"><i class="fa fa-plus"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="blog-five__content">
-                                        <h3 class="blog-five__title">
-                                            <a href="{{ route('services.details', $subSlug) }}">{{ $sub->ServicesTitle }}</a>
-                                        </h3>
-                                        <p class="blog-five__text">
-                                            {{ \Illuminate\Support\Str::limit(strip_tags($sub->ServicesText), 120) }}
-                                        </p>
-                                        <div class="blog-five__read-more">
-                                            <a href="{{ route('services.details', $subSlug) }}">Learn More <span class="icon-arrow-right"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                        @endif
-
 
                     </div>
                 </div>

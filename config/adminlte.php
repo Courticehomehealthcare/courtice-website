@@ -366,7 +366,7 @@ return [
         ],
         [
             'text' => 'View Sitemap (XML)',
-            'url' => 'sitemap.xml',
+            'route' => 'sitemap',
             'icon' => 'fas fa-fw fa-external-link-alt',
             'target' => '_blank',
         ],

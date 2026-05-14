@@ -130,6 +130,7 @@ class PagesController extends Controller
     }
 
 
+
     public function collections(Request $request)
     {
         $per_page = (int)$request->get('per_page', 12);

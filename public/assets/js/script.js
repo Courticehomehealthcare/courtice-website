@@ -166,7 +166,7 @@
           items: 2,
         },
         992: {
-          items: 3,
+          items: 4,
         },
         1200: {
           items: 4,
@@ -294,11 +294,14 @@
       nav: false,
       dots: false,
       autoplay: true,
-      autoplayTimeout: 100,
-      autoplaySpeed: 5000,
-      smartSpeed: 5000,
+      autoplayTimeout: 0,
+      autoplaySpeed: 8000,
+      smartSpeed: 8000,
       slideTransition: 'linear',
       autoplayHoverPause: false,
+      mouseDrag: false,
+      touchDrag: false,
+      pullDrag: false,
       responsive: {
         0: {
           items: 1,
@@ -307,7 +310,7 @@
           items: 2,
         },
         992: {
-          items: 3,
+          items: 4,
         },
         1200: {
           items: 4,
@@ -400,10 +403,10 @@
           items: 2,
         },
         992: {
-          items: 3,
+          items: 4,
         },
         1200: {
-          items: 3,
+          items: 4,
         },
       },
     });
@@ -427,10 +430,10 @@
           items: 2,
         },
         992: {
-          items: 3,
+          items: 4,
         },
         1200: {
-          items: 3,
+          items: 4,
         },
       },
     });
@@ -576,10 +579,10 @@
           items: 2,
         },
         1200: {
-          items: 3,
+          items: 4,
         },
         1320: {
-          items: 3,
+          items: 4,
         },
       },
     });
@@ -612,10 +615,10 @@
           items: 2,
         },
         1200: {
-          items: 3,
+          items: 4,
         },
         1320: {
-          items: 3,
+          items: 4,
         },
       },
     });
@@ -645,13 +648,13 @@
           items: 2,
         },
         992: {
-          items: 3,
+          items: 4,
         },
         1200: {
-          items: 3,
+          items: 4,
         },
         1320: {
-          items: 3,
+          items: 4,
         },
       },
     });
@@ -681,7 +684,7 @@
           items: 2,
         },
         992: {
-          items: 3,
+          items: 4,
         },
         1200: {
           items: 4,
@@ -754,10 +757,10 @@
           items: 2,
         },
         992: {
-          items: 3,
+          items: 4,
         },
         1200: {
-          items: 3,
+          items: 4,
         },
         1320: {
           items: 4,

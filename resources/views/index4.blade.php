@@ -1041,10 +1041,6 @@
                         justify-content: center;
                         gap: 5px;
                     }
-                    /* Ticker effect for Brand Two */
-                    .brand-two__carousel .owl-stage {
-                        transition-timing-function: linear !important;
-                    }
                     .counter-three__count-box h3.odometer {
                         line-height: 1.2 !important;
                         display: flex;
@@ -1069,7 +1065,7 @@
                     <li>
                         <div class="counter-three__single">
                             <div class="counter-three__count-box">
-                                <h3 class="odometer" data-count="1000">00</h3>
+                                <h3 class="odometer" data-count="1500">00</h3>
                                 <span>+</span>
                             </div>
                             <p class="counter-three__text"> Products Available</p>
@@ -1195,58 +1191,67 @@
 
 
     <!--Brand Two Start -->
-    <section class="brand-two">
-           <h3 class="section-title__title title-animation" style="text-align: center;">Our Suppliers
-                </h3>
-        <div class="container-fluid">
-            <div class="brand-two__inner wow fadeInUp" data-wow-delay="100ms">
-                <div class="brand-two__carousel owl-theme owl-carousel">
-                    @forelse($clientImages as $img)
-                        <div class="item">
-                            <div class="brand-two__single">
-                                <div class="brand-two__img">
-                                    <img src="{{ asset($img->image_path) }}" alt="Client Image">
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="item">
-                            <div class="brand-two__single">
-                                <div class="brand-two__img">
-                                    <img src="{{ asset("/assets/images/brand/brand-2-1.png") }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="brand-two__single">
-                                <div class="brand-two__img">
-                                    <img src="{{ asset("/assets/images/brand/brand-2-2.png") }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="brand-two__single">
-                                <div class="brand-two__img">
-                                    <img src="{{ asset("/assets/images/brand/brand-2-3.png") }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="brand-two__single">
-                                <div class="brand-two__img">
-                                    <img src="{{ asset("/assets/images/brand/brand-2-4.png") }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="brand-two__single">
-                                <div class="brand-two__img">
-                                    <img src="{{ asset("/assets/images/brand/brand-2-5.png") }}" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    @endforelse
-                </div>
+    <style>
+        .hc-marquee-container {
+            overflow: hidden;
+            width: 100%;
+            padding: 30px 0;
+            background: #fff;
+            position: relative;
+        }
+        .hc-marquee-content {
+            display: flex;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+        .hc-marquee-item {
+            flex-shrink: 0;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hc-marquee-item img {
+            max-height: 70px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+        .hc-marquee-item:hover img {
+            transform: scale(1.1);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .hc-marquee-container:hover .hc-marquee-content {
+            animation-play-state: paused;
+        }
+    </style>
+
+    <section class="brand-two" style="padding-top: 60px; padding-bottom: 60px;">
+        <h3 class="section-title__title title-animation" style="text-align: center; margin-bottom: 40px;">Our Suppliers</h3>
+        <div class="hc-marquee-container">
+            <div class="hc-marquee-content">
+                @php
+                    $images = $clientImages->count() > 0 ? $clientImages : null;
+                @endphp
+                @if($images)
+                    @foreach($images as $img)
+                        <div class="hc-marquee-item"><img src="{{ asset($img->image_path) }}" alt="Supplier Logo"></div>
+                    @endforeach
+                    @foreach($images as $img)
+                        <div class="hc-marquee-item"><img src="{{ asset($img->image_path) }}" alt="Supplier Logo"></div>
+                    @endforeach
+                @else
+                    @for($i = 0; $i < 2; $i++)
+                        <div class="hc-marquee-item"><img src="{{ asset("/assets/images/brand/brand-2-1.png") }}" alt=""></div>
+                        <div class="hc-marquee-item"><img src="{{ asset("/assets/images/brand/brand-2-2.png") }}" alt=""></div>
+                        <div class="hc-marquee-item"><img src="{{ asset("/assets/images/brand/brand-2-3.png") }}" alt=""></div>
+                        <div class="hc-marquee-item"><img src="{{ asset("/assets/images/brand/brand-2-4.png") }}" alt=""></div>
+                        <div class="hc-marquee-item"><img src="{{ asset("/assets/images/brand/brand-2-5.png") }}" alt=""></div>
+                    @endfor
+                @endif
             </div>
         </div>
     </section>
@@ -1468,6 +1473,25 @@
                                         </div>
                                         @error('subject') <small class="text-danger">{{ $message }}</small> @enderror
                                     </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6">
+                                        <div class="contact-two__input-box" style="position: relative; margin-bottom: 20px;">
+                                            <select name="service" class="form-control ignore" >
+                                                <option value="" style="color: var(--careon-gray);">Select Service You Are Interested In</option>
+                                                <option value="In-Store Shopping" {{ old('service') == 'In-Store Shopping' ? 'selected' : '' }}>In-Store Shopping</option>
+                                                <option value="Online Shopping" {{ old('service') == 'Online Shopping' ? 'selected' : '' }}>Online Shopping</option>
+                                                <option value="Product Rentals – Breast Pumps" {{ old('service') == 'Product Rentals – Breast Pumps' ? 'selected' : '' }}>Product Rentals – Breast Pumps</option>
+                                                <option value="Product Rentals – Hospital Beds" {{ old('service') == 'Product Rentals – Hospital Beds' ? 'selected' : '' }}>Product Rentals – Hospital Beds</option>
+                                                <option value="Compression Services" {{ old('service') == 'Compression Services' ? 'selected' : '' }}>Compression Services</option>
+                                                <option value="Professional Fittings" {{ old('service') == 'Professional Fittings' ? 'selected' : '' }}>Professional Fittings</option>
+                                                <option value="General Inquiry" {{ old('service') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>
+                                            </select>
+                                            <span class="fa fa-angle-down" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 18px; color: var(--careon-base); pointer-events: none; z-index: 2;"></span>
+                                        </div>
+                                        @error('service')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
                                     <!-- <div class="col-xl-6 col-lg-6 col-md-6">
                                                                                                                                                                     <div class="contact-two__input-box">
                                                                                                                                                                         <input type="text" name="time" placeholder="Chose A Time">
@@ -1478,7 +1502,7 @@
                                             <textarea name="message" placeholder="Message">{{ old('message') }}</textarea>
                                         </div>
                                         @error('message') <small class="text-danger">{{ $message }}</small> @enderror
-                                        <div class="contact-two__btn-box">
+                                        <div class="contact-two__btn-box" style="padding-top: 20px;">
                                             <button id="contactSubmitBtn" type="submit" class="thm-btn">Submit<span
                                                     class="icon-plus"></span></button>
                                         </div>
@@ -1569,6 +1593,45 @@
     <x-searchPopup />
     <x-scroll-to-top />
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/js/intlTelInput.min.js"></script>
+    <style>
+        .iti { width: 100%; display: block; }
+        .iti__selected-dial-code { font-size: 14px; color: #74777c; }
+        .iti--separate-dial-code .iti__selected-flag { background: transparent !important; padding-left: 10px; }
+        .contact-two__input-box .iti input[type="tel"],
+        .contact-two__input-box input[type="text"],
+        .contact-two__input-box input[type="email"],
+        .contact-two__input-box textarea,
+        .contact-two__input-box select {
+            background-color: #f2f2f2 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            height: 60px !important;
+            padding: 0 20px !important;
+            color: #74777c !important;
+            font-size: 16px !important;
+            width: 100% !important;
+            transition: all 0.3s ease;
+            outline: none !important;
+            display: block;
+        }
+        .contact-two__input-box .iti input[type="tel"] {
+            padding-left: 55px !important;
+        }
+        .contact-two__input-box select {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            cursor: pointer !important;
+        }
+        .contact-two__input-box textarea {
+            height: 160px !important;
+            padding-top: 15px !important;
+        }
+        .contact-two__input-box input:focus,
+        .contact-two__input-box textarea:focus,
+        .contact-two__input-box select:focus {
+            background-color: #ebfaff !important; /* Subtle blue tint on focus */
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize intl-tel-input
@@ -1585,13 +1648,73 @@
             var submitBtn = document.getElementById('contactSubmitBtn');
             if (!form || !submitBtn) return;
 
-            var defaultHtml = submitBtn.innerHTML;
+            var originalBtnHTML = submitBtn.innerHTML;
+
             form.addEventListener('submit', function (e) {
-                // Set full international phone number before submission
-                phoneHidden.value = iti.getNumber();
-                
+                e.preventDefault();
+
+                // Clear previous errors & alerts
+                form.querySelectorAll('.ajax-error').forEach(function(el) { el.remove(); });
+                form.querySelectorAll('.ajax-alert').forEach(function(el) { el.remove(); });
+
+                // Show spinner
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="form-submit-spinner" aria-hidden="true"></span>Submitting...';
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Submitting...';
+
+                // Set full international phone number
+                phoneHidden.value = iti.getNumber();
+
+                var formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                })
+                .then(function (response) {
+                    if (response.ok) return response.json();
+                    if (response.status === 422) {
+                        return response.json().then(function (data) {
+                            throw { validation: true, errors: data.errors };
+                        });
+                    }
+                    throw { validation: false };
+                })
+                .then(function (data) {
+                    // Success
+                    form.reset();
+                    var alert = document.createElement('div');
+                    alert.className = 'alert alert-success mt-3 ajax-alert';
+                    alert.textContent = data.message || 'Submitted successfully!';
+                    form.appendChild(alert);
+                    setTimeout(function () { alert.remove(); }, 5000);
+                })
+                .catch(function (err) {
+                    if (err && err.validation && err.errors) {
+                        Object.keys(err.errors).forEach(function (field) {
+                            var input = form.querySelector('[name="' + field + '"]');
+                            if (input) {
+                                var small = document.createElement('small');
+                                small.className = 'text-danger d-block ajax-error';
+                                small.textContent = err.errors[field][0];
+                                input.closest('.col-xl-6, .col-xl-12, .col-lg-6, .col-md-6')?.appendChild(small);
+                            }
+                        });
+                    } else {
+                        var alert = document.createElement('div');
+                        alert.className = 'alert alert-danger mt-3 ajax-alert';
+                        alert.textContent = 'Something went wrong. Please try again.';
+                        form.appendChild(alert);
+                        setTimeout(function () { alert.remove(); }, 5000);
+                    }
+                })
+                .finally(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHTML;
+                });
             });
         });
     </script>

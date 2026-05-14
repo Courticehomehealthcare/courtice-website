@@ -2,11 +2,11 @@
 @section('title', 'About Us || Courtice Home Health Care')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
+                                                                <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                                                <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                                                <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                                                <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                                                                <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>';
 @endphp
 @php
     $title = 'About Us';
@@ -20,7 +20,7 @@
         }
 
         .page-header__inner {
-            text-align: center;
+            text-align: left;
         }
 
         .thm-breadcrumb {
@@ -113,13 +113,16 @@
             .hc-counter-list>li {
                 flex: 1 1 50%;
             }
+
             .hc-counter-list>li:nth-child(2n) {
                 border-right: none;
             }
-            .hc-counter-list>li:nth-child(1), 
+
+            .hc-counter-list>li:nth-child(1),
             .hc-counter-list>li:nth-child(2) {
                 border-bottom: 1px solid rgba(0, 189, 214, 0.15);
             }
+
             .hc-counter-item {
                 padding: 40px 20px;
             }
@@ -131,6 +134,7 @@
                 border-right: none;
                 border-bottom: 1px solid rgba(0, 189, 214, 0.15);
             }
+
             .hc-counter-list>li:last-child {
                 border-bottom: none;
             }
@@ -522,7 +526,6 @@
                 font-size: 36px;
             }
         }
-
     </style>
 
     <section class="about-six">
@@ -605,7 +608,7 @@
                 <li>
                     <div class="hc-counter-item">
                         <div class="hc-counter-count-box">
-                            <h3 class="odometer" data-count="200">00</h3>
+                            <h3 class="odometer" data-count="1500">00</h3>
                             <span>+</span>
                         </div>
                         <div class="hc-counter-body">
