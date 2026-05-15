@@ -10,7 +10,7 @@ class SlidingTextController extends Controller
 {
     public function index()
     {
-        $slidingTexts = SlidingText::orderBy('sort_order')->get();
+        $slidingTexts = SlidingText::orderBy('sort_order')->paginate(15);
         return view('admin.sliding_texts.index', compact('slidingTexts'));
     }
 

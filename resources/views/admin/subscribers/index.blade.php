@@ -11,7 +11,7 @@
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
-<div class="card">
+<div class="card shadow-sm border-0 table-wrapper">
     <div class="card-header">
         <h3 class="card-title">Subscriber List</h3>
         <div class="card-tools">
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="card-body p-0">
-        <table class="table table-striped">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th style="width: 40px">

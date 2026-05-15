@@ -12,15 +12,27 @@
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
-<div class="card">
-    <div class="card-header d-flex align-items-center">
+<div class="card shadow-sm border-0 table-wrapper">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center" style="padding: 1rem 1.25rem;">
+        
         <button id="bulkDeleteBtn" class="btn btn-danger btn-sm" style="display:none;" onclick="bulkDelete()">
             <i class="fas fa-trash"></i> Delete Selected (<span id="selectedCount">0</span>)
         </button>
+     <h3 class="card-title m-0" style="font-size: 1.1rem; font-weight: 500; color: #111827;">Contact Messages</h3>
+        <div class="d-flex align-items-center">
+            <div class="input-group input-group-sm mr-3" style="width: 250px;">
+                <input type="text" name="table_search" class="form-control" placeholder="Search..." style="border-radius: 4px 0 0 4px; border-color: #e2e8f0; height: 34px;">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default" style="border-color: #e2e8f0; background: #ffffff; color: #6b7280; height: 34px; border-radius: 0 4px 4px 0;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-body table-responsive">
+    <div class="card-body table-responsive p-0">
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-hover table-hover">
             <thead>
                 <tr>
                     <th width="40px">

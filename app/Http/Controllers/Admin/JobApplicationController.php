@@ -12,7 +12,7 @@ class JobApplicationController extends Controller
 {
     public function index()
     {
-        $applications = JobApplication::with('jobPosting')->latest()->get();
+        $applications = JobApplication::with('jobPosting')->latest()->paginate(15);
         return view('admin.job_applications.index', compact('applications'));
     }
 

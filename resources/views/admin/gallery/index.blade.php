@@ -64,7 +64,7 @@
              data-name="{{ $img->image_name }}"
              data-link="{{ $img->project_link }}">
 
-            <div class="card">
+            <div class="card shadow-sm border-0 table-wrapper">
                 <img src="{{ asset($img->image_path) }}"
                      class="card-img-top"
                      style="height:200px; object-fit:cover;">

@@ -12,12 +12,12 @@ class GalleryController extends Controller
     // Show all
     // public function index()
     // {
-    //     $gallery = Gallery::orderBy('galleryid', 'desc')->get();
+    //     $gallery = Gallery::orderBy('galleryid', 'desc')->paginate(15);
     //     return view('admin.gallery.index', compact('gallery'));
     // }
     public function index()
 {
-    $gallery = Gallery::orderBy('galleryid', 'desc')->get();
+    $gallery = Gallery::orderBy('galleryid', 'desc')->paginate(15);
 
     // Get unique image names for filtering
     $names = Gallery::select('image_name')

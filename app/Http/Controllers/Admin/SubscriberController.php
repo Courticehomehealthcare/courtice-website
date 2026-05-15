@@ -55,7 +55,7 @@ class SubscriberController extends Controller
      */
     // public function index()
     // {
-    //     $subscribers = Subscriber::latest()->get();
+    //     $subscribers = Subscriber::latest()->paginate(15);
 
     //     return response()->json([
     //         'status' => 'success',
@@ -177,7 +177,7 @@ class SubscriberController extends Controller
     // ✅ Get all subscribers (for admin view)
     public function index()
     {
-        $subscribers = Subscriber::latest()->get();
+        $subscribers = Subscriber::latest()->paginate(15);
         return view('admin.subscribers.index', compact('subscribers'));
     }
 

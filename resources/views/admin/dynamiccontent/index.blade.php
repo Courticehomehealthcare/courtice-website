@@ -12,7 +12,7 @@
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
-<div class="card">
+<div class="card shadow-sm border-0 table-wrapper">
     <div class="card-header">
         <h3 class="card-title">General Configuration</h3>
     </div>
@@ -41,9 +41,7 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->phone_number }}</td>
                         <td>
-                            <a href="{{ route('admin.settings.edit', $item->id) }}" class="btn btn-primary btn-sm">
-                                <i class="fas fa-edit"></i> Edit Settings
-                            </a>
+                            
                         </td>
                     </tr>
                 @endforeach
@@ -54,6 +52,12 @@
                 @endif
             </tbody>
         </table>
+        <div class="d-flex justify-content-end mt-4">
+            {{ $content->links('pagination::bootstrap-4') }}
+        </div>
+
+        
+
     </div>
 </div>
 

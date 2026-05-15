@@ -15,12 +15,12 @@
     </div>
 @endif
 
-<div class="card">
+<div class="card shadow-sm border-0 table-wrapper">
     <div class="card-header bg-gradient-primary">
         <h5 class="mb-0 text-white"><i class="fas fa-list mr-1"></i> All Pages — SEO Meta Tags</h5>
     </div>
     <div class="card-body table-responsive p-0">
-        <table class="table table-bordered table-striped mb-0">
+        <table class="table table-hover table-hover mb-0">
             <thead class="thead-dark">
                 <tr>
                     <th width="40">#</th>

@@ -317,7 +317,7 @@ class DynamicContentController extends Controller
     // Get all records
     public function Getall(Request $request)
     {
-        $Services = DynamicContent::get();
+        $Services = DynamicContent::paginate(15);
 
         if ($Services->isNotEmpty()) {
             return $this->jsonResponse->createResponse($Services, true, 'Social media loaded!', 200);

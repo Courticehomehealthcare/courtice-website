@@ -11,7 +11,7 @@ class ClientImageController extends Controller
     // Show page
     public function index()
     {
-        $images = ClientImage::latest()->get();
+        $images = ClientImage::latest()->paginate(15);
         return view('admin.client_images.index', compact('images'));
     }
 

@@ -11,7 +11,7 @@ class SeoPageController extends Controller
 {
     public function index()
     {
-        $seoPages = SeoPage::orderBy('page_label')->get();
+        $seoPages = SeoPage::orderBy('page_label')->paginate(15);
         return view('admin.seo_pages.index', compact('seoPages'));
     }
 

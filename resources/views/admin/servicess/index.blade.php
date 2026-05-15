@@ -7,13 +7,11 @@
 @stop
 
 @section('content')
-<div class="card">
+<div class="card shadow-sm border-0 table-wrapper">
     <div class="card-header">
         <h3 class="card-title">All Services</h3>
         <div class="card-tools">
-            <a href="{{ route('admin.services.create') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i> Add New Service
-            </a>
+            
         </div>
     </div>
     <div class="card-body">
@@ -27,7 +25,7 @@
         @endif
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-hover table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>

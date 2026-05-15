@@ -10,7 +10,7 @@ class StaticPageController extends Controller
 {
     public function index()
     {
-        $pages = StaticPage::orderBy('title')->get();
+        $pages = StaticPage::orderBy('title')->paginate(15);
         return view('admin.static_pages.index', compact('pages'));
     }
 

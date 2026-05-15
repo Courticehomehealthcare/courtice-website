@@ -15,7 +15,7 @@ class SitemapUrlController extends Controller
 {
     public function index()
     {
-        $urls = SitemapUrl::orderBy('priority', 'desc')->get();
+        $urls = SitemapUrl::orderBy('priority', 'desc')->paginate(15);
         return view('admin.sitemap_urls.index', compact('urls'));
     }
 

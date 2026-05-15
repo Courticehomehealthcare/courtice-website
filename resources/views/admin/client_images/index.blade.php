@@ -25,7 +25,7 @@
     <div class="row">
         @foreach($images as $img)
             <div class="col-md-3 mt-3">
-                <div class="card">
+                <div class="card shadow-sm border-0 table-wrapper">
                     <img src="{{ asset($img->image_path) }}" class="card-img-top" style="height:200px;object-fit:cover">
                     <div class="card-body text-center">
 <form action="{{ route('admin.client.images.delete', ['id' => $img->clientid]) }}"
