@@ -11,7 +11,7 @@
       overflow: hidden;
       min-height: 520px;
       position: relative;
-      margin: 50px auto;
+      /* margin: 50px auto; */
       /* max-width: 1200px; */
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
     }
@@ -77,7 +77,8 @@
     }
 
     .cs-hero {
-      background: linear-gradient(135deg, #0D2137 0%, #163350 55%, #1B4F7A 100%);
+      background: linear-gradient(135deg, #4a3276 0%, #4a3276 55%, #4a3276 100%);
+      /* background: linear-gradient(135deg, #0D2137 0%, #163350 55%, #1B4F7A 100%); */
       padding: 80px 48px 72px;
       position: relative;
       overflow: hidden;
@@ -357,24 +358,6 @@
       line-height: 1.6;
     }
 
-    .cs-footer-strip {
-      background: #0D2137;
-      padding: 18px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .cs-footer-text {
-      font-size: 12px;
-      color: #5A7A96;
-    }
-
-    .cs-footer-contact {
-      font-size: 12px;
-      color: #88AACC;
-      font-weight: 600;
-    }
 
     @media (max-width: 991px) {
       .cs-float-card {
@@ -457,52 +440,54 @@
         </div>
       </div>
     </div>
+    <!-- 
+            <div class="cs-body">
+              <div class="cs-info-card">
+                <div class="cs-ic-head">
+                  <div class="cs-ic-icon" style="background:#FEF0E8;">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                      <path d="M8 2l1.5 3 3.5.5-2.5 2.5.6 3.5L8 10l-3.1 1.5.6-3.5L3 5.5l3.5-.5L8 2z" stroke="#D4581A"
+                        stroke-width="1.3" fill="none" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div class="cs-ic-title">ADP-Authorized Vendor</div>
+                </div>
+                <div class="cs-ic-body">We are a registered Ontario ADP vendor — we handle the paperwork and claim the funding for
+                  you.</div>
+              </div>
+              <div class="cs-info-card">
+                <div class="cs-ic-head">
+                  <div class="cs-ic-icon" style="background:#E8F2F8;">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                      <circle cx="8" cy="8" r="5.5" stroke="#163350" stroke-width="1.3" />
+                      <path d="M8 5v3.5l2 1.5" stroke="#163350" stroke-width="1.3" stroke-linecap="round" />
+                    </svg>
+                  </div>
+                  <div class="cs-ic-title">In-Store & Online</div>
+                </div>
+                <div class="cs-ic-body">Visit us at 1423 King St E, Courtice or shop online — Mon–Fri 9am–5pm, Sat 11am–2pm.</div>
+              </div>
+              <div class="cs-info-card">
+                <div class="cs-ic-head">
+                  <div class="cs-ic-icon" style="background:#E8F8EE;">
+                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8l3.5 3.5L13 4.5" stroke="#1A7A45" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div class="cs-ic-title">Free Consultations</div>
+                </div>
+                <div class="cs-ic-body">Our team helps you find the right product for your recovery needs — no pressure, just
+                  care.</div>
+              </div>
+            </div> -->
 
-    <div class="cs-body">
-      <div class="cs-info-card">
-        <div class="cs-ic-head">
-          <div class="cs-ic-icon" style="background:#FEF0E8;">
-            <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
-              <path d="M8 2l1.5 3 3.5.5-2.5 2.5.6 3.5L8 10l-3.1 1.5.6-3.5L3 5.5l3.5-.5L8 2z" stroke="#D4581A"
-                stroke-width="1.3" fill="none" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <div class="cs-ic-title">ADP-Authorized Vendor</div>
-        </div>
-        <div class="cs-ic-body">We are a registered Ontario ADP vendor — we handle the paperwork and claim the funding for
-          you.</div>
-      </div>
-      <div class="cs-info-card">
-        <div class="cs-ic-head">
-          <div class="cs-ic-icon" style="background:#E8F2F8;">
-            <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
-              <circle cx="8" cy="8" r="5.5" stroke="#163350" stroke-width="1.3" />
-              <path d="M8 5v3.5l2 1.5" stroke="#163350" stroke-width="1.3" stroke-linecap="round" />
-            </svg>
-          </div>
-          <div class="cs-ic-title">In-Store & Online</div>
-        </div>
-        <div class="cs-ic-body">Visit us at 1423 King St E, Courtice or shop online — Mon–Fri 9am–5pm, Sat 11am–2pm.</div>
-      </div>
-      <div class="cs-info-card">
-        <div class="cs-ic-head">
-          <div class="cs-ic-icon" style="background:#E8F8EE;">
-            <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8l3.5 3.5L13 4.5" stroke="#1A7A45" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </div>
-          <div class="cs-ic-title">Free Consultations</div>
-        </div>
-        <div class="cs-ic-body">Our team helps you find the right product for your recovery needs — no pressure, just
-          care.</div>
-      </div>
-    </div>
+    <x-footerThree />
 
-    <div class="cs-footer-strip">
-      <div class="cs-footer-text">© {{ date('Y') }} Courtice Home Health Care · All rights reserved</div>
-      <div class="cs-footer-contact">📞 (905) 721-0004 · Courtice, Durham Region ON</div>
-    </div>
+
+    <x-mobileMenu />
+    <x-searchPopup />
+    <x-scroll-to-top />
 
   </div>
 
