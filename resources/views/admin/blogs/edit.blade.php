@@ -99,6 +99,13 @@
                         <option value="0" {{ !$blog->visible ? 'selected' : '' }}>Hidden</option>
                     </select>
                 </div>
+
+                {{-- Last Updated / Publish Date --}}
+                <div class="col-md-6 form-group">
+                    <label>Publish Date (Last Updated) *</label>
+                    <input type="datetime-local" name="last_updated" class="form-control"
+                        value="{{ old('last_updated', $blog->last_updated ? $blog->last_updated->format('Y-m-d\TH:i') : '') }}" required>
+                </div>
             </div>
 
             {{-- ================= SEO SECTION ================= --}}

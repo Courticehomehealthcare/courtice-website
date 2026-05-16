@@ -129,6 +129,7 @@ class BlogController extends Controller
             'twitter_title' => 'nullable|string|max:255',
             'twitter_description' => 'nullable|string|max:300',
             'tags' => 'nullable|string',
+            'last_updated' => 'required|date',
         ]);
 
         $image1Path = null;
@@ -152,7 +153,7 @@ class BlogController extends Controller
             'category' => $request->category,
             'shortdescription' => $request->shortdescription,
             'blogurl' => $request->blogurl ?: Str::slug($request->name),
-            'last_updated' => now(),
+            'last_updated' => $request->last_updated,
             'image1' => $image1Path,
             'image2' => $image2Path,
             'description' => $request->description,
@@ -254,6 +255,7 @@ class BlogController extends Controller
             'twitter_title' => 'nullable|string|max:255',
             'twitter_description' => 'nullable|string|max:300',
             'tags' => 'nullable|string',
+            'last_updated' => 'required|date',
         ]);
 
         $image1Path = $blog->image1;
@@ -284,7 +286,7 @@ class BlogController extends Controller
             'category' => $request->category,
             'shortdescription' => $request->shortdescription,
             'blogurl' => $request->blogurl ?: $blog->blogurl,
-            'last_updated' => now(),
+            'last_updated' => $request->last_updated,
             'image1' => $image1Path,
             'image2' => $image2Path,
             'description' => $request->description,
