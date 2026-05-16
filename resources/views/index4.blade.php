@@ -601,18 +601,18 @@
                                     <img src="https://placehold.co/410x410?text=No+Image" alt="No Image" style="width: 100%; height: 100%; object-fit: cover;">
                                 @endif
                                 <div class="blog-five__plus" style="background: var(--careon-base); opacity: 0.9;">
-                                    <a href="{{ route('services.details', $service->servicesUrl) }}"><i class="fa fa-plus"></i></a>
+                                    <a href="{{ route('coming-soon') }}"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                             <div class="blog-five__content" style="padding: 30px; text-align: left; flex-grow: 1; display: flex; flex-direction: column;">
                                 <h3 class="blog-five__title" style="font-size: 22px; margin-bottom: 12px; font-weight: 700; height: 60px; overflow: hidden;">
-                                    <a href="{{ route('services.details', $service->servicesUrl) }}" style="color: #061738; text-decoration: none;">{{ $service->ServicesTitle }}</a>
+                                    <a href="{{ route('coming-soon') }}" style="color: #061738; text-decoration: none;">{{ $service->ServicesTitle }}</a>
                                 </h3>
                                 <p class="blog-five__text" style="font-size: 15px; color: #666; margin-bottom: 20px; line-height: 1.6; height: 72px; overflow: hidden;">
                                     {{ Str::limit(strip_tags($service->ServicesText), 100) }}
                                 </p>
                                 <div class="blog-five__read-more" style="margin-top: auto;">
-                                    <a href="{{ route('services.details', $service->servicesUrl) }}" class="thm-btn" style="width: 100%; padding: 12px 25px; font-size: 14px; font-weight: 700; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #fff !important; background: #061738; transition: all 0.3s ease;">
+                                    <a href="{{ route('coming-soon') }}" class="thm-btn" style="width: 100%; padding: 12px 25px; font-size: 14px; font-weight: 700; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #fff !important; background: #061738; transition: all 0.3s ease;">
                                         Shop Now <span class="icon-arrow-right" style="font-size: 11px;"></span>
                                     </a>
                                 </div>

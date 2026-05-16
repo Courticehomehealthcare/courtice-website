@@ -24,6 +24,10 @@ class PagesController extends Controller
     {
         return view('pages/about');
     }
+    public function coming_soon()
+    {
+        return view('pages/coming-soon');
+    }
     public function doctor()
     {
         return view('pages/doctor');

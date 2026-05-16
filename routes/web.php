@@ -29,6 +29,7 @@ Route::redirect('wellSpring-wellness-center', '/services/wellSpring-wellness-cen
 Route::redirect('harmony-family-health-medical', '/services/harmony-family-health-medical', 301);
 Route::redirect('evergreen-medical-center', '/services/evergreen-medical-center', 301);
 Route::redirect('pure-life-health-services', '/services/pure-life-health-services', 301);
+Route::get('coming-soon', [PagesController::class, 'coming_soon'])->name('coming-soon');
 Route::get('/products', [PagesController::class, 'collections'])->name('collections');
 Route::get('/products/{slug}', [PagesController::class, 'products'])->name('products');
 Route::get('/product-details/{slug}', [PagesController::class, 'product_details'])->name('product-details');

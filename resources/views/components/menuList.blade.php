@@ -74,8 +74,8 @@
     <!--    </ul>-->
     <!--</li>-->
 
-    <li class="{{ Request::is('products*') || Request::is('product-details*') ? 'current' : '' }}">
-        <a href="{{ route('collections') }}">Products</a>
+    <li class="{{ Request::is('products*') || Request::is('product-details*') || Request::is('coming-soon') ? 'current' : '' }}">
+        <a href="{{ route('coming-soon') }}">Products</a>
     </li>
 
     <li class="{{ Request::is('careers*') ? 'current' : '' }}">
