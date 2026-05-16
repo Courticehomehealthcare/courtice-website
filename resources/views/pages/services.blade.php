@@ -189,38 +189,188 @@
         .faq-one-accrodion__count::before {
             display: none !important;
         }
+
+        /* Premium Banner Button & Content Styles */
+        .banner-content-overlay {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .banner-content-overlay .container {
+            pointer-events: none;
+        }
+
+        .banner-content-inner {
+            max-width: 600px;
+            pointer-events: all;
+            text-align: left;
+        }
+
+        .banner-title {
+            font-size: 64px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-text {
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            max-width: 500px;
+            font-weight: 500;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .premium-banner-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e5f0b8; /* Light lime/yellow from screenshot */
+            color: #000 !important;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none !important;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #000;
+            box-shadow: 0 4px 0px rgba(0, 0, 0, 1);
+        }
+
+        .premium-banner-btn:hover {
+            background-color: #d8e6a2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0px rgba(0, 0, 0, 1);
+        }
+
+        .premium-banner-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .premium-banner-btn .icon-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            color: #fff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            margin-left: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .premium-banner-btn:hover .icon-circle {
+            transform: translateX(5px);
+        }
+
+        .premium-banner-btn .icon-circle i {
+            font-size: 14px;
+        }
+
+        @media (max-width: 991px) {
+            .banner-title {
+                font-size: 48px;
+            }
+            .banner-text {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .banner-title {
+                font-size: 36px;
+                letter-spacing: 0;
+            }
+            .banner-text {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+            .banner-two__carousel .item img {
+                height: 450px !important;
+            }
+            .banner-content-inner {
+                padding: 0 15px;
+            }
+            .premium-banner-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .premium-banner-btn .icon-circle {
+                width: 30px;
+                height: 30px;
+                margin-left: 10px;
+            }
+        }
     </style>
 
     <x-strickyHeader />
 
-    <section class="page-header banner-two" style="height: auto; overflow: visible; position: relative;">
+    <section class="page-header banner-two" style="height: auto; overflow: visible; position: relative; background-color: #f7fbff;">
         <div class="banner-two__carousel owl-theme owl-carousel">
             @forelse($banners as $banner)
-                <div class="item">
+                <div class="item" style="position: relative;">
                     <img src="{{ asset($banner->image_url) }}" alt="{{ $banner->title }}"
-                        style="width: 100%; height: 500px; object-fit: cover; display: block;">
+                        style="width: 100%; height: 600px; object-fit: cover; display: block;">
+                    
+                    <div class="banner-content-overlay">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%); pointer-events: none; z-index: -1;"></div>
+                        <div class="container">
+                            <div class="banner-content-inner">
+                                @if($banner->title)
+                                    <h1 class="banner-title">{{ $banner->title }}</h1>
+                                @endif
+                                
+                                @if($banner->description)
+                                    <p class="banner-text">{{ $banner->description }}</p>
+                                @endif
+
+                                @if($banner->button_text && $banner->button_link)
+                                    <a href="{{ $banner->button_link }}" class="premium-banner-btn">
+                                        {{ $banner->button_text }}
+                                        <span class="icon-circle">
+                                            <span class="icon-arrow-right"></span>
+                                        </span>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @empty
-                <div class="item">
+                <div class="item" style="position: relative;">
                     <img src="{{ asset('assets/images/banner/services.png') }}" alt="Services Banner"
-                        style="width: 100%; height: 500px; object-fit: cover; display: block;">
+                        style="width: 100%; height: 600px; object-fit: cover; display: block;">
+                    
+                    <div class="banner-content-overlay">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%); pointer-events: none; z-index: -1;"></div>
+                        <div class="container">
+                            <div class="banner-content-inner">
+                                <h1 class="banner-title">Be Ready For Anything</h1>
+                                <p class="banner-text">Essential first aid and medical supplies stocked, trusted, and always within reach.</p>
+                                <a href="{{ route('collections') }}" class="premium-banner-btn">
+                                    Shop First Aid
+                                    <span class="icon-circle">
+                                        <span class="icon-arrow-right"></span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endforelse
-        </div>
-        <div
-            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #bee1e614 0%, rgba(190, 225, 230, 0) 100%); pointer-events: none; z-index: 1;">
-        </div>
-        <div class="container" style="position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);">
-            <div class="page-header__inner" style="padding: 0;">
-                <h3>Services</h3>
-                <div class="thm-breadcrumb__inner">
-                    <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><span class="icon-arrow-left"></span></li>
-                        <li>Services</li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </section>
 
