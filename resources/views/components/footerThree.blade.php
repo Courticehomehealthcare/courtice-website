@@ -42,8 +42,7 @@
                                     <div class="footer-widget-three__contact-content">
                                         <span>Email</span>
                                         <p class="footer-widget-three__contact-text">
-                                            <a
-                                                href="mailto:{{ optional($siteSettings)->email ?? '' }}">{{ optional($siteSettings)->email ?? 'N/A' }}</a>
+                                            <a href="mailto:{{ optional($siteSettings)->email ?? '' }}">{{ optional($siteSettings)->email ?? 'N/A' }}</a>
                                         </p>
                                     </div>
                                 </li>
@@ -91,6 +90,14 @@
                                 <li>
                                     <a href="{{ url("blog") }}"><i class="fas fa-angle-double-right"
                                             style="font-size: 15px; margin-right: 5px; color: white;"></i>Blog</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url("faq") }}"><i class="fas fa-angle-double-right"
+                                            style="font-size: 15px; margin-right: 5px; color: white;"></i>FAQs</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url("careers") }}"><i class="fas fa-angle-double-right"
+                                            style="font-size: 15px; margin-right: 5px; color: white;"></i>Careers</a>
                                 </li>
                                 <li>
                                     <a href="{{ url("contact") }}"><i class="fas fa-angle-double-right"
@@ -155,7 +162,10 @@
                                 <li><a href="{{ route('static.page', 'terms-conditions') }}">Terms & Conditions</a></li>
                                 <li><a href="{{ route('static.page', 'privacy-policy') }}">Privacy Policy</a></li>
                                 <li><a href="{{ route('static.page', 'accessibility') }}">Accessibility</a></li>
-<li><a href="{{ url("contact") }}">Contact Us</a></li> 
+                                <li><a href="{{ route('static.page', 'return-policy') }}">Refunds & Returns</a></li>
+                                <li><a href="{{ route('static.page', 'shipping-policy') }}">Shipping</a></li>
+                                <li><a href="{{ route('static.page', 'rental-policy') }}">Rental Policy</a></li>
+                                <li><a href="{{ url('contact') }}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
