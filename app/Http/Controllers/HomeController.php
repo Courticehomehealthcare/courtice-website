@@ -10,6 +10,7 @@ use App\Models\Blog;
 use App\Models\Carousel;
 use App\Models\ClientImage;
 use App\Models\SlidingText;
+use App\Models\Testimonial;
 
 use App\Services\ShopifyStorefrontService;
 
@@ -84,7 +85,22 @@ class HomeController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return view('index4', compact('featuredServices', 'featuredProductServices', 'featuredProducts', 'homeFaqs', 'blogs', 'carousels', 'aboutCarousels', 'slidingTexts', 'clientImages'));
+        $testimonials = Testimonial::where('status', 1)
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('index4', compact(
+            'featuredServices',
+            'featuredProductServices',
+            'featuredProducts',
+            'homeFaqs',
+            'blogs',
+            'carousels',
+            'aboutCarousels',
+            'slidingTexts',
+            'clientImages',
+            'testimonials'
+        ));
     }
     public function index5()
     {

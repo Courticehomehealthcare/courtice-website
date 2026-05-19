@@ -1307,73 +1307,55 @@
     <!--</section>-->
     <!--Video One End -->
 
-    <!--Testimonial Four Start -->
-    <section class="testimonial-four">
-        <div class="container">
-            <div class="section-title text-center sec-title-animation animation-style1">
-                <h6 class="section-title__tagline">our Testimonials</h6>
-                <h3 class="section-title__title title-animation">What Clients Say
-                </h3>
-            </div>
-            <div class="testimonial-four__carousel owl-theme owl-carousel">
-                <!--Testimonial Four Single Start-->
-                <div class="testimonial-four__single">
-                    <div class="testimonial-four__quote">
-                        <span class="icon-quote-2"></span>
-                    </div>
-                    <div class="testimonial-four__client-info">
-                        <div class="testimonial-four__client-img">
-                            <img src="{{ asset("/assets/images/testimonial/testimonial-4-1.jpg") }}" alt="">
-                        </div>
-                        <div class="testimonial-four__client-content">
-                            <h3><a href="{{ url("testimonials") }}">Floyd Miles</a></h3>
-                            <p>Marketing Coordinator</p>
-                        </div>
-                    </div>
-                    <p class="testimonial-four__text">maintaining oral health through practices such as the regular
-                        check-a ups, cleanings, and treatments for teeth and an gums.</p>
-                </div>
-                <!--Testimonial Four Single End-->
-                <!--Testimonial Four Single Start-->
-                <div class="testimonial-four__single">
-                    <div class="testimonial-four__quote">
-                        <span class="icon-quote-2"></span>
-                    </div>
-                    <div class="testimonial-four__client-info">
-                        <div class="testimonial-four__client-img">
-                            <img src="{{ asset("/assets/images/testimonial/testimonial-4-2.jpg") }}" alt="">
-                        </div>
-                        <div class="testimonial-four__client-content">
-                            <h3><a href="{{ url("testimonials") }}">David Ham</a></h3>
-                            <p>Manager</p>
-                        </div>
-                    </div>
-                    <p class="testimonial-four__text">maintaining oral health through practices such as the regular
-                        check-a ups, cleanings, and treatments for teeth and an gums.</p>
-                </div>
-                <!--Testimonial Four Single End-->
-                <!--Testimonial Four Single Start-->
-                <div class="testimonial-four__single">
-                    <div class="testimonial-four__quote">
-                        <span class="icon-quote-2"></span>
-                    </div>
-                    <div class="testimonial-four__client-info">
-                        <div class="testimonial-four__client-img">
-                            <img src="{{ asset("/assets/images/testimonial/testimonial-4-2.jpg") }}" alt="">
-                        </div>
-                        <div class="testimonial-four__client-content">
-                            <h3><a href="{{ url("testimonials") }}">David Ham</a></h3>
-                            <p>Manager</p>
-                        </div>
-                    </div>
-                    <p class="testimonial-four__text">maintaining oral health through practices such as the regular
-                        check-a ups, cleanings, and treatments for teeth and an gums.</p>
-                </div>
-                <!--Testimonial Four Single End-->
-            </div>
+      <!--Testimonial Four Start -->
+<section class="testimonial-four">
+    <div class="container">
+        <div class="section-title text-center sec-title-animation animation-style1">
+            <h6 class="section-title__tagline">our Testimonials</h6>
+            <h3 class="section-title__title title-animation">What Clients Say</h3>
         </div>
-    </section>
-    <!--Testimonial Four End -->
+        <div class="testimonial-four__carousel owl-theme owl-carousel">
+            @forelse($testimonials as $testimonial)
+                <div class="testimonial-four__single">
+                    <div class="testimonial-four__quote">
+                        <span class="icon-quote-2"></span>
+                    </div>
+                    <div class="testimonial-four__client-info">
+                        <div class="testimonial-four__client-img">
+                            @if($testimonial->image_url)
+                                <img src="{{ asset($testimonial->image_url) }}" alt="{{ $testimonial->name }}">
+                            @else
+                                <img src="{{ asset('/assets/images/testimonial/testimonial-4-1.jpg') }}" alt="{{ $testimonial->name }}">
+                            @endif
+                        </div>
+                        <div class="testimonial-four__client-content">
+                            <h3>{{ $testimonial->name }}</h3>
+                            <p>{{ $testimonial->title }}</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-four__text">{{ $testimonial->content }}</p>
+                </div>
+            @empty
+                <div class="testimonial-four__single">
+                    <div class="testimonial-four__quote">
+                        <span class="icon-quote-2"></span>
+                    </div>
+                    <div class="testimonial-four__client-info">
+                        <div class="testimonial-four__client-img">
+                            <img src="{{ asset('/assets/images/testimonial/testimonial-4-1.jpg') }}" alt="">
+                        </div>
+                        <div class="testimonial-four__client-content">
+                            <h3>Happy Customer</h3>
+                            <p>Verified Review</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-four__text">Excellent service and great products!</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
+</section>
+<!--Testimonial Four End -->
 
     <!--Before And After Start-->
     <!--<section class="before-and-after">-->
