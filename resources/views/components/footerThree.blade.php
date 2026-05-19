@@ -154,7 +154,8 @@
                             <ul class="list-unstyled site-footer-three__bottom-menu">
                                 <li><a href="{{ route('static.page', 'terms-conditions') }}">Terms & Conditions</a></li>
                                 <li><a href="{{ route('static.page', 'privacy-policy') }}">Privacy Policy</a></li>
-                                <li><a href="{{ url("contact") }}">Contact Us</a></li>
+                                <li><a href="{{ route('static.page', 'accessibility') }}">Accessibility</a></li>
+<li><a href="{{ url("contact") }}">Contact Us</a></li> 
                             </ul>
                         </div>
                     </div>
