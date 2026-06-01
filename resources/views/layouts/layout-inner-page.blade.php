@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<x-head css='{!! isset($css) ? $css : "" !!}' />
-
+<x-head css='{!! isset($css) ? $css : "" !!}' :seo="isset($seo) ? $seo : null"/>
 <body class="{{ isset($bodyClass) ? $bodyClass . ' custom-cursor' : 'custom-cursor' }}">
     <div class="custom-cursor__cursor"></div>
     <div class="custom-cursor__cursor-two"></div>
-
     <div class="page-wrapper">
-
         <x-headerStyleThree />
         <style>
             .page-header__inner {
                 text-align: left;
             }
-
             .thm-breadcrumb {
                 justify-content: flex-start !important;
             }
@@ -38,12 +33,7 @@
         </section>
         <!--Page Header End-->
         @yield('content')
-
-
         <x-loader />
-
         <x-scripts />
-
 </body>
-
 </html>

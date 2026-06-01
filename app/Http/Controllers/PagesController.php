@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\StaticPage;
+use App\Models\SeoPage;
 use Illuminate\Support\Str;
 use App\Mail\ContactFormSubmitted;
 use App\Mail\ContactThankYou;
@@ -20,60 +21,76 @@ use Illuminate\Support\Facades\Cache;
 class PagesController extends Controller
 {
     public function __construct(private ShopifyStorefrontService $shopify) {}
+
     public function about()
     {
-        return view('pages/about');
+        $seo = SeoPage::forPage('about');
+        return view('pages/about', compact('seo'));
     }
+
     public function coming_soon()
     {
         return view('pages/coming-soon');
     }
+
     public function doctor()
     {
         return view('pages/doctor');
     }
+
     public function doctor_carousel()
     {
         return view('pages/doctor-carousel');
     }
+
     public function doctor_details()
     {
         return view('pages/doctor-details');
     }
+
     public function project()
     {
         return view('pages/project');
     }
+
     public function project_carousel()
     {
         return view('pages/project-carousel');
     }
+
     public function project_details()
     {
         return view('pages/project-details');
     }
+
     public function testimonials()
     {
         return view('pages/testimonials');
     }
+
     public function testimonial_carousel()
     {
         return view('pages/testimonial-carousel');
     }
+
     public function pricing()
     {
         return view('pages/pricing');
     }
+
     public function appoinment()
     {
         return view('pages/appoinment');
     }
+
     public function faq()
     {
         return view('pages/faq');
     }
+
     public function services()
     {
+        $seo = SeoPage::forPage('services');
         $banners = \App\Models\Carousel::where('page', 'services')->latest()->get();
         $allServices = Service::where('status', 1)
             ->whereIn('pagecategory', ['services', 'Services'])
@@ -84,7 +101,6 @@ class PagesController extends Controller
         $shipping = $allServices->firstWhere('servicesUrl', 'online-in-store-shipping-options');
         $fittings = $allServices->firstWhere('servicesUrl', 'professional-fittings-for-braces-supports');
 
-        // Show all services in the dynamic listing
         $services = $allServices;
 
         $servicesFaqs = \App\Models\Faq::where('page', 'services')
@@ -92,12 +108,14 @@ class PagesController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('pages/services', compact('services', 'banners', 'servicesFaqs', 'rentals', 'shipping', 'fittings'));
+        return view('pages/services', compact('seo', 'services', 'banners', 'servicesFaqs', 'rentals', 'shipping', 'fittings'));
     }
+
     public function service_carousel()
     {
         return view('pages/service-carousel');
     }
+
     public function service_details($slug)
     {
         $service = Service::where('status', 1)
@@ -118,12 +136,11 @@ class PagesController extends Controller
 
         $allServices = Service::where('status', 1)->whereIn('pagecategory', ['services', 'productrentals'])->get();
         $services = $allServices->where('Serviceid', '!=', $service->Serviceid);
-        
+
         $rentals = $allServices->firstWhere('servicesUrl', 'product-rentals');
         $shipping = $allServices->firstWhere('servicesUrl', 'online-in-store-shipping-options');
         $fittings = $allServices->firstWhere('servicesUrl', 'professional-fittings-for-braces-supports');
 
-        // Fetch sub-services generically based on the current service's category/subcategory relationship
         if (in_array($service->servicesUrl, ['product-rentals', 'productrentals'])) {
             $subServices = $allServices->where('pagecategory', 'productrentals');
         } else {
@@ -132,8 +149,6 @@ class PagesController extends Controller
 
         return view('pages/service-details', compact('service', 'services', 'rentals', 'shipping', 'fittings', 'subServices', 'allServices'));
     }
-
-
 
     public function collections(Request $request)
     {
@@ -146,17 +161,6 @@ class PagesController extends Controller
         elseif ($sort_by == 'price-high-low') { $sortKey = 'PRICE'; $reverse = true; }
         elseif ($sort_by == 'newest') { $sortKey = 'CREATED_AT'; $reverse = true; }
         elseif ($sort_by == 'title-desc') { $sortKey = 'TITLE'; $reverse = true; }
-
-        $filters = [];
-        if ($request->filled('min_price') || $request->filled('max_price')) {
-            $priceFilter = ['price' => []];
-            if ($request->filled('min_price')) $priceFilter['price']['min'] = (float)$request->min_price;
-            if ($request->filled('max_price')) $priceFilter['price']['max'] = (float)$request->max_price;
-            $filters[] = $priceFilter;
-        }
-        if ($request->get('in_stock') == 'true') {
-            $filters[] = ['available' => true];
-        }
 
         $filters = [];
         if ($request->filled('min_price') || $request->filled('max_price')) {
@@ -201,9 +205,8 @@ class PagesController extends Controller
         );
 
         if (isset($data['errors'])) {
-             Log::error('Shopify Errors', ['errors' => $data['errors']]);
-             // If there are errors, return empty but safe
-             $data['data'] = null; 
+            Log::error('Shopify Errors', ['errors' => $data['errors']]);
+            $data['data'] = null;
         }
 
         if (!isset($data['data'])) {
@@ -234,7 +237,7 @@ class PagesController extends Controller
         $products = collect($data['data']['products']['edges'])->map(function($e) {
             $currentPrice = $e['node']['priceRange']['minVariantPrice']['amount'];
             $comparePrice = $e['node']['compareAtPriceRange']['minVariantPrice']['amount'] ?? null;
-            
+
             return (object)[
                 'id' => $e['node']['id'],
                 'name' => $e['node']['title'],
@@ -255,6 +258,7 @@ class PagesController extends Controller
 
         return view('pages/products', compact('category', 'products', 'categories', 'is_root', 'pageInfo'));
     }
+
     public function products(Request $request, $slug)
     {
         $per_page = (int)$request->get('per_page', 12);
@@ -266,17 +270,6 @@ class PagesController extends Controller
         elseif ($sort_by == 'price-high-low') { $sortKey = 'PRICE'; $reverse = true; }
         elseif ($sort_by == 'newest') { $sortKey = 'CREATED'; $reverse = true; }
         elseif ($sort_by == 'title-desc') { $sortKey = 'TITLE'; $reverse = true; }
-
-        $filters = [];
-        if ($request->filled('min_price') || $request->filled('max_price')) {
-            $priceFilter = ['price' => []];
-            if ($request->filled('min_price')) $priceFilter['price']['min'] = (float)$request->min_price;
-            if ($request->filled('max_price')) $priceFilter['price']['max'] = (float)$request->max_price;
-            $filters[] = $priceFilter;
-        }
-        if ($request->get('in_stock') == 'true') {
-            $filters[] = ['available' => true];
-        }
 
         $filters = [];
         if ($request->filled('min_price') || $request->filled('max_price')) {
@@ -328,8 +321,8 @@ class PagesController extends Controller
         );
 
         if (isset($data['errors'])) {
-             Log::error('Shopify Errors Collection', ['errors' => $data['errors']]);
-             $data['data'] = null; 
+            Log::error('Shopify Errors Collection', ['errors' => $data['errors']]);
+            $data['data'] = null;
         }
 
         if (!isset($data['data']) || !isset($data['data']['collectionByHandle'])) {
@@ -361,7 +354,7 @@ class PagesController extends Controller
         $products = collect($collectionData['products']['edges'])->map(function($e) {
             $currentPrice = $e['node']['priceRange']['minVariantPrice']['amount'];
             $comparePrice = $e['node']['compareAtPriceRange']['minVariantPrice']['amount'] ?? null;
-            
+
             return (object)[
                 'id' => $e['node']['id'],
                 'name' => $e['node']['title'],
@@ -383,6 +376,7 @@ class PagesController extends Controller
         $is_root = false;
         return view('pages/products', compact('category', 'products', 'categories', 'is_root', 'pageInfo'));
     }
+
     public function product_details($slug)
     {
         $data = $this->shopify->query('
@@ -439,7 +433,6 @@ class PagesController extends Controller
             'is_available' => collect($productData['variants']['edges'])->contains(fn($v) => $v['node']['availableForSale'])
         ];
 
-        // Fetch related products (simulated from same collection)
         $relatedProducts = collect();
         if (isset($productData['collections']['edges'][0])) {
             $relData = $this->shopify->query('
@@ -467,7 +460,7 @@ class PagesController extends Controller
                 ->map(function($p) {
                     $currentPrice = $p['priceRange']['minVariantPrice']['amount'];
                     $comparePrice = $p['compareAtPriceRange']['minVariantPrice']['amount'] ?? null;
-                    
+
                     return (object)[
                         'name' => $p['title'],
                         'slug' => $p['handle'],
@@ -478,51 +471,62 @@ class PagesController extends Controller
                     ];
                 });
         }
-            
+
         return view('pages/product-details', compact('product', 'relatedProducts'));
     }
+
     public function wishlist()
     {
         return view('pages/wishlist');
     }
+
     public function sign_up()
     {
         return view('pages/sign-up');
     }
+
     public function login()
     {
         return view('pages/login');
     }
+
     public function blog()
     {
+        $seo = SeoPage::forPage('blog');
         $blogs = \App\Models\Blog::where('visible', 1)->latest()->get();
-        return view('pages/blog', compact('blogs'));
+        return view('pages/blog', compact('seo', 'blogs'));
     }
+
     public function blog_carousel()
     {
         return view('pages/blog-carousel');
     }
+
     public function blog_list()
     {
         return view('pages/blog-list');
     }
+
     public function blog_list_2()
     {
         return view('pages/blog-list-2');
     }
+
     public function blog_details($slug)
     {
         $blog = \App\Models\Blog::where('blogurl', $slug)->where('visible', 1)->firstOrFail();
         $recentBlogs = \App\Models\Blog::where('visible', 1)->where('id', '!=', $blog->id)->latest()->take(3)->get();
         return view('pages/blog-details', compact('blog', 'recentBlogs'));
     }
+
     public function contact()
     {
+        $seo = SeoPage::forPage('contact');
         $services = Service::where('status', 1)
             ->where('pagecategory', 'services')
             ->orderBy('ServicesTitle')
             ->get();
-        return view('pages/contact', compact('services'));
+        return view('pages/contact', compact('seo', 'services'));
     }
 
     public function submitContact(Request $request)
@@ -550,13 +554,11 @@ class PagesController extends Controller
 
         try {
             \Illuminate\Support\Facades\Log::info('Attempting to send contact form emails.');
-            
-            // Get admin email from .env, settings, or fallback
+
             $adminEmail = config('mail.admin_email', 'support@courticehomehealthcare.com');
-            
-            // 1. Notification to Admin with all form details
+
             $mail = \Illuminate\Support\Facades\Mail::to($adminEmail);
-            
+
             if (env('MAIL_CC_ADDRESS')) {
                 $mail->cc(env('MAIL_CC_ADDRESS'));
             }
@@ -564,13 +566,11 @@ class PagesController extends Controller
             $mail->send(new ContactFormSubmitted($validated));
             \Illuminate\Support\Facades\Log::info('Admin notification email sent to: ' . $adminEmail);
 
-            // 2. Thank you email to the User (the person who filled the form)
             \Illuminate\Support\Facades\Mail::to($validated['email'])
                 ->send(new ContactThankYou($validated));
             \Illuminate\Support\Facades\Log::info('Thank you email sent to: ' . $validated['email']);
 
         } catch (\Exception $e) {
-            // Log error if mail fails, but don't block the user
             \Illuminate\Support\Facades\Log::error('Mail sending failed: ' . $e->getMessage(), [
                 'exception' => $e
             ]);
@@ -583,11 +583,6 @@ class PagesController extends Controller
         return back()->with('success', 'Thank you for contacting us.');
     }
 
-
-
-
-
-
     public function staticPage($slug)
     {
         $page = StaticPage::where('slug', $slug)->where('is_active', true)->firstOrFail();
@@ -597,6 +592,5 @@ class PagesController extends Controller
     public function not_found()
     {
         return view('pages/404');
-        return redirect()->route('404');
     }
 }
