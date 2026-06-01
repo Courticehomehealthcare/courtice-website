@@ -25,6 +25,7 @@ class SeoPage extends Model
     public static array $routeMap = [
         // Home
         'home' => 'home',
+        'index4' => 'home',
         // Static pages
         'about' => 'about',
         'contact' => 'contact',
