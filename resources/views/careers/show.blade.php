@@ -110,9 +110,8 @@
                     <div class="share-box mt-5 p-4" style="background: #f9f9f9; border-radius: 15px; display: flex; align-items: center; justify-content: space-between;">
                         <h5 style="margin: 0; font-size: 16px; font-weight: 600;">Share this position:</h5>
                         <div class="social-links d-flex gap-3">
-                            <a href="#" style="width: 40px; height: 40px; border-radius: 50%; background: #3b5998; color: #fff; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" style="width: 40px; height: 40px; border-radius: 50%; background: #1da1f2; color: #fff; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;"><i class="fab fa-twitter"></i></a>
-                            <a href="#" style="width: 40px; height: 40px; border-radius: 50%; background: #0077b5; color: #fff; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/company/courticehomehealthcare/?viewAsMember=true" target="_blank" rel="noopener" style="width: 40px; height: 40px; border-radius: 50%; background: #0077b5; color: #fff; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/courticehomehealth/" target="_blank" rel="noopener" style="width: 40px; height: 40px; border-radius: 50%; background: #E1306C; color: #fff; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
