@@ -61,7 +61,7 @@ Route::get('blog/{slug}', [PagesController::class, 'blog_details'])->name('blog.
 Route::get('contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('contact-submit', [PagesController::class, 'submitContact'])->name('contact.submit');
 
-Route::get('careers', [CareersController::class, 'index'])->name('careers');
+Route::get('careers', [CareersController::class, 'index'])->name('careers.index');
 Route::get('careers/{id}', [CareersController::class, 'show'])->name('careers.show');
 Route::post('careers/{id}/apply', [CareersController::class, 'apply'])->name('careers.apply');
 

@@ -79,7 +79,7 @@
     </li>
 
     <li class="{{ Request::is('careers*') ? 'current' : '' }}">
-        <a href="{{ route('careers') }}">Careers</a>
+        <a href="{{ route('careers.index') }}">Careers</a>
     </li>
 
     <li class="{{ Request::is('blog') ? 'current' : '' }}">
