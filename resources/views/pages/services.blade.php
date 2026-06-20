@@ -337,6 +337,7 @@
                                     <p class="banner-text">{{ $banner->description }}</p>
                                 @endif
 
+                                {{-- Button hidden per request (2026-06-20) - data preserved in DB, not deleted
                                 @if($banner->button_text && $banner->button_link)
                                     <a href="{{ $banner->button_link }}" class="premium-banner-btn">
                                         {{ $banner->button_text }}
@@ -345,6 +346,7 @@
                                         </span>
                                     </a>
                                 @endif
+                                --}}
                             </div>
                         </div>
                     </div>
@@ -360,12 +362,14 @@
                             <div class="banner-content-inner">
                                 <h1 class="banner-title">Be Ready For Anything</h1>
                                 <p class="banner-text">Essential first aid and medical supplies stocked, trusted, and always within reach.</p>
+                                {{-- Button hidden per request (2026-06-20)
                                 <a href="{{ route('collections') }}" class="premium-banner-btn">
                                     Shop First Aid
                                     <span class="icon-circle">
                                         <span class="icon-arrow-right"></span>
                                     </span>
                                 </a>
+                                --}}
                             </div>
                         </div>
                     </div>
