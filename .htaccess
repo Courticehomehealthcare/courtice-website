@@ -1,14 +1,16 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Prevent loop: If already pointing to public/, stop rewriting
-    RewriteCond %{REQUEST_URI} !^/public/
+    # 301 redirect direct /public/... requests from browsers to clean URLs
+    RewriteCond %{THE_REQUEST} \s/public/([^\s?]*) [NC]
+    RewriteRule ^ /%1 [L,R=301,NE]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    # Redirect trailing slashes if not a folder
+    RewriteCond %{REQUEST_URI} !^/public/
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    # Handle Front Controller...
-    # Forward EVERYTHING to public folder
+    # Internally forward everything to the public folder
+    RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
