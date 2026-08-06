@@ -147,7 +147,17 @@ class PagesController extends Controller
             $subServices = $allServices->where('pagesubcategory', $service->pagecategory);
         }
 
-        return view('pages/service-details', compact('service', 'services', 'rentals', 'shipping', 'fittings', 'subServices', 'allServices'));
+        $seo = (object) [
+            'meta_title'       => $service->seo_title ?: ($service->ServicesTitle . ' | Courtice Home Health Care'),
+            'meta_description' => $service->seo_description ?: Str::limit(strip_tags($service->ServicesText ?? ''), 160),
+            'meta_keywords'    => $service->seo_keywords,
+            'og_title'         => $service->og_title ?: $service->ServicesTitle,
+            'og_description'   => $service->og_description ?: Str::limit(strip_tags($service->ServicesText ?? ''), 160),
+            'og_image'         => $service->og_image ?: $service->serviceimage,
+            'canonical_url'    => $service->canonical_url ?: url()->current(),
+        ];
+
+        return view('pages/service-details', compact('service', 'services', 'rentals', 'shipping', 'fittings', 'subServices', 'allServices', 'seo'));
     }
 
     public function collections(Request $request)
@@ -516,7 +526,18 @@ class PagesController extends Controller
     {
         $blog = \App\Models\Blog::where('blogurl', $slug)->where('visible', 1)->firstOrFail();
         $recentBlogs = \App\Models\Blog::where('visible', 1)->where('id', '!=', $blog->id)->latest()->take(3)->get();
-        return view('pages/blog-details', compact('blog', 'recentBlogs'));
+
+        $seo = (object) [
+            'meta_title'       => $blog->seo_title ?: ($blog->name . ' | Courtice Home Health Care'),
+            'meta_description' => $blog->seo_description ?: ($blog->shortdescription ?: Str::limit(strip_tags($blog->description ?? ''), 160)),
+            'meta_keywords'    => $blog->seo_keywords,
+            'og_title'         => $blog->og_title ?: $blog->name,
+            'og_description'   => $blog->og_description ?: ($blog->shortdescription ?: Str::limit(strip_tags($blog->description ?? ''), 160)),
+            'og_image'         => $blog->og_image ?: $blog->image1,
+            'canonical_url'    => $blog->canonical_url ?: url()->current(),
+        ];
+
+        return view('pages/blog-details', compact('blog', 'recentBlogs', 'seo'));
     }
 
     public function contact()

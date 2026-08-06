@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use App\Models\Service;
 use App\Models\DynamicContent;
@@ -26,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
+        // Always generate URLs from APP_URL (prevents /public/ appearing in links)
+        URL::forceRootUrl(config('app.url'));
+
         // ── Footer composer (existing) ──────────────────────────────────────────
         View::composer(['components.footerThree', 'components.footer-three'], function ($view) {
             $footerServices = Service::where('status', 1)
@@ -45,6 +49,19 @@ class AppServiceProvider extends ServiceProvider
             // Skip admin views — they use AdminLTE layout and don't need $seo
             $currentView = $view->getName();
             if (str_starts_with($currentView, 'admin') || str_starts_with($currentView, 'adminlte')) {
+                return;
+            }
+
+            // If the controller already provided its own $seo (e.g. per-blog SEO), keep it
+            $existing = $view->getData();
+            if (array_key_exists('seo', $existing)) {
+                if (!array_key_exists('siteSettings', $existing)) {
+                    try {
+                        $view->with('siteSettings', DynamicContent::first());
+                    } catch (\Exception $e) {
+                        $view->with('siteSettings', new DynamicContent());
+                    }
+                }
                 return;
             }
 
