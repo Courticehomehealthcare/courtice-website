@@ -2,12 +2,12 @@
 @section('title', 'Services || Careon || Careon Laravel Template')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
-                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
-                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
-                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
-                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
-                                                                                                            <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>
-                                                                                                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/css/intlTelInput.css"/>';
+                                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
+                                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/why-choose.css') . '"/>
+                                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/appiontment.css') . '"/>
+                                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/counter.css') . '"/>
+                                                                                                                    <link rel="stylesheet" href="' . asset('assets/css/module-css/page-header.css') . '"/>
+                                                                                                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.8/build/css/intlTelInput.css"/>';
 
 @endphp
 @php
@@ -235,7 +235,8 @@
         .premium-banner-btn {
             display: inline-flex;
             align-items: center;
-            background-color: #e5f0b8; /* Light lime/yellow from screenshot */
+            background-color: #e5f0b8;
+            /* Light lime/yellow from screenshot */
             color: #000 !important;
             padding: 12px 28px;
             border-radius: 50px;
@@ -284,6 +285,7 @@
             .banner-title {
                 font-size: 48px;
             }
+
             .banner-text {
                 font-size: 18px;
             }
@@ -294,20 +296,25 @@
                 font-size: 36px;
                 letter-spacing: 0;
             }
+
             .banner-text {
                 font-size: 16px;
                 margin-bottom: 25px;
             }
+
             .banner-two__carousel .item img {
                 height: 450px !important;
             }
+
             .banner-content-inner {
                 padding: 0 15px;
             }
+
             .premium-banner-btn {
                 padding: 10px 20px;
                 font-size: 14px;
             }
+
             .premium-banner-btn .icon-circle {
                 width: 30px;
                 height: 30px;
@@ -318,58 +325,60 @@
 
     <x-strickyHeader />
 
-    <section class="page-header banner-two" style="height: auto; overflow: visible; position: relative; background-color: #f7fbff;">
+    <section class="page-header banner-two"
+        style="height: auto; overflow: visible; position: relative; background-color: #f7fbff;">
         <div class="banner-two__carousel owl-theme owl-carousel">
             @forelse($banners as $banner)
                 <div class="item" style="position: relative;">
                     <img src="{{ asset($banner->image_url) }}" alt="{{ $banner->title }}"
-                        style="width: 100%; height: 600px; object-fit: cover; display: block;">
-                    
-                    <div class="banner-content-overlay">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%); pointer-events: none; z-index: -1;"></div>
-                        <div class="container">
-                            <div class="banner-content-inner">
-                                @if($banner->title)
-                                    <h1 class="banner-title">{{ $banner->title }}</h1>
-                                @endif
-                                
-                                @if($banner->description)
-                                    <p class="banner-text">{{ $banner->description }}</p>
-                                @endif
+                        style="width: 100%; height: 600px; display: block;">
 
-                                {{-- Button hidden per request (2026-06-20) - data preserved in DB, not deleted
-                                @if($banner->button_text && $banner->button_link)
-                                    <a href="{{ $banner->button_link }}" class="premium-banner-btn">
-                                        {{ $banner->button_text }}
-                                        <span class="icon-circle">
-                                            <span class="icon-arrow-right"></span>
-                                        </span>
-                                    </a>
-                                @endif
-                                --}}
-                            </div>
+                    <div class="banner-content-overlay">
+                        <div
+                            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%); pointer-events: none; z-index: -1;">
                         </div>
+                        <!--<div class="container">-->
+                        <!--    <div class="banner-content-inner">-->
+                        <!--        @if($banner->title)-->
+                        <!--            <h1 class="banner-title">{{ $banner->title }}</h1>-->
+                        <!--        @endif-->
+
+                        <!--        @if($banner->description)-->
+                        <!--            <p class="banner-text">{{ $banner->description }}</p>-->
+                        <!--        @endif-->
+
+                        <!--        @if($banner->button_text && $banner->button_link)-->
+                        <!--            <a href="{{ $banner->button_link }}" class="premium-banner-btn">-->
+                        <!--                {{ $banner->button_text }}-->
+                        <!--                <span class="icon-circle">-->
+                        <!--                    <span class="icon-arrow-right"></span>-->
+                        <!--                </span>-->
+                        <!--            </a>-->
+                        <!--        @endif-->
+                        <!--    </div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             @empty
                 <div class="item" style="position: relative;">
                     <img src="{{ asset('assets/images/banner/services.png') }}" alt="Services Banner"
                         style="width: 100%; height: 600px; object-fit: cover; display: block;">
-                    
+
                     <div class="banner-content-overlay">
-                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%); pointer-events: none; z-index: -1;"></div>
+                        <div
+                            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%); pointer-events: none; z-index: -1;">
+                        </div>
                         <div class="container">
                             <div class="banner-content-inner">
                                 <h1 class="banner-title">Be Ready For Anything</h1>
-                                <p class="banner-text">Essential first aid and medical supplies stocked, trusted, and always within reach.</p>
-                                {{-- Button hidden per request (2026-06-20)
+                                <p class="banner-text">Essential first aid and medical supplies stocked, trusted, and always
+                                    within reach.</p>
                                 <a href="{{ route('collections') }}" class="premium-banner-btn">
                                     Shop First Aid
                                     <span class="icon-circle">
                                         <span class="icon-arrow-right"></span>
                                     </span>
                                 </a>
-                                --}}
                             </div>
                         </div>
                     </div>
@@ -573,8 +582,10 @@
                                                     Interested In</option>
                                                 <option value="In-Store Shopping" {{ old('service') == 'In-Store Shopping' ? 'selected' : '' }}>In-Store Shopping</option>
                                                 <option value="Online Shopping" {{ old('service') == 'Online Shopping' ? 'selected' : '' }}>Online Shopping</option>
-                                                <option value="Product Rentals – Breast Pumps" {{ old('service') == 'Product Rentals – Breast Pumps' ? 'selected' : '' }}>Product Rentals – Breast Pumps</option>
-                                                <option value="Product Rentals – Hospital Beds" {{ old('service') == 'Product Rentals – Hospital Beds' ? 'selected' : '' }}>Product Rentals – Hospital Beds</option>
+                                                <option value="Product Rentals – Breast Pumps" {{ old('service') == 'Product Rentals – Breast Pumps' ? 'selected' : '' }}>Product Rentals – Breast
+                                                    Pumps</option>
+                                                <option value="Product Rentals – Hospital Beds" {{ old('service') == 'Product Rentals – Hospital Beds' ? 'selected' : '' }}>Product Rentals – Hospital
+                                                    Beds</option>
                                                 <option value="Compression Services" {{ old('service') == 'Compression Services' ? 'selected' : '' }}>Compression Services</option>
                                                 <option value="Professional Fittings" {{ old('service') == 'Professional Fittings' ? 'selected' : '' }}>Professional Fittings</option>
                                                 <option value="General Inquiry" {{ old('service') == 'General Inquiry' ? 'selected' : '' }}>General Inquiry</option>

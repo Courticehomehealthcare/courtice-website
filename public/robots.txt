@@ -1,5 +1,10 @@
 User-agent: *
+Disallow: /admin
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+Disallow: /api/
+Disallow: /products
 Allow: /
 
-# Sitemaps
 Sitemap: https://courticehomehealthcare.com/sitemap.xml

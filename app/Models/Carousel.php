@@ -9,5 +9,5 @@ class Carousel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'button_text', 'button_link', 'image_url', 'page'];
+    protected $fillable = ['title', 'description', 'button_text', 'button_link', 'image_url', 'page', 'status'];
 }

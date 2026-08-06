@@ -95,6 +95,14 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label>Status *</label>
+                <select name="status" class="form-control" required>
+                    <option value="1" {{ old('status', $carousel->status) == 1 ? 'selected' : '' }}>Active (Show)</option>
+                    <option value="0" {{ old('status', $carousel->status) == 0 ? 'selected' : '' }}>Inactive (Hide)</option>
+                </select>
+            </div>
+
             <button class="btn btn-success"><i class="fas fa-save"></i> Update</button>
 
             <a href="{{ route('admin.carousel.index') }}" class="btn btn-secondary">

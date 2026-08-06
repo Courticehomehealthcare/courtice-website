@@ -1,15 +1,18 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Faq;
 use App\Models\Service;
-use App\Models\SeoPage;
 use Illuminate\Http\Request;
+
 use App\Models\Blog;
 use App\Models\Carousel;
 use App\Models\ClientImage;
 use App\Models\SlidingText;
-use App\Models\Testimonial;
+
 use App\Services\ShopifyStorefrontService;
+
 class HomeController extends Controller
 {
     public function __construct(private ShopifyStorefrontService $shopify)
@@ -29,19 +32,23 @@ class HomeController extends Controller
     }
     public function index4()
     {
-        $seo = SeoPage::forPage('home');
-        $carousels = Carousel::where('page', 'home')->orWhereNull('page')->orderByDesc('id')->get();
-        $aboutCarousels = Carousel::where('page', 'aboutus')->orderByDesc('id')->get();
+        $carousels = Carousel::where('status', 1)->where(function($query) {
+            $query->where('page', 'home')->orWhereNull('page');
+        })->orderByDesc('id')->get();
+        $aboutCarousels = Carousel::where('status', 1)->where('page', 'aboutus')->orderByDesc('id')->get();
         $clientImages = ClientImage::orderByDesc('clientid')->get();
+
         $featuredServices = Service::where('status', 1)
             ->whereIn('pagecategory', ['services', 'Services'])
             ->orderByDesc('created_at')
             ->take(3)
             ->get();
+
         $featuredProductServices = Service::where('status', 1)
             ->where('pagecategory', 'products')
             ->orderByDesc('created_at')
             ->get();
+
         $shopifyData = $this->shopify->query('{
             products(first: 8) {
                 edges {
@@ -54,6 +61,7 @@ class HomeController extends Controller
                 }
             }
         }');
+
         $featuredProducts = collect($shopifyData['data']['products']['edges'])->map(fn($e) => (object) [
             'name' => $e['node']['title'],
             'slug' => $e['node']['handle'],
@@ -61,35 +69,24 @@ class HomeController extends Controller
             'main_image' => $e['node']['images']['edges'][0]['node']['url'] ?? null,
             'is_available' => $e['node']['availableForSale'] ?? false
         ]);
+
         $homeFaqs = Faq::where('page', 'home')
             ->orWhereJsonContains('page', 'home')
             ->orWhereNull('page')
             ->orderByDesc('created_at')
             ->take(4)
             ->get();
+
         $blogs = Blog::where('visible', 1)
             ->orderByDesc('last_updated')
             ->take(3)
             ->get();
+
         $slidingTexts = SlidingText::where('is_active', true)
             ->orderBy('sort_order')
             ->get();
-        $testimonials = Testimonial::where('status', 1)
-            ->orderByDesc('created_at')
-            ->get();
-        return view('index4', compact(
-            'seo',
-            'featuredServices',
-            'featuredProductServices',
-            'featuredProducts',
-            'homeFaqs',
-            'blogs',
-            'carousels',
-            'aboutCarousels',
-            'slidingTexts',
-            'clientImages',
-            'testimonials'
-        ));
+
+        return view('index4', compact('featuredServices', 'featuredProductServices', 'featuredProducts', 'homeFaqs', 'blogs', 'carousels', 'aboutCarousels', 'slidingTexts', 'clientImages'));
     }
     public function index5()
     {

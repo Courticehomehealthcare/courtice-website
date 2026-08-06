@@ -61,4 +61,48 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
     <?php echo (isset($dark) ? $dark : '')?>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-808RXWWR12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-808RXWWR12");
+    </script>
+    <!-- Phone click tracker -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll("a[href^=tel]").forEach(function(el) {
+          el.addEventListener("click", function() {
+            if (typeof gtag !== "undefined") {
+              gtag("event", "phone_call_click", {"event_category": "Engagement", "event_label": el.getAttribute("href"), "value": 1.00});
+            }
+          });
+        });
+      });
+    </script>
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Courtice Home Healthcare",
+      "url": "https://courticehomehealthcare.com/",
+      "telephone": "+1-905-721-0004",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1423 King St E Unit 5",
+        "addressLocality": "Courtice",
+        "addressRegion": "ON",
+        "postalCode": "L1E 2J6",
+        "addressCountry": "CA"
+      },
+      "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "11:00", "closes": "14:00"}
+      ],
+      "areaServed": ["Courtice","Oshawa","Whitby","Clarington","Durham Region"]
+    }
+    </script>
 </head>

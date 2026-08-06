@@ -38,6 +38,7 @@ Route::middleware(['web', 'auth:admin'])
         Route::resource('static-pages', StaticPageController::class);
         Route::get('products/image/{id}/delete', [ProductController::class, 'deleteImage'])->name('products.image.delete');
         Route::resource('carousel', CarouselController::class);
+        Route::post('carousel/{carousel}/toggle-status', [CarouselController::class, 'toggleStatus'])->name('carousel.toggle-status');
         Route::resource('faqs', FaqController::class)->parameters(['faqs' => 'faq']);
         Route::resource('sliding-texts', SlidingTextController::class)->parameters(['sliding-texts' => 'slidingText']);
         Route::resource('team', TeamController::class);

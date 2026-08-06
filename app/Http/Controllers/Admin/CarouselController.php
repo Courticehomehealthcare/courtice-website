@@ -36,6 +36,7 @@ class CarouselController extends Controller
                 'button_link' => 'required|url',
                 'image' => 'required|image',
                 'page' => 'required|string|in:home,services,aboutus',
+                'status' => 'required|in:0,1',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->validator)->withInput($request->except('cropped_image'));
@@ -61,6 +62,7 @@ class CarouselController extends Controller
             'button_link' => $request->button_link,
             'image_url' => $imagePath,
             'page' => $request->page,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('admin.carousel.index')
@@ -89,6 +91,7 @@ class CarouselController extends Controller
                 'button_link' => 'required|url',
                 'image' => 'nullable|image',
                 'page' => 'required|string|in:home,services,aboutus',
+                'status' => 'required|in:0,1',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->validator)->withInput($request->except('cropped_image'));
@@ -100,6 +103,7 @@ class CarouselController extends Controller
             'button_text' => $request->button_text,
             'button_link' => $request->button_link,
             'page' => $request->page,
+            'status' => $request->status,
         ];
 
         if ($request->filled('cropped_image')) {
@@ -140,5 +144,21 @@ class CarouselController extends Controller
 
         return redirect()->route('admin.carousel.index')
             ->with('success', 'Carousel deleted successfully.');
+    }
+
+    public function toggleStatus(Request $request, Carousel $carousel)
+    {
+        $request->validate([
+            'status' => 'required|in:0,1',
+        ]);
+
+        $carousel->update([
+            'status' => $request->status,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Status updated successfully.',
+        ]);
     }
 }

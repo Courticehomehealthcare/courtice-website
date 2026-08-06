@@ -41,6 +41,7 @@
                     <th>Title</th>
                     <th>Button</th>
                     <th>Page</th>
+                    <th>Status</th>
                     <th width="150px">Actions</th>
                 </tr>
             </thead>
@@ -64,6 +65,17 @@
                             @else
                                 <span class="badge badge-success">Homepage</span>
                             @endif
+                        </td>
+                        <td>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input status-toggle" 
+                                       id="status-{{ $c->id }}" data-id="{{ $c->id }}" {{ $c->status ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="status-{{ $c->id }}">
+                                    <span class="{{ $c->status ? 'text-success' : 'text-danger' }}" id="status-label-{{ $c->id }}">
+                                        {{ $c->status ? 'Active' : 'Inactive' }}
+                                    </span>
+                                </label>
+                            </div>
                         </td>
 
                         <td>
@@ -97,4 +109,39 @@
     </div>
 </div>
 
+@stop
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('.status-toggle').on('change', function() {
+            var carouselId = $(this).data('id');
+            var status = this.checked ? 1 : 0;
+            var label = $('#status-label-' + carouselId);
+
+            $.ajax({
+                url: "{{ url('admin/carousel') }}/" + carouselId + "/toggle-status",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    status: status
+                },
+                success: function(response) {
+                    if(response.success) {
+                        if (status == 1) {
+                            label.text('Active').removeClass('text-danger').addClass('text-success');
+                        } else {
+                            label.text('Inactive').removeClass('text-success').addClass('text-danger');
+                        }
+                    } else {
+                        alert('Something went wrong. Please try again.');
+                    }
+                },
+                error: function() {
+                    alert('Error connecting to the server.');
+                }
+            });
+        });
+    });
+</script>
 @stop
