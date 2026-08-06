@@ -533,7 +533,7 @@
                     if (data.success) {
                         msg.style.background = '#e8f5e9';
                         msg.style.color = '#2e7d32';
-                        msg.innerHTML = '✓ Product added to cart successfully!';
+                        msg.innerHTML = '✓ Product added! <a href="/cart" style="font-weight:bold; color:#1E3A5F; text-decoration:underline; margin-left:8px;">View Cart &rarr;</a>';
                     } else {
                         msg.style.background = '#ffebee';
                         msg.style.color = '#c62828';
@@ -549,20 +549,35 @@
 
         function buyNow() {
             const variant = getCurrentVariant();
-            fetch('{{ route("cart.add") }}', {
+            const msg = document.getElementById('cartMessage');
+            fetch('{{ route("cart.buy-now") }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-                body: JSON.stringify({
-                    variantId: variant.id,
-                    quantity: currentQty,
-                    title: '{{ $product->name }}',
-                    price: variant.price.amount,
-                    image: '{{ $product->main_image }}'
-                })
-            }).then(() => window.location.href = '{{ route("cart") }}');
+                body: JSON.stringify({ variantId: variant.id, quantity: currentQty })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.url) {
+                    window.location.href = data.url;
+                } else if (msg) {
+                    msg.style.display = 'block';
+                    msg.style.background = '#fff8e6';
+                    msg.style.color = '#7a5d00';
+                    msg.innerHTML = data.error || 'Unable to start checkout. Please try again.';
+                }
+            })
+            .catch(() => {
+                if (msg) {
+                    msg.style.display = 'block';
+                    msg.style.background = '#ffebee';
+                    msg.style.color = '#c62828';
+                    msg.innerHTML = 'Unable to start checkout. Please try again.';
+                }
+            });
         }
 
         // Initialize first options if available

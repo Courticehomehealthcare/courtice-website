@@ -1,5 +1,5 @@
 @extends('layouts.layout3')
-@section('title', 'Cart || Careon || Careon Laravel Template')
+@section('title', 'Cart | Courtice Home Health Care')
 @php
     $css = '<link rel="stylesheet" href="' . asset('assets/css/module-css/sliding-text.css') . '"/>
                     <link rel="stylesheet" href="' . asset('assets/css/module-css/newsletter.css') . '"/>
@@ -13,6 +13,9 @@
 @php
     $title = 'Cart';
     $subtitle = 'Cart';
+    $subtotal = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
+    $onlineLimit = 200;
+    $overLimit = $subtotal > $onlineLimit;
 @endphp
 @section('content')
 
@@ -22,6 +25,30 @@
     <!--Start Cart Page-->
     <section class="cart-page">
         <div class="container">
+
+            @if(session('error'))
+                <div class="row">
+                    <div class="col-12">
+                        <div style="background:#fdecea; border:1px solid #f5c6cb; color:#a94442; border-radius:8px; padding:14px 18px; margin-bottom:20px;">
+                            {{ session('error') }}
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if($overLimit)
+                <div class="row">
+                    <div class="col-12">
+                        <div style="background:#fff8e6; border:1px solid #f0d998; color:#7a5d00; border-radius:8px; padding:16px 20px; margin-bottom:20px;">
+                            <strong>Online orders are limited to ${{ number_format($onlineLimit, 0) }}.</strong>
+                            For larger purchases, please call us at <a href="tel:+19057210004" style="font-weight:bold; color:#1E3A5F;">+1 (905) 721-0004</a>
+                            or visit our store at 1423 King St E Unit 5, Courtice — our team will help you directly and can
+                            check your ADP, Green Shield, WSIB or Veterans Affairs coverage for bigger items.
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-xl-8 col-lg-7">
                     <div class="cart-page__left">
@@ -43,44 +70,60 @@
                                                 <div class="product-box">
                                                     <div class="img-box">
                                                         <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
-                                                    </div>
-                                                    <h3><a
-                                                            href="{{ route('product-details', $item['slug'] ?? '#') }}">{{ $item['title'] }}</a>
-                                                    </h3>
                                                 </div>
-                                            </td>
-                                            <td>${{ number_format($item['price'], 2) }}</td>
-                                            <td>
-                                                <div class="quantity-box"
-                                                    style="display: flex; align-items: center; justify-content: center;">
-                                                    <input type="number" value="{{ $item['quantity'] }}" readonly
-                                                        style="width: 50px; text-align: center; border: 1px solid #ebebeb; border-radius: 4px;">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                ${{ number_format($item['price'] * $item['quantity'], 2) }}
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('cart.remove') }}" method="POST">
+                                                <h3>
+                                                    @if(!empty($item['slug']))
+                                                        <a href="{{ route('product-details', $item['slug']) }}">{{ $item['title'] }}</a>
+                                                    @else
+                                                        {{ $item['title'] }}
+                                                    @endif
+                                                </h3>
+                                            </div>
+                                        </td>
+                                        <td>${{ number_format($item['price'], 2) }}</td>
+                                        <td>
+                                            <div style="display:flex; align-items:center; justify-content:center; gap:6px; min-width:130px;">
+                                                <form action="{{ route('cart.update') }}" method="POST" style="margin:0;">
                                                     @csrf
                                                     <input type="hidden" name="variantId" value="{{ $id }}">
-                                                    <button type="submit"
-                                                        style="background: none; border: none; color: #ff4d4d; cursor: pointer;">
-                                                        <div class="cross-icon">
-                                                            <i class="fas fa-times"></i>
-                                                        </div>
-                                                    </button>
+                                                    <input type="hidden" name="change" value="-1">
+                                                    <button type="submit" aria-label="Decrease quantity"
+                                                        style="display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid #d9d9d9; background:#f7f7f7; border-radius:6px; cursor:pointer; font-size:18px; font-weight:bold; color:#1E3A5F; padding:0; line-height:1;">&minus;</button>
                                                 </form>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="5" class="text-center" style="padding: 50px 0;">
-                                                <h4>Your cart is empty</h4>
-                                                <a href="{{ route('collections') }}" class="thm-btn mt-3">Go to Shop</a>
-                                            </td>
-                                        </tr>
-                                    @endforelse
+                                                <span style="display:inline-flex; align-items:center; justify-content:center; width:44px; height:34px; border:1px solid #d9d9d9; border-radius:6px; background:#fff; font-weight:600;">{{ $item['quantity'] }}</span>
+                                                <form action="{{ route('cart.update') }}" method="POST" style="margin:0;">
+                                                    @csrf
+                                                    <input type="hidden" name="variantId" value="{{ $id }}">
+                                                    <input type="hidden" name="change" value="1">
+                                                    <button type="submit" aria-label="Increase quantity"
+                                                        style="display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid #d9d9d9; background:#f7f7f7; border-radius:6px; cursor:pointer; font-size:18px; font-weight:bold; color:#1E3A5F; padding:0; line-height:1;">+</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            ${{ number_format($item['price'] * $item['quantity'], 2) }}
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('cart.remove') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="variantId" value="{{ $id }}">
+                                                <button type="submit"
+                                                    style="background: none; border: none; color: #ff4d4d; cursor: pointer;">
+                                                    <div class="cross-icon">
+                                                        <i class="fas fa-times"></i>
+                                                    </div>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center" style="padding: 50px 0;">
+                                            <h4>Your cart is empty</h4>
+                                            <a href="{{ route('collections') }}" class="thm-btn mt-3">Go to Shop</a>
+                                        </td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -89,109 +132,52 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="cart-page__right">
                         <div class="cart-page__sidebar">
-                            <div class="cart-page__shipping">
-                                <h3 class="cart-page__shipping-title">Calculated Shipping</h3>
-                                <form action="#" class="cart-page__shipping-form">
-                                    <div class="row">
-                                        <div class="col-xl-12">
-                                            <div class="cart-page__shipping-input-box">
-                                                <div class="select-box">
-                                                    <select class="wide">
-                                                        <option data-display="Country">Country</option>
-                                                        <option value="1">Ban</option>
-                                                        <option value="2">Ind</option>
-                                                        <option value="3">Pak</option>
-                                                        <option value="3">USA</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="cart-page__shipping-input-box">
-                                                <div class="select-box">
-                                                    <select class="wide">
-                                                        <option data-display="State/City">State/City</option>
-                                                        <option value="1">Ban</option>
-                                                        <option value="2">Ind</option>
-                                                        <option value="3">Pak</option>
-                                                        <option value="3">USA</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="cart-page__shipping-input-box">
-                                                <input type="text" placeholder="zip code">
-                                            </div>
-                                        </div>
-                                        <div class="cart-page__btn-box">
-                                            <button type="submit" class="thm-btn">Update <span
-                                                    class="icon-right-arrow"></span> </button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <h4 style="color:#1E3A5F; margin:0 0 18px; font-size:20px;">Order Summary</h4>
+
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; font-size:15px; color:#444;">
+                                <span>Subtotal</span>
+                                <span style="font-weight:600; color:#1E3A5F;">${{ number_format($subtotal, 2) }}</span>
                             </div>
-                            <div class="cart-page__coupon-code">
-                                <h3 class="cart-page__coupon-code-title">Coupon Code</h3>
-                                <p class="cart-page__coupon-code-text">I must explain to you how all this mistaken
-                                    idea of denouncing pleasure and praising pain was born</p>
-                                <form action="#" class="default-form cart-page__coupon-code-form">
-                                    <input type="text" placeholder="Enter Coupon Code">
-                                    <button class="thm-btn" type="submit">
-                                        Apply Coupon <span class="icon-right-arrow"></span>
-                                    </button>
-                                </form>
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; font-size:15px; color:#444; border-bottom:1px solid #eee;">
+                                <span>Shipping &amp; taxes</span>
+                                <span style="color:#888; font-size:13px;">Calculated at checkout</span>
                             </div>
-                            @php
-                                $subtotal = collect($cart)->sum(fn($i) => $i['price'] * $i['quantity']);
-                            @endphp
-                            <ul class="cart-total list-unstyled">
-                                <li>
-                                    <span>Cart Subtotal</span>
-                                    <span>${{ number_format($subtotal, 2) }}</span>
-                                </li>
-                                <li>
-                                    <span>Shipping Cost</span>
-                                    <span>Calculated at checkout</span>
-                                </li>
-                                <li>
-                                    <span>Cart Total</span>
-                                    <span class="cart-total-amount">${{ number_format($subtotal, 2) }}</span>
-                                </li>
-                            </ul>
-                            <div class="cart-page__buttons">
-                                <div class="cart-page__buttons-1">
-                                    <a class="thm-btn" href="{{ route('collections') }}">Continue Shopping
-                                        <span class="icon-right-arrow"></span>
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 0 6px;">
+                                <span style="font-weight:700; color:#1E3A5F; font-size:17px;">Total</span>
+                                <span style="font-weight:700; color:#1E3A5F; font-size:22px;">${{ number_format($subtotal, 2) }} <span style="font-size:13px; font-weight:500; color:#888;">CAD</span></span>
+                            </div>
+
+                            <div style="background:#f6f9fc; border-radius:8px; padding:12px 14px; margin:14px 0;">
+                                <p style="font-size:13.5px; color:#555; margin:0 0 6px;">
+                                    <i class="fas fa-store" style="color:#1E3A5F; margin-right:6px;"></i>
+                                    Free in-store pickup in Courtice — same-day on in-stock items.
+                                </p>
+                                <p style="font-size:12.5px; color:#999; margin:0;">
+                                    Discount code? Enter it at checkout.
+                                </p>
+                            </div>
+
+                            @if(count($cart) > 0)
+                                @if($overLimit)
+                                    <a class="thm-btn" href="tel:+19057210004" style="display:block; width:100%; text-align:center;">
+                                        Call to Order <span class="icon-right-arrow"></span>
                                     </a>
-                                </div>
-                                <div class="cart-page__buttons-2">
-                                    @if(count($cart) > 0)
-                                        <form action="{{ route('checkout') }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="thm-btn" style="width: 100%;">Checkout
-                                                <span class="icon-right-arrow"></span>
-                                            </button>
-                                        </form>
-                                    @endif
-                                </div>
-                            </div>
+                                @else
+                                    <form action="{{ route('checkout') }}" method="POST" style="margin:0;">
+                                        @csrf
+                                        <button type="submit" class="thm-btn" style="width:100%;">
+                                            Checkout <span class="icon-right-arrow"></span>
+                                        </button>
+                                    </form>
+                                @endif
+                            @endif
+                            <a href="{{ route('collections') }}" style="display:block; text-align:center; margin-top:14px; color:#666; text-decoration:none; font-size:14px;">
+                                &larr; Continue Shopping
+                        </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-xl-8 col-lg-7">
-
-            </div>
-            <div class="col-xl-4 col-lg-5">
-
-
-            </div>
-        </div>
         </div>
     </section>
     <!--End Cart Page-->

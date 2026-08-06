@@ -37,6 +37,8 @@ Route::get('/product-details/{slug}', [PagesController::class, 'product_details'
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 Route::post('/cart/add', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/buy-now', [App\Http\Controllers\CartController::class, 'buyNow'])->name('cart.buy-now');
 Route::post('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
 Route::get('/checkout', function () {
     return redirect()->route('cart'); });
