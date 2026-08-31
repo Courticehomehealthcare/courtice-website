@@ -37,16 +37,16 @@
                     </ul>
                     <div class="main-menu-three__top-right">
                         <div class="main-menu-three__social">
-                            @if(optional($siteSettings)->facebook_link)
+                            @if(isset($siteSettings) && optional($siteSettings)->facebook_link)
                                 <a href="{{ $siteSettings->facebook_link }}"><i class="fab fa-facebook-f"></i></a>
                             @endif
-                            @if(optional($siteSettings)->twitter_link)
+                            @if(isset($siteSettings) && optional($siteSettings)->twitter_link)
                                 <a href="{{ $siteSettings->twitter_link }}"><i class="fab fa-twitter"></i></a>
                             @endif
-                            @if(optional($siteSettings)->instagram_link)
+                            @if(isset($siteSettings) && optional($siteSettings)->instagram_link)
                                 <a href="{{ $siteSettings->instagram_link }}"><i class="fab fa-instagram"></i></a>
                             @endif
-                            @if(optional($siteSettings)->linkedin_link)
+                            @if(isset($siteSettings) && optional($siteSettings)->linkedin_link)
                                 <a href="{{ $siteSettings->linkedin_link }}"><i class="fab fa-linkedin-in"></i></a>
                             @endif
                         </div>
