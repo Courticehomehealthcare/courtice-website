@@ -66,8 +66,39 @@
                         <div class="main-menu-three__main-menu-box">
                             <a href="{{ url("#") }}" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
                             <x-menuList />
-                        </div>
-                        <div class="main-menu-three__right">
+                                                <div class="main-menu-three__right">
+                            <!-- Cart Icon -->
+                            <div class="main-menu-three__cart">
+                                <a href="{{ route('cart') }}" class="cart-link">
+                                    <i class="icon-shopping-bag"></i>
+                                    @php
+                                        $cartCount = count(session()->get('cart', []));
+                                    @endphp
+                                    @if($cartCount > 0)
+                                        <span class="cart-badge">{{ $cartCount }}</span>
+                                    @endif
+                                </a>
+                            </div>
+
+                            <!-- Auth Section: Sign In/Up OR User Menu -->
+                            @if(auth()->check())
+                                <!-- User Logged In -->
+                                <div class="main-menu-three__user-menu">
+                                    <span class="user-name">{{ auth()->user()->name ?? 'User' }}</span>
+                                    <a href="{{ route('logout') }}" class="logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            @else
+                                <!-- User Not Logged In -->
+                                <div class="main-menu-three__auth-buttons">
+                                    <a href="{{ route('login') }}" class="sign-in-btn">Sign In</a>
+                                    <a href="{{ route('sign-up') }}" class="sign-up-btn">Sign Up</a>
+                                </div>
+                            @endif
                             <div class="main-menu-three__call">
                                 <div class="main-menu-three__call-icon">
                                     <img src="{{ asset("/assets/images/icon/chat-icon.png") }}" alt="">
@@ -84,3 +115,123 @@
         </nav>
     </div>
 </header>
+
+<style>
+    .main-menu-three__right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .main-menu-three__cart {
+        position: relative;
+    }
+
+    .cart-link {
+        display: inline-block;
+        font-size: 20px;
+        color: #333;
+        text-decoration: none;
+        position: relative;
+    }
+
+    .cart-link:hover {
+        color: #007bff;
+    }
+
+    .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #dc3545;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .main-menu-three__auth-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .sign-in-btn,
+    .sign-up-btn {
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .sign-in-btn {
+        color: #333;
+        border: 1px solid #333;
+        background: transparent;
+    }
+
+    .sign-in-btn:hover {
+        background: #f0f0f0;
+    }
+
+    .sign-up-btn {
+        background: #007bff;
+        color: white;
+        border: 1px solid #007bff;
+    }
+
+    .sign-up-btn:hover {
+        background: #0056b3;
+    }
+
+    .main-menu-three__user-menu {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    .user-name {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .logout-btn {
+        color: #dc3545;
+        text-decoration: none;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    .logout-btn:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .main-menu-three__right {
+            gap: 10px;
+        }
+
+        .main-menu-three__call {
+            display: none;
+        }
+
+        .main-menu-three__auth-buttons {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .sign-in-btn,
+        .sign-up-btn {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+    }
+</style>
