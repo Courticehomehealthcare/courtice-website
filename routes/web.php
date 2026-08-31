@@ -116,3 +116,4 @@ Route::get('/shop', function () {
 Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 Route::get('/{slug}', [PagesController::class, 'staticPage'])->name('static.page');
 Route::fallback([PagesController::class, 'not_found']);
+
