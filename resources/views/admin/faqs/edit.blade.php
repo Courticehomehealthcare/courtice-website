@@ -11,7 +11,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form action="{{ route('admin.faqs.update', $faq) }}" method="POST">
+        <form action="{{ route('care.faqs.update', $faq) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -47,7 +47,7 @@
                 <i class="fas fa-save"></i> Update FAQ
             </button>
 
-            <a href="{{ route('admin.faqs.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.faqs.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </form>

@@ -26,7 +26,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.static-pages.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.static-pages.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add New Page
             </a>
         </div>
@@ -59,12 +59,12 @@
                         <td>{{ $page->updated_at }}</td>
 
                         <td>
-                            <a href="{{ route('admin.static-pages.edit', $page) }}"
+                            <a href="{{ route('care.static-pages.edit', $page) }}"
                                class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
 
-                            <form action="{{ route('admin.static-pages.destroy', $page) }}"
+                            <form action="{{ route('care.static-pages.destroy', $page) }}"
                                   method="POST"
                                   style="display:inline-block;">
                                 @csrf

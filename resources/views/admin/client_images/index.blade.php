@@ -10,7 +10,7 @@
     @endif
 
     <!-- Upload Form -->
-    <form method="POST" action="{{ route('admin.client.images.upload') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('care.client.images.upload') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label>Select Images</label>
@@ -28,7 +28,7 @@
                 <div class="card shadow-sm border-0 table-wrapper">
                     <img src="{{ asset($img->image_path) }}" class="card-img-top" style="height:200px;object-fit:cover">
                     <div class="card-body text-center">
-<form action="{{ route('admin.client.images.delete', ['id' => $img->clientid]) }}"
+<form action="{{ route('care.client.images.delete', ['id' => $img->clientid]) }}"
       method="POST"
       onsubmit="return confirm('Delete this image?')">
 

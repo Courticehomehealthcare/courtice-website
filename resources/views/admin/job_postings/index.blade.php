@@ -26,7 +26,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.job-postings.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.job-postings.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add New Job
             </a>
         </div>
@@ -63,11 +63,11 @@
                             <span class="badge badge-info">{{ $job->applications()->count() }}</span>
                         </td>
                         <td>
-                            <a href="{{ route('admin.job-postings.edit', $job) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ route('care.job-postings.edit', $job) }}" class="btn btn-primary btn-sm">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
 
-                            <form action="{{ route('admin.job-postings.destroy', $job) }}"
+                            <form action="{{ route('care.job-postings.destroy', $job) }}"
                                   method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')

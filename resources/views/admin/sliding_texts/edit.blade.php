@@ -11,7 +11,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form action="{{ route('admin.sliding-texts.update', $slidingText) }}" method="POST">
+        <form action="{{ route('care.sliding-texts.update', $slidingText) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -52,7 +52,7 @@
             <button type="submit" class="btn btn-success">
                 <i class="fas fa-save"></i> Update
             </button>
-            <a href="{{ route('admin.sliding-texts.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.sliding-texts.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </form>

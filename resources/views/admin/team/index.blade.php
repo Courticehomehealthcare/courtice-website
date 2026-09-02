@@ -26,7 +26,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.team.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.team.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add Team Member
             </a>
         </div>
@@ -60,12 +60,12 @@
                         </td>
 
                         <td>
-                            <a href="{{ route('admin.team.edit', $member) }}"
+                            <a href="{{ route('care.team.edit', $member) }}"
                                class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
 
-                            <form action="{{ route('admin.team.destroy', $member) }}"
+                            <form action="{{ route('care.team.destroy', $member) }}"
                                   method="POST"
                                   style="display:inline-block;">
                                 @csrf

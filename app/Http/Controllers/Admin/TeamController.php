@@ -44,7 +44,7 @@ class TeamController extends Controller
             'status'        => $request->status ?? 1,
         ]);
 
-        return redirect()->route('admin.team.index')
+        return redirect()->route('care.team.index')
             ->with('success', 'Team member added.');
     }
 
@@ -67,14 +67,14 @@ class TeamController extends Controller
             'twitterlink', 'linkedinlink', 'contactno', 'email', 'status'
         ]));
 
-        return redirect()->route('admin.team.index')
+        return redirect()->route('care.team.index')
             ->with('success', 'Team member updated.');
     }
 
     public function destroy(Team $team)
     {
         $team->delete();
-        return redirect()->route('admin.team.index')
+        return redirect()->route('care.team.index')
             ->with('success', 'Deleted successfully.');
     }
 }

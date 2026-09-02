@@ -11,7 +11,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form action="{{ route('admin.static-pages.update', $staticPage) }}" method="POST">
+        <form action="{{ route('care.static-pages.update', $staticPage) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -54,7 +54,7 @@
                 <i class="fas fa-save"></i> Update Page
             </button>
 
-            <a href="{{ route('admin.static-pages.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.static-pages.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
 

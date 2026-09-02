@@ -13,26 +13,26 @@ return new class extends Migration
     {
         Schema::create('client', function (Blueprint $table) {
             $table->id();
-            $table->string('email', 180)->nullable()->default('NULL');
-            $table->integer('empId')->nullable()->default('NULL');
-            $table->string('empuuid', 25)->nullable()->default('NULL');
-            $table->string('imppartner', 200)->nullable()->default('NULL');
-            $table->string('client_phone', 255)->nullable()->default('NULL');
-            $table->integer('per_hour_rate')->nullable()->default('NULL');
-            $table->string('clientName', 250)->nullable()->default('NULL');
-            $table->date('Clientmindate')->nullable()->default('NULL');
-            $table->date('clientStartDate')->nullable()->default('NULL');
-            $table->date('clientEndDate')->nullable()->default('NULL');
-            $table->string('clientAddress', 250)->nullable()->default('NULL');
-            $table->string('clientState', 100)->nullable()->default('NULL');
-            $table->string('clientCity', 200)->nullable()->default('NULL');
-            $table->string('clientZipcode', 20)->nullable()->default('NULL');
-            $table->string('ManagerName', 200)->nullable()->default('NULL');
-            $table->string('ManagerEmail', 200)->nullable()->default('NULL');
-            $table->string('ManagerPhone', 200)->nullable()->default('NULL');
-            $table->integer('admin_id')->nullable()->default('NULL');
-            $table->integer('delete')->nullable()->default('NULL');
-            $table->string('logo', 100)->nullable()->default('NULL');
+            $table->string('email', 180)->nullable();
+            $table->integer('empId')->nullable();
+            $table->string('empuuid', 25)->nullable();
+            $table->string('imppartner', 200)->nullable();
+            $table->string('client_phone', 255)->nullable();
+            $table->integer('per_hour_rate')->nullable();
+            $table->string('clientName', 250)->nullable();
+            $table->date('Clientmindate')->nullable();
+            $table->date('clientStartDate')->nullable();
+            $table->date('clientEndDate')->nullable();
+            $table->string('clientAddress', 250)->nullable();
+            $table->string('clientState', 100)->nullable();
+            $table->string('clientCity', 200)->nullable();
+            $table->string('clientZipcode', 20)->nullable();
+            $table->string('ManagerName', 200)->nullable();
+            $table->string('ManagerEmail', 200)->nullable();
+            $table->string('ManagerPhone', 200)->nullable();
+            $table->integer('admin_id')->nullable();
+            $table->integer('delete')->nullable();
+            $table->string('logo', 100)->nullable();
             $table->timestamps();
         });
     }

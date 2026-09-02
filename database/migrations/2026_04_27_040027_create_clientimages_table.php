@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('clientimages', function (Blueprint $table) {
             $table->integer('clientid');
-            $table->string('imagetype', 200)->nullable()->default('NULL');
+            $table->string('imagetype', 200)->nullable();
             $table->string('image_path', 255);
             $table->timestamps();
         });

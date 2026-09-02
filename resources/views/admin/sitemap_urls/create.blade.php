@@ -11,7 +11,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.sitemap-urls.store') }}" method="POST">
+                <form action="{{ route('care.sitemap-urls.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="url">URL Path (e.g., /my-page)</label>
@@ -38,7 +38,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Save URL</button>
-                    <a href="{{ route('admin.sitemap-urls.index') }}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ route('care.sitemap-urls.index') }}" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>

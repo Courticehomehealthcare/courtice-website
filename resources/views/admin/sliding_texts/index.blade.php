@@ -26,7 +26,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.sliding-texts.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.sliding-texts.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add Sliding Text
             </a>
         </div>
@@ -56,11 +56,11 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.sliding-texts.edit', $item) }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('care.sliding-texts.edit', $item) }}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
 
-                            <form action="{{ route('admin.sliding-texts.destroy', $item) }}" method="POST"
+                            <form action="{{ route('care.sliding-texts.destroy', $item) }}" method="POST"
                                 style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')

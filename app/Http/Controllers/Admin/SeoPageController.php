@@ -58,7 +58,7 @@ class SeoPageController extends Controller
 
         $seoPage->update($data);
 
-        return redirect()->route('admin.seo.index')
+        return redirect()->route('care.seo.index')
             ->with('success', 'SEO settings for "' . $seoPage->page_label . '" updated successfully.');
     }
 }

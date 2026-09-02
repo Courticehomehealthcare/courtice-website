@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->string('title', 255)->nullable()->default('NULL');
+            $table->string('title', 255)->nullable();
             $table->text('content');
-            $table->string('image_url', 255)->nullable()->default('NULL');
+            $table->string('image_url', 255)->nullable();
             $table->integer('rating')->nullable()->default('0');
-            $table->boolean('status')->nullable()->default('NULL');
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

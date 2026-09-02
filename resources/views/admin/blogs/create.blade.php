@@ -11,7 +11,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('care.blogs.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -168,7 +168,7 @@
                 <i class="fas fa-save"></i> Create Blog
             </button>
 
-            <a href="{{ route('admin.blogs.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.blogs.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
 

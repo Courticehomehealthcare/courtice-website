@@ -61,14 +61,14 @@
                 </table>
             </div>
             <div class="card-footer">
-                <form action="{{ route('admin.job-applications.thank-you', $application->id) }}"
+                <form action="{{ route('care.job-applications.thank-you', $application->id) }}"
                         method="POST" style="display:inline-block;">
                     @csrf
                     <button class="btn btn-success" onclick="return confirm('Send thank you email to this candidate?')">
                         <i class="fas fa-envelope"></i> Send Thank You Email
                     </button>
                 </form>
-                <a href="{{ route('admin.job-applications.index') }}" class="btn btn-secondary">
+                <a href="{{ route('care.job-applications.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to List
                 </a>
             </div>

@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('team', function (Blueprint $table) {
             $table->string('name', 100);
             $table->string('qualification', 100);
-            $table->string('profilephoto', 255)->nullable()->default('NULL');
-            $table->string('bannerimage', 255)->nullable()->default('NULL');
-            $table->text('career')->nullable()->default('NULL');
+            $table->string('profilephoto', 255)->nullable();
+            $table->string('bannerimage', 255)->nullable();
+            $table->text('career')->nullable();
             $table->text('description');
-            $table->string('experience', 50)->nullable()->default('NULL');
-            $table->string('instagramlink', 300)->nullable()->default('NULL');
-            $table->string('facebooklink', 300)->nullable()->default('NULL');
-            $table->string('twitterlink', 300)->nullable()->default('NULL');
-            $table->string('linkedinlink', 300)->nullable()->default('NULL');
-            $table->string('contactno', 100)->nullable()->default('NULL');
+            $table->string('experience', 50)->nullable();
+            $table->string('instagramlink', 300)->nullable();
+            $table->string('facebooklink', 300)->nullable();
+            $table->string('twitterlink', 300)->nullable();
+            $table->string('linkedinlink', 300)->nullable();
+            $table->string('contactno', 100)->nullable();
             $table->id();
-            $table->string('email', 100)->nullable()->default('NULL');
+            $table->string('email', 100)->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

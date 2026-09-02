@@ -22,7 +22,7 @@ class ContactUsController extends Controller
     public function destroy(ContactUs $contact)
     {
         $contact->delete();
-        return redirect()->route('admin.contacts.index')
+        return redirect()->route('care.contacts.index')
             ->with('success', 'Contact message deleted.');
     }
 

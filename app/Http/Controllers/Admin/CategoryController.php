@@ -45,7 +45,7 @@ class CategoryController extends Controller
             'seo_keywords' => $request->seo_keywords,
         ]);
 
-        return redirect()->route('admin.categories.index')
+        return redirect()->route('care.categories.index')
             ->with('success', 'Category created successfully');
     }
 
@@ -79,7 +79,7 @@ class CategoryController extends Controller
 
         $category->update($data);
 
-        return redirect()->route('admin.categories.index')
+        return redirect()->route('care.categories.index')
             ->with('success', 'Category updated successfully');
     }
 
@@ -91,7 +91,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('admin.categories.index')
+        return redirect()->route('care.categories.index')
             ->with('success', 'Category deleted successfully');
     }
 }

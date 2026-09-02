@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('care.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     @include('admin.categories.form')

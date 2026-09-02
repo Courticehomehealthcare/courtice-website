@@ -13,7 +13,7 @@
     <div class="card-header">Upload Images</div>
     <div class="card-body">
 
-        <form action="{{ route('admin.gallery.upload') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('care.gallery.upload') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -80,7 +80,7 @@
                         </a>
                     @endif
 
-                    <form action="{{ route('admin.gallery.destroy', $img->galleryid) }}" method="POST">
+                    <form action="{{ route('care.gallery.destroy', $img->galleryid) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-block btn-sm">

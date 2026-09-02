@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between">
         <h1>Sitemap URLs</h1>
         <div>
-            <a href="{{ route('admin.sitemap-urls.sync') }}" class="btn btn-success">
+            <a href="{{ route('care.sitemap-urls.sync') }}" class="btn btn-success">
                 <i class="fas fa-sync"></i> Sync from Database
             </a>
             
@@ -32,7 +32,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.sitemap-urls.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.sitemap-urls.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add Custom URL
             </a>
         </div>
@@ -66,10 +66,10 @@
                             </span>
                         </td>
                         <td>
-                            <a href="{{ route('admin.sitemap-urls.edit', $url) }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('care.sitemap-urls.edit', $url) }}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('admin.sitemap-urls.destroy', $url) }}" method="POST" style="display:inline-block;">
+                            <form action="{{ route('care.sitemap-urls.destroy', $url) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('Remove this URL from sitemap?')" class="btn btn-sm btn-danger">

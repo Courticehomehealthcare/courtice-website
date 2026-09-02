@@ -35,7 +35,7 @@
             </tr>
         </table>
 
-        <a href="{{ route('admin.contacts.index') }}" class="btn btn-secondary">
+        <a href="{{ route('care.contacts.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Back
         </a>
 

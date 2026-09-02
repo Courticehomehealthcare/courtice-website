@@ -8,7 +8,7 @@
 
 @section('content')
 
-<form action="{{ route('admin.job-postings.store') }}" method="POST">
+<form action="{{ route('care.job-postings.store') }}" method="POST">
     @csrf
 
     <div class="card">
@@ -73,7 +73,7 @@
             </div>
 
             <button class="btn btn-success"><i class="fas fa-save"></i> Save</button>
-            <a href="{{ route('admin.job-postings.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.job-postings.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </div>

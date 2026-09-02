@@ -35,7 +35,7 @@ class StaticPageController extends Controller
             'is_active' => $request->is_active ?? true,
         ]);
 
-        return redirect()->route('admin.static-pages.index')->with('success', 'Page created successfully.');
+        return redirect()->route('care.static-pages.index')->with('success', 'Page created successfully.');
     }
 
     public function edit(StaticPage $staticPage)
@@ -59,12 +59,12 @@ class StaticPageController extends Controller
             'is_active' => $request->is_active ?? true,
         ]);
 
-        return redirect()->route('admin.static-pages.index')->with('success', 'Page updated successfully.');
+        return redirect()->route('care.static-pages.index')->with('success', 'Page updated successfully.');
     }
 
     public function destroy(StaticPage $staticPage)
     {
         $staticPage->delete();
-        return redirect()->route('admin.static-pages.index')->with('success', 'Page deleted successfully.');
+        return redirect()->route('care.static-pages.index')->with('success', 'Page deleted successfully.');
     }
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('password_resets', function (Blueprint $table) {
             $table->id();
-            $table->string('email', 200)->nullable()->default('NULL');
-            $table->string('token', 200)->nullable()->default('NULL');
+            $table->string('email', 200)->nullable();
+            $table->string('token', 200)->nullable();
             $table->timestamps();
         });
     }

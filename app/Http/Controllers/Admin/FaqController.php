@@ -30,7 +30,7 @@ class FaqController extends Controller
 
         Faq::create($request->only('question', 'answer', 'page'));
 
-        return redirect()->route('admin.faqs.index')
+        return redirect()->route('care.faqs.index')
             ->with('success', 'FAQ created successfully.');
     }
 
@@ -50,14 +50,14 @@ class FaqController extends Controller
 
         $faq->update($request->only('question', 'answer', 'page'));
 
-        return redirect()->route('admin.faqs.index')
+        return redirect()->route('care.faqs.index')
             ->with('success', 'FAQ updated successfully.');
     }
 
     public function destroy(Faq $faq)
     {
         $faq->delete();
-        return redirect()->route('admin.faqs.index')
+        return redirect()->route('care.faqs.index')
             ->with('success', 'FAQ deleted successfully.');
     }
 }

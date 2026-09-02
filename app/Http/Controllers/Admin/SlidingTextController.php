@@ -32,7 +32,7 @@ class SlidingTextController extends Controller
             'is_active' => $request->boolean('is_active'),
         ]);
 
-        return redirect()->route('admin.sliding-texts.index')
+        return redirect()->route('care.sliding-texts.index')
             ->with('success', 'Sliding text created successfully.');
     }
 
@@ -54,14 +54,14 @@ class SlidingTextController extends Controller
             'is_active' => $request->boolean('is_active'),
         ]);
 
-        return redirect()->route('admin.sliding-texts.index')
+        return redirect()->route('care.sliding-texts.index')
             ->with('success', 'Sliding text updated successfully.');
     }
 
     public function destroy(SlidingText $slidingText)
     {
         $slidingText->delete();
-        return redirect()->route('admin.sliding-texts.index')
+        return redirect()->route('care.sliding-texts.index')
             ->with('success', 'Sliding text deleted successfully.');
     }
 }

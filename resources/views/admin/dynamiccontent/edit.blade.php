@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form action="{{ route('admin.settings.update', $content->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('care.settings.update', $content->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="card card-primary">
@@ -220,7 +220,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <a href="{{ route('admin.settings.index') }}" class="btn btn-default">Cancel</a>
+                    <a href="{{ route('care.settings.index') }}" class="btn btn-default">Cancel</a>
                     <button type="submit" class="btn btn-success"><i class="fas fa-save mr-1"></i> Save Changes</button>
                 </div>
             </div>

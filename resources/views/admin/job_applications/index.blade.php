@@ -62,11 +62,11 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.job-applications.show', $app->id) }}" class="btn btn-info btn-sm">
+                            <a href="{{ route('care.job-applications.show', $app->id) }}" class="btn btn-info btn-sm">
                                 <i class="fas fa-eye"></i> View
                             </a>
 
-                            <form action="{{ route('admin.job-applications.thank-you', $app->id) }}"
+                            <form action="{{ route('care.job-applications.thank-you', $app->id) }}"
                                   method="POST" style="display:inline-block;">
                                 @csrf
                                 <button class="btn btn-success btn-sm" onclick="return confirm('Send thank you email to this candidate?')">
@@ -74,7 +74,7 @@
                                 </button>
                             </form>
 
-                            <form action="{{ route('admin.job-applications.destroy', $app->id) }}"
+                            <form action="{{ route('care.job-applications.destroy', $app->id) }}"
                                   method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')

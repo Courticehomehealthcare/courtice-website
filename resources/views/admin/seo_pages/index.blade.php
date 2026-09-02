@@ -53,7 +53,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.seo.edit', $page->id) }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('care.seo.edit', $page->id) }}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                         </td>

@@ -41,6 +41,6 @@ class JobApplicationController extends Controller
     {
         $application = JobApplication::findOrFail($id);
         $application->delete();
-        return redirect()->route('admin.job-applications.index')->with('success', 'Application deleted successfully.');
+        return redirect()->route('care.job-applications.index')->with('success', 'Application deleted successfully.');
     }
 }

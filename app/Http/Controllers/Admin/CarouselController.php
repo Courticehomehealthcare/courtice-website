@@ -65,7 +65,7 @@ class CarouselController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('admin.carousel.index')
+        return redirect()->route('care.carousel.index')
             ->with('success', 'Carousel item created successfully.');
     }
 
@@ -130,7 +130,7 @@ class CarouselController extends Controller
 
         $carousel->update($data);
 
-        return redirect()->route('admin.carousel.index')
+        return redirect()->route('care.carousel.index')
             ->with('success', 'Carousel updated successfully.');
     }
 
@@ -142,7 +142,7 @@ class CarouselController extends Controller
 
         $carousel->delete();
 
-        return redirect()->route('admin.carousel.index')
+        return redirect()->route('care.carousel.index')
             ->with('success', 'Carousel deleted successfully.');
     }
 

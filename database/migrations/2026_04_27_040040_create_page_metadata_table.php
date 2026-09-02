@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('page_metadata', function (Blueprint $table) {
             $table->id();
             $table->string('page_slug', 255);
-            $table->string('title', 300)->nullable()->default('NULL');
-            $table->text('description')->nullable()->default('NULL');
-            $table->text('keywords')->nullable()->default('NULL');
+            $table->string('title', 300)->nullable();
+            $table->text('description')->nullable();
+            $table->text('keywords')->nullable();
             $table->timestamps();
         });
     }

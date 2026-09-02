@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('galleryimages', function (Blueprint $table) {
             $table->integer('galleryid');
-            $table->string('imagetype', 200)->nullable()->default('NULL');
+            $table->string('imagetype', 200)->nullable();
             $table->string('image_path', 255);
-            $table->string('image_name', 255)->nullable()->default('NULL');
-            $table->string('project_link', 255)->nullable()->default('NULL');
+            $table->string('image_name', 255)->nullable();
+            $table->string('project_link', 255)->nullable();
             $table->timestamps();
         });
     }

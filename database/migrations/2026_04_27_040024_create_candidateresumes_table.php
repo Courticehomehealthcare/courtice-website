@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('candidateresumes', function (Blueprint $table) {
             $table->id();
-            $table->string('candidateName', 200)->nullable()->default('NULL');
-            $table->string('candidatelastName', 200)->nullable()->default('NULL');
-            $table->string('candidateemail', 255)->nullable()->default('NULL');
-            $table->string('candidatephoneno', 200)->nullable()->default('NULL');
-            $table->string('appliedforposition', 200)->nullable()->default('NULL');
-            $table->string('Message', 200)->nullable()->default('NULL');
-            $table->string('resume', 250)->nullable()->default('NULL');
-            $table->date('applieddate')->nullable()->default('NULL');
+            $table->string('candidateName', 200)->nullable();
+            $table->string('candidatelastName', 200)->nullable();
+            $table->string('candidateemail', 255)->nullable();
+            $table->string('candidatephoneno', 200)->nullable();
+            $table->string('appliedforposition', 200)->nullable();
+            $table->string('Message', 200)->nullable();
+            $table->string('resume', 250)->nullable();
+            $table->date('applieddate')->nullable();
             $table->timestamps();
         });
     }

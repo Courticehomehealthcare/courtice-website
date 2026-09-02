@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('dynamic_contents', function (Blueprint $table) {
             $table->id();
-            $table->string('logoimage', 255)->nullable()->default('NULL');
-            $table->string('facebook_link', 255)->nullable()->default('NULL');
-            $table->string('twitter_link', 255)->nullable()->default('NULL');
-            $table->string('linkedin_link', 255)->nullable()->default('NULL');
-            $table->string('instagram_link', 255)->nullable()->default('NULL');
-            $table->string('phone_number', 15)->nullable()->default('NULL');
-            $table->string('email', 255)->nullable()->default('NULL');
-            $table->string('address', 255)->nullable()->default('NULL');
-            $table->string('copyrightyear', 200)->nullable()->default('NULL');
-            $table->string('companyname', 150)->nullable()->default('NULL');
-            $table->string('operating_hours', 150)->nullable()->default('NULL');
-            $table->string('description', 300)->nullable()->default('NULL');
-            $table->string('favicon', 255)->nullable()->default('NULL');
+            $table->string('logoimage', 255)->nullable();
+            $table->string('facebook_link', 255)->nullable();
+            $table->string('twitter_link', 255)->nullable();
+            $table->string('linkedin_link', 255)->nullable();
+            $table->string('instagram_link', 255)->nullable();
+            $table->string('phone_number', 15)->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('address', 255)->nullable();
+            $table->string('copyrightyear', 200)->nullable();
+            $table->string('companyname', 150)->nullable();
+            $table->string('operating_hours', 150)->nullable();
+            $table->string('description', 300)->nullable();
+            $table->string('favicon', 255)->nullable();
             $table->timestamps();
         });
     }

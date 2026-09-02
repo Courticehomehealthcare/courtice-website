@@ -15,7 +15,7 @@
     </div>
 @endif
 
-<form action="{{ route('admin.seo.update', $seoPage->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('care.seo.update', $seoPage->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="row">
@@ -151,7 +151,7 @@
         <button type="submit" class="btn btn-primary">
             <i class="fas fa-save mr-1"></i> Save SEO Settings
         </button>
-        <a href="{{ route('admin.seo.index') }}" class="btn btn-secondary ml-2">
+        <a href="{{ route('care.seo.index') }}" class="btn btn-secondary ml-2">
             <i class="fas fa-arrow-left mr-1"></i> Back to List
         </a>
     </div>

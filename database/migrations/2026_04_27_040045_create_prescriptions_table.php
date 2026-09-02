@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('patient_id');
             $table->text('diagnosis');
             $table->longText('medicines');
-            $table->text('notes')->nullable()->default('NULL');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

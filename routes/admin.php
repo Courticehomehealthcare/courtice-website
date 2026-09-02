@@ -22,8 +22,8 @@ use App\Http\Controllers\Admin\SitemapUrlController;
 use App\Http\Middleware\AdminRole;
 
 Route::middleware(['web', 'auth:admin'])
-    ->prefix('admin')
-    ->name('admin.')
+    ->prefix('care')
+    ->name('care.')
     ->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'index'])

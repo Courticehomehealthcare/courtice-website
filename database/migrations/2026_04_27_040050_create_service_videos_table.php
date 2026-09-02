@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('service_videos', function (Blueprint $table) {
             $table->id();
             $table->integer('Serviceid');
-            $table->string('youtube_url', 255)->nullable()->default('NULL');
-            $table->string('title', 255)->nullable()->default('NULL');
+            $table->string('youtube_url', 255)->nullable();
+            $table->string('title', 255)->nullable();
             $table->string('video_type');
-            $table->string('video_file', 255)->nullable()->default('NULL');
+            $table->string('video_file', 255)->nullable();
             $table->timestamps();
         });
     }

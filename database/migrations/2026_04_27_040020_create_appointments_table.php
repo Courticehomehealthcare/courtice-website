@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('patient_id');
             $table->string('appointment_date', 50);
             $table->string('appointment_time', 50);
-            $table->string('chiefcomplaint', 100)->nullable()->default('NULL');
+            $table->string('chiefcomplaint', 100)->nullable();
             $table->string('status', 50)->nullable()->default('Pending');
             $table->timestamps();
         });

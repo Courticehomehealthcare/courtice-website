@@ -18,10 +18,10 @@ return new class extends Migration
             $table->integer('pending_jobs');
             $table->integer('failed_jobs');
             $table->longText('failed_job_ids');
-            $table->mediumText('options')->nullable()->default('NULL');
-            $table->integer('cancelled_at')->nullable()->default('NULL');
+            $table->mediumText('options')->nullable();
+            $table->integer('cancelled_at')->nullable();
             $table->integer('created_at');
-            $table->integer('finished_at')->nullable()->default('NULL');
+            $table->integer('finished_at')->nullable();
         });
     }
 

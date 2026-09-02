@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('care.services.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     @include('admin.services.form')
 </form>

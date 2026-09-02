@@ -24,7 +24,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.services.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.services.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add New Service
             </a>
         </div>
@@ -69,13 +69,13 @@
 
                         <td>
                             {{-- Edit --}}
-                            <a href="{{ route('admin.services.edit', $service) }}"
+                            <a href="{{ route('care.services.edit', $service) }}"
                                 class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
 
                             {{-- Delete --}}
-                            <form action="{{ route('admin.services.destroy', $service) }}"
+                            <form action="{{ route('care.services.destroy', $service) }}"
                                   method="POST"
                                   style="display:inline-block;">
                                 @csrf

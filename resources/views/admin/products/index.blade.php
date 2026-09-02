@@ -26,7 +26,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.products.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.products.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add New Product
             </a>
         </div>
@@ -67,11 +67,11 @@
                         </td>
 
                         <td>
-                            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('care.products.edit', $product) }}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
 
-                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST" style="display:inline-block;">
+                            <form action="{{ route('care.products.destroy', $product) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('Delete this product?')" class="btn btn-sm btn-danger">

@@ -62,11 +62,11 @@
                             <td>{{ $service->created_at ? $service->created_at->format('Y-m-d') : 'N/A' }}</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-sm btn-info"
+                                    <a href="{{ route('care.services.edit', $service) }}" class="btn btn-sm btn-info"
                                         title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('admin.services.destroy', $service) }}" method="POST"
+                                    <form action="{{ route('care.services.destroy', $service) }}" method="POST"
                                         style="display: inline-block;"
                                         onsubmit="return confirm('Are you sure you want to delete this service?');">
                                         @csrf

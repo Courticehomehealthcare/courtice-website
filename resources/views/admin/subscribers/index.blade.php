@@ -18,7 +18,7 @@
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sendEmailModal">
                 <i class="fas fa-envelope"></i> Send Email to Selected
             </button>
-            <form action="{{ route('admin.subscribers.clearAll') }}" method="POST" style="display:inline;"
+            <form action="{{ route('care.subscribers.clearAll') }}" method="POST" style="display:inline;"
                 onsubmit="return confirm('Are you sure you want to clear all subscribers?')">
                 @csrf
                 <button type="submit" class="btn btn-danger btn-sm">
@@ -139,7 +139,7 @@
             $loader.removeClass('d-none');
 
             $.ajax({
-                url: "{{ route('admin.subscribers.send') }}",
+                url: "{{ route('care.subscribers.send') }}",
                 method: "POST",
                 data: {
                     _token: "{{ csrf_token() }}",

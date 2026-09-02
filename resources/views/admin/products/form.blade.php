@@ -95,7 +95,7 @@
                                 <button type="button" class="btn btn-danger btn-xs position-absolute delete-gallery-image" 
                                     style="top: -5px; right: -5px;" 
                                     data-id="{{ $img->id }}"
-                                    onclick="if(confirm('Delete this image?')) { window.location.href='{{ route('admin.products.image.delete', $img->id) }}'; }">
+                                    onclick="if(confirm('Delete this image?')) { window.location.href='{{ route('care.products.image.delete', $img->id) }}'; }">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
@@ -123,7 +123,7 @@
     </div>
     <div class="card-footer">
         <button type="submit" class="btn btn-success">Save Product</button>
-        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Cancel</a>
+        <a href="{{ route('care.products.index') }}" class="btn btn-secondary">Cancel</a>
     </div>
 </div>
 

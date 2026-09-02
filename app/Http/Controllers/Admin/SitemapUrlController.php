@@ -34,7 +34,7 @@ class SitemapUrlController extends Controller
 
         SitemapUrl::create($request->all() + ['source' => 'manual']);
 
-        return redirect()->route('admin.sitemap-urls.index')->with('success', 'URL added to sitemap.');
+        return redirect()->route('care.sitemap-urls.index')->with('success', 'URL added to sitemap.');
     }
 
     public function edit(SitemapUrl $sitemapUrl)
@@ -52,13 +52,13 @@ class SitemapUrlController extends Controller
 
         $sitemapUrl->update($request->all());
 
-        return redirect()->route('admin.sitemap-urls.index')->with('success', 'URL updated.');
+        return redirect()->route('care.sitemap-urls.index')->with('success', 'URL updated.');
     }
 
     public function destroy(SitemapUrl $sitemapUrl)
     {
         $sitemapUrl->delete();
-        return redirect()->route('admin.sitemap-urls.index')->with('success', 'URL removed from sitemap.');
+        return redirect()->route('care.sitemap-urls.index')->with('success', 'URL removed from sitemap.');
     }
 
     public function sync()
@@ -140,6 +140,6 @@ class SitemapUrlController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.sitemap-urls.index')->with('success', 'Sitemap URLs synced from database.');
+        return redirect()->route('care.sitemap-urls.index')->with('success', 'Sitemap URLs synced from database.');
     }
 }

@@ -11,7 +11,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.sitemap-urls.update', $sitemapUrl) }}" method="POST">
+                <form action="{{ route('care.sitemap-urls.update', $sitemapUrl) }}" method="POST">
                     @csrf
                     @method('PUT')
                     
@@ -44,7 +44,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update URL</button>
-                    <a href="{{ route('admin.sitemap-urls.index') }}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ route('care.sitemap-urls.index') }}" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
         </div>

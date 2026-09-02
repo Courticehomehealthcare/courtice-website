@@ -72,12 +72,12 @@
 
 
                         <td>
-                            <a href="{{ route('admin.contacts.show', $contact->contactid) }}"
+                            <a href="{{ route('care.contacts.show', $contact->contactid) }}"
                                 class="btn btn-sm btn-primary">
                                 <i class="fas fa-eye"></i>
                             </a>
 
-                            <form action="{{ route('admin.contacts.destroy', $contact->contactid) }}" method="POST"
+                            <form action="{{ route('care.contacts.destroy', $contact->contactid) }}" method="POST"
                                 style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -142,7 +142,7 @@
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner-border spinner-border-sm mr-1" role="status"></span>Deleting...';
 
-        fetch("{{ route('admin.contacts.bulk-destroy') }}", {
+        fetch("{{ route('care.contacts.bulk-destroy') }}", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

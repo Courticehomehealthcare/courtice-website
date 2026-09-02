@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('Serviceid');
             $table->string('image', 255);
-            $table->string('caption', 255)->nullable()->default('NULL');
+            $table->string('caption', 255)->nullable();
             $table->timestamps();
         });
     }

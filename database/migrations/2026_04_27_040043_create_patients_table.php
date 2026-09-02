@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('age');
             $table->string('gender', 20);
             $table->string('phone', 20);
-            $table->string('email', 255)->nullable()->default('NULL');
-            $table->text('address')->nullable()->default('NULL');
+            $table->string('email', 255)->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@
 <div class="card">
     <div class="card-body">
 
-        <form action="{{ route('admin.team.update', $team) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('care.team.update', $team) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -126,7 +126,7 @@
                 <i class="fas fa-save"></i> Update
             </button>
 
-            <a href="{{ route('admin.team.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.team.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
 

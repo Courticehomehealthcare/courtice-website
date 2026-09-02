@@ -26,7 +26,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.blogs.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add New Blog
             </a>
         </div>
@@ -61,12 +61,12 @@
                         <td>{{ $blog->last_updated }}</td>
 
                         <td>
-                            <a href="{{ route('admin.blogs.edit', $blog) }}"
+                            <a href="{{ route('care.blogs.edit', $blog) }}"
                                class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
 
-                            <form action="{{ route('admin.blogs.destroy', $blog) }}"
+                            <form action="{{ route('care.blogs.destroy', $blog) }}"
                                   method="POST"
                                   style="display:inline-block;">
                                 @csrf

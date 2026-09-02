@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
     /**
@@ -12,18 +10,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin_session', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->bigInteger('id')->primary();
             $table->integer('user_id');
-            $table->integer('type')->nullable()->default('NULL');
-            $table->integer('is_read')->nullable()->default('NULL');
-            $table->integer('is_active')->nullable()->default('NULL');
-            $table->integer('is_deleted')->nullable()->default('NULL');
-            $table->integer('check_login')->nullable()->default('NULL');
-            $table->integer('check_logout')->nullable()->default('NULL');
+            $table->integer('type')->nullable();
+            $table->integer('is_read')->nullable();
+            $table->integer('is_active')->nullable();
+            $table->integer('is_deleted')->nullable();
+            $table->integer('check_login')->nullable();
+            $table->integer('check_logout')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

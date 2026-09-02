@@ -32,7 +32,7 @@ class JobPostingController extends Controller
 
         JobPosting::create($request->all());
 
-        return redirect()->route('admin.job-postings.index')->with('success', 'Job posting created successfully.');
+        return redirect()->route('care.job-postings.index')->with('success', 'Job posting created successfully.');
     }
 
     public function edit(JobPosting $jobPosting)
@@ -53,12 +53,12 @@ class JobPostingController extends Controller
 
         $jobPosting->update($request->all());
 
-        return redirect()->route('admin.job-postings.index')->with('success', 'Job posting updated successfully.');
+        return redirect()->route('care.job-postings.index')->with('success', 'Job posting updated successfully.');
     }
 
     public function destroy(JobPosting $jobPosting)
     {
         $jobPosting->delete();
-        return redirect()->route('admin.job-postings.index')->with('success', 'Job posting deleted successfully.');
+        return redirect()->route('care.job-postings.index')->with('success', 'Job posting deleted successfully.');
     }
 }

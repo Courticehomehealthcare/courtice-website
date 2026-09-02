@@ -11,12 +11,12 @@
     <div class="card-header">
         <h3 class="card-title">Service Information</h3>
         <div class="card-tools">
-            <a href="{{ route('admin.services.index') }}" class="btn btn-secondary btn-sm">
+            <a href="{{ route('care.services.index') }}" class="btn btn-secondary btn-sm">
                 <i class="fas fa-arrow-left"></i> Back to List
             </a>
         </div>
     </div>
-    <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('care.services.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             @if($errors->any())
@@ -147,7 +147,7 @@
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-save"></i> Create Service
             </button>
-            <a href="{{ route('admin.services.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.services.index') }}" class="btn btn-secondary">
                 <i class="fas fa-times"></i> Cancel
             </a>
         </div>

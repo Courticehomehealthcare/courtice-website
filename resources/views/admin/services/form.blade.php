@@ -367,7 +367,7 @@
                                     <source src="{{ asset('uploads/services/videos/' . $v->video_file) }}" type="video/mp4">
                                 </video>
 
-                                <a href="{{ route('admin.service.video.delete', $v->id) }}" class="btn btn-sm btn-danger mt-2"
+                                <a href="{{ route('care.service.video.delete', $v->id) }}" class="btn btn-sm btn-danger mt-2"
                                     onclick="return confirm('Delete this video?')">
                                     Delete
                                 </a>
@@ -392,7 +392,7 @@
                         <div class="d-flex mb-2">
                             <input type="text" class="form-control" value="{{ $v->youtube_url }}" readonly>
 
-                            <a href="{{ route('admin.service.video.delete', $v->id) }}" class="btn btn-danger btn-sm ml-2"
+                            <a href="{{ route('care.service.video.delete', $v->id) }}" class="btn btn-danger btn-sm ml-2"
                                 onclick="return confirm('Delete this video?')">
                                 X
                             </a>
@@ -418,7 +418,7 @@
             <!--        @foreach($service->videos as $v)-->
             <!--            <div class="d-flex mb-2">-->
             <!--                <input type="text" name="videos[]" class="form-control" value="{{ $v->youtube_url }}">-->
-            <!--                <a href="{{ route('admin.service.video.delete',$v->id) }}"-->
+            <!--                <a href="{{ route('care.service.video.delete',$v->id) }}"-->
             <!--                   class="btn btn-danger btn-sm ml-2"-->
             <!--                   onclick="return confirm('Delete this video?')">X</a>-->
             <!--            </div>-->
@@ -443,7 +443,7 @@
                         <div class="col-md-2 text-center">
                             <img src="{{ asset('uploads/services/gallery/' . $g->image) }}" class="img-thumbnail mb-2">
 
-                            <a href="{{ route('admin.service.gallery.delete', $g->id) }}" class="btn btn-sm btn-danger"
+                            <a href="{{ route('care.service.gallery.delete', $g->id) }}" class="btn btn-sm btn-danger"
                                 onclick="return confirm('Delete this image?')">
                                 Delete
                             </a>
@@ -506,7 +506,7 @@ function addVideo() {
                 <i class="fas fa-save"></i> Save
             </button>
 
-            <a href="{{ route('admin.services.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.services.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </div>

@@ -104,7 +104,7 @@ class BlogController extends Controller
 //         'visible'          => $request->visible ?? 1,
 //     ]);
 
-    //     return redirect()->route('admin.blogs.index')
+    //     return redirect()->route('care.blogs.index')
 //         ->with('success', 'Blog created successfully.');
 // }
 
@@ -176,7 +176,7 @@ class BlogController extends Controller
             'twitter_image' => $request->twitter_image,
         ]);
 
-        return redirect()->route('admin.blogs.index')
+        return redirect()->route('care.blogs.index')
             ->with('success', 'Blog created successfully.');
     }
 
@@ -231,7 +231,7 @@ class BlogController extends Controller
 //         'visible'          => $request->visible ?? $blog->visible,
 //     ]);
 
-    //     return redirect()->route('admin.blogs.index')
+    //     return redirect()->route('care.blogs.index')
 //         ->with('success', 'Blog updated successfully.');
 // }
 
@@ -309,7 +309,7 @@ class BlogController extends Controller
             'twitter_image' => $request->twitter_image,
         ]);
 
-        return redirect()->route('admin.blogs.index')
+        return redirect()->route('care.blogs.index')
             ->with('success', 'Blog updated successfully.');
     }
 
@@ -326,7 +326,7 @@ class BlogController extends Controller
         }
 
         $blog->delete();
-        return redirect()->route('admin.blogs.index')
+        return redirect()->route('care.blogs.index')
             ->with('success', 'Blog deleted successfully.');
     }
 }

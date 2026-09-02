@@ -195,7 +195,7 @@ class DynamicContentController extends Controller
                 $content->save();
             }
 
-            return redirect()->route('admin.settings.index')->with('success', 'Content Updated!');
+            return redirect()->route('care.settings.index')->with('success', 'Content Updated!');
 
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());

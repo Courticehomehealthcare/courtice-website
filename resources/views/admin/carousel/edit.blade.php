@@ -24,7 +24,7 @@
 
 @section('content')
 
-<form action="{{ route('admin.carousel.update', $carousel) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('care.carousel.update', $carousel) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -105,7 +105,7 @@
 
             <button class="btn btn-success"><i class="fas fa-save"></i> Update</button>
 
-            <a href="{{ route('admin.carousel.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.carousel.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
 

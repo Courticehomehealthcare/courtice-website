@@ -11,12 +11,12 @@
     <div class="card-header">
         <h3 class="card-title">Service Information</h3>
         <div class="card-tools">
-            <a href="{{ route('admin.services.index') }}" class="btn btn-secondary btn-sm">
+            <a href="{{ route('care.services.index') }}" class="btn btn-secondary btn-sm">
                 <i class="fas fa-arrow-left"></i> Back to List
             </a>
         </div>
     </div>
-    <form action="{{ route('admin.services.update', $service) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('care.services.update', $service) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="card-body">
@@ -146,7 +146,7 @@
                             @else
                                 <span class="mr-2">Uploaded: {{ $video->video_file }}</span>
                             @endif
-                            <a href="{{ route('admin.service.video.delete', $video->id) }}" class="btn btn-sm btn-danger"
+                            <a href="{{ route('care.service.video.delete', $video->id) }}" class="btn btn-sm btn-danger"
                                 onclick="return confirm('Delete this video?')">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -166,7 +166,7 @@
                                 <img src="{{ asset('uploads/services/gallery/' . $gallery->image) }}" class="card-img-top"
                                     alt="Gallery Image">
                                 <div class="card-body p-2 text-center">
-                                    <a href="{{ route('admin.service.gallery.delete', $gallery->id) }}"
+                                    <a href="{{ route('care.service.gallery.delete', $gallery->id) }}"
                                         class="btn btn-sm btn-danger" onclick="return confirm('Delete this image?')">
                                         <i class="fas fa-trash"></i> Delete
                                     </a>
@@ -208,7 +208,7 @@
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-save"></i> Update Service
             </button>
-            <a href="{{ route('admin.services.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.services.index') }}" class="btn btn-secondary">
                 <i class="fas fa-times"></i> Cancel
             </a>
         </div>

@@ -24,7 +24,7 @@
 
 @section('content')
 
-<form action="{{ route('admin.carousel.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('care.carousel.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="card">
@@ -98,7 +98,7 @@
 
 
             <button class="btn btn-success"><i class="fas fa-save"></i> Save</button>
-            <a href="{{ route('admin.carousel.index') }}" class="btn btn-secondary">
+            <a href="{{ route('care.carousel.index') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </div>

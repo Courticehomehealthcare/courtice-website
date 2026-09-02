@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->integer('eventid');
-            $table->string('bannertitle', 300)->nullable()->default('NULL');
-            $table->string('bannerimage', 300)->nullable()->default('NULL');
+            $table->string('bannertitle', 300)->nullable();
+            $table->string('bannerimage', 300)->nullable();
             $table->string('eventuid', 25);
             $table->string('eventname', 300);
             $table->string('title', 300);
             $table->date('eventdate');
-            $table->string('location', 300)->nullable()->default('NULL');
-            $table->string('link', 300)->nullable()->default('NULL');
+            $table->string('location', 300)->nullable();
+            $table->string('link', 300)->nullable();
             $table->text('description');
             $table->string('eventtype', 200);
-            $table->string('other', 500)->nullable()->default('NULL');
+            $table->string('other', 500)->nullable();
             $table->string('image1', 200);
             $table->string('image2', 200);
             $table->boolean('status')->nullable()->default('1');

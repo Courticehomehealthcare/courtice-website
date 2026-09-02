@@ -26,7 +26,7 @@
                     </button>
                 </div>
             </div>
-            <a href="{{ route('admin.faqs.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
+            <a href="{{ route('care.faqs.create') }}" class="btn btn-primary" style="height: 34px; display: flex; align-items: center; border-radius: 4px; font-weight: 500; background-color: #007bff; border-color: #007bff;">
                 <i class="fas fa-plus mr-1" style="font-size: 0.8rem;"></i> Add FAQ
             </a>
         </div>
@@ -63,12 +63,12 @@
                         <td>{!! Str::limit($faq->answer, 80) !!}</td>
 
                         <td>
-                            <a href="{{ route('admin.faqs.edit', $faq) }}"
+                            <a href="{{ route('care.faqs.edit', $faq) }}"
                                class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
 
-                            <form action="{{ route('admin.faqs.destroy', $faq) }}"
+                            <form action="{{ route('care.faqs.destroy', $faq) }}"
                                   method="POST"
                                   style="display:inline-block;">
                                 @csrf
